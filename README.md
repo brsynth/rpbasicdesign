@@ -1,6 +1,6 @@
 # dnaprep
 
-**A command-line tool to convert rpSBML files into SBOL and CSV files ready-to-be used with DNA-Bot"**
+**A command-line tool to convert rpSBML files into SBOL and CSV files ready-to-be used with DNA-Bot".**
 *dnaprep* extracts enzyme IDs from rpSBML files -- produced by the RP suite available in the [SynBioCAD Galaxy platform](https://galaxy-synbiocad.org) -- to generate genetic constructs compliant with the [BASIC](https://doi.org/10.1021/sb500356d) assembly approach.
 CSV files produced then be used with [DNA-Bot](https://github.com/BASIC-DNA-ASSEMBLY/DNA-BOT) to generates python scripts allowing automated build of the genetic constructs using [OpenTrons](https://opentrons.com/) liquid handling robots.  
 Formal description of parts involved in constructs is outputted in SBOL files.
