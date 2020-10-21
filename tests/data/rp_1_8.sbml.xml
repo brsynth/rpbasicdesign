@@ -1,0 +1,1743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" xmlns:groups="http://www.sbml.org/sbml/level3/version1/groups/version1" xmlns:fbc="http://www.sbml.org/sbml/level3/version1/fbc/version2" level="3" version="1" groups:required="false" fbc:required="false">
+  <model metaid="e54e7bafbbc92c59e36f42174ada5b75" id="RP_model_1_8" name="RetroPath_Pathway_1_8" substanceUnits="mole" timeUnits="second" extentUnits="mole" fbc:strict="true">
+    <listOfUnitDefinitions>
+      <unitDefinition metaid="aebbce66773195cbd5d82838dda4f0ea" id="mmol_per_gDW_per_hr">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="-3" multiplier="1"/>
+          <unit kind="gram" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="1" scale="0" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition metaid="_0346858f65275ff01aa2ac815127e134" id="kj_per_mol">
+        <listOfUnits>
+          <unit kind="joule" exponent="1" scale="3" multiplier="1"/>
+          <unit kind="mole" exponent="-1" scale="1" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment metaid="_76dd2c22b28f8e55d4f510dfee1ac1ce" sboTerm="SBO:0000290" id="MNXC3" name="cytosol" size="1" constant="true">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#_76dd2c22b28f8e55d4f510dfee1ac1ce">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://identifiers.org/name/cytosol"/>
+                  <rdf:li rdf:resource="http://identifiers.org/seed/cytosol"/>
+                  <rdf:li rdf:resource="http://identifiers.org/seed/c0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/seed/c"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.compartment/MNXC3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/bigg.compartment/c_c"/>
+                  <rdf:li rdf:resource="http://identifiers.org/bigg.compartment/c"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="_0987b6231ce52cd0d9e80f0bb68c4c52" id="CMPD_0000000001__64__MNXC3" name="CMPD_0000000001" compartment="MNXC3" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#_0987b6231ce52cd0d9e80f0bb68c4c52">
+              <bqbiol:is>
+                <rdf:Bag/>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#_0987b6231ce52cd0d9e80f0bb68c4c52">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:smiles>[H]C(=C([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H]</brsynth:smiles>
+                <brsynth:inchi>InChI=1S/C40H64/c1-33(2)19-13-23-37(7)27-17-31-39(9)29-15-25-35(5)21-11-12-22-36(6)26-16-30-40(10)32-18-28-38(8)24-14-20-34(3)4/h11-12,19-22,27-30H,13-18,23-26,31-32H2,1-10H3</brsynth:inchi>
+                <brsynth:inchikey>YVLPJIGOMTXXLP-UHFFFAOYSA-N</brsynth:inchikey>
+                <brsynth:dfG_prime_o units="kj_per_mol" value="-3548.7979305990048"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="-3565.912768133726"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="38.5440168789829"/>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_48b1dfa1573700cb13b0df76e76d96a9" id="CMPD_0000000003__64__MNXC3" name="CMPD_0000000003" compartment="MNXC3" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#_48b1dfa1573700cb13b0df76e76d96a9">
+              <bqbiol:is>
+                <rdf:Bag/>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#_48b1dfa1573700cb13b0df76e76d96a9">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:smiles>[H]OP(=O)(O[H])OP(=O)(O[H])OC([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H]</brsynth:smiles>
+                <brsynth:inchi>InChI=1S/C20H36O7P2/c1-17(2)9-6-10-18(3)11-7-12-19(4)13-8-14-20(5)15-16-26-29(24,25)27-28(21,22)23/h9,11,13,15H,6-8,10,12,14,16H2,1-5H3,(H,24,25)(H2,21,22,23)</brsynth:inchi>
+                <brsynth:inchikey>OINNEUNVOZHBOX-UHFFFAOYSA-N</brsynth:inchikey>
+                <brsynth:dfG_prime_o units="kj_per_mol" value="116.64071490911078"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="99.52587737438975"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="18.745962795362615"/>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_76aec9c4390657d33b71dbc0bef4908b" id="TARGET_0000000001__64__MNXC3" name="TARGET_0000000001" compartment="MNXC3" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#_76aec9c4390657d33b71dbc0bef4908b">
+              <bqbiol:is>
+                <rdf:Bag/>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#_76aec9c4390657d33b71dbc0bef4908b">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:smiles>[H]C(=C([H])C([H])=C(C([H])=C([H])C([H])=C(C([H])=C([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H])C([H])([H])[H])C([H])([H])[H])C([H])=C(C([H])=C([H])C([H])=C(C([H])=C([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H])C([H])([H])[H])C([H])([H])[H]</brsynth:smiles>
+                <brsynth:inchi>InChI=1S/C40H56/c1-33(2)19-13-23-37(7)27-17-31-39(9)29-15-25-35(5)21-11-12-22-36(6)26-16-30-40(10)32-18-28-38(8)24-14-20-34(3)4/h11-12,15-22,25-32H,13-14,23-24H2,1-10H3</brsynth:inchi>
+                <brsynth:inchikey>OAIJSZIZWZSQBC-UHFFFAOYSA-N</brsynth:inchikey>
+                <brsynth:dfG_prime_o units="kj_per_mol" value="3545.3136395596407"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="3528.1988020249196"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="44.17157920639288"/>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_9bd100c605062da177950dab84b1b374" id="MNXM83__64__MNXC3" name="isopentenyl diphosphate" compartment="MNXC3" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#_9bd100c605062da177950dab84b1b374">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://identifiers.org/seed.compound/cpd00113"/>
+                  <rdf:li rdf:resource="http://identifiers.org/sabiork.compound/5009"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-2162256"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-191362"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metacyc.compound/DELTA3-ISOPENTENYL-PP"/>
+                  <rdf:li rdf:resource="http://identifiers.org/hmdb/HMDB04196"/>
+                  <rdf:li rdf:resource="http://identifiers.org/hmdb/HMDB01347"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:6037"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:24907"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:14473"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:16584"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:128769"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM89793"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM89682"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM83"/>
+                  <rdf:li rdf:resource="http://identifiers.org/bigg.metabolite/M_ipdp"/>
+                  <rdf:li rdf:resource="http://identifiers.org/bigg.metabolite/ipdp"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#_9bd100c605062da177950dab84b1b374">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:smiles>[H]OP(=O)(O[H])OP(=O)(O[H])OC([H])([H])C([H])([H])C(=C([H])[H])C([H])([H])[H]</brsynth:smiles>
+                <brsynth:inchi>InChI=1S/C5H12O7P2/c1-5(2)3-4-11-14(9,10)12-13(6,7)8/h1,3-4H2,2H3,(H,9,10)(H2,6,7,8)</brsynth:inchi>
+                <brsynth:inchikey>NUHSROFQTUXZQQ-UHFFFAOYSA-N</brsynth:inchikey>
+                <brsynth:dfG_prime_o units="kj_per_mol" value="1429.6840484722575"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="1412.5692109375364"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="5.114604866745043"/>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_5ac9a9dedfe72c99e06d0b10a3a83b46" id="MNXM132__64__MNXC3" name="dimethylallyl diphosphate" compartment="MNXC3" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#_5ac9a9dedfe72c99e06d0b10a3a83b46">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://identifiers.org/seed.compound/cpd00202"/>
+                  <rdf:li rdf:resource="http://identifiers.org/sabiork.compound/1986"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-6787596"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-191324"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-1132235"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metacyc.compound/CPD-4211"/>
+                  <rdf:li rdf:resource="http://identifiers.org/hmdb/HMDB02101"/>
+                  <rdf:li rdf:resource="http://identifiers.org/hmdb/HMDB01120"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:57623"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:8394"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:4616"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:42074"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:341937"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:26245"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:23803"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:18108"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:14883"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:14169"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:12280"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:16057"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM89984"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM89874"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM132"/>
+                  <rdf:li rdf:resource="http://identifiers.org/bigg.metabolite/M_dmpp"/>
+                  <rdf:li rdf:resource="http://identifiers.org/bigg.metabolite/dmpp"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#_5ac9a9dedfe72c99e06d0b10a3a83b46">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:smiles>[H]OP(=O)(O[H])OP(=O)(O[H])OC([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H]</brsynth:smiles>
+                <brsynth:inchi>InChI=1S/C5H12O7P2/c1-5(2)3-4-11-14(9,10)12-13(6,7)8/h3H,4H2,1-2H3,(H,9,10)(H2,6,7,8)</brsynth:inchi>
+                <brsynth:inchikey>CBIDRCWHNCKSTO-UHFFFAOYSA-N</brsynth:inchikey>
+                <brsynth:dfG_prime_o units="kj_per_mol" value="1431.145739776317"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="1414.0309022415959"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="5.91667028585304"/>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="d5548281dcf9d43c64d15592ad2845f4" id="MNXM11__64__MNXC3" name="diphosphate" compartment="MNXC3" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#d5548281dcf9d43c64d15592ad2845f4">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://identifiers.org/seed.compound/cpd27828"/>
+                  <rdf:li rdf:resource="http://identifiers.org/seed.compound/cpd00012"/>
+                  <rdf:li rdf:resource="http://identifiers.org/sabiork.compound/1267"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-8938078"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-8878981"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-6806656"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-389593"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-2046049"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-159450"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-113542"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-113541"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-1132084"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-111294"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metacyc.compound/PYROPHOSPHATE-GROUP"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metacyc.compound/PPI"/>
+                  <rdf:li rdf:resource="http://identifiers.org/hmdb/HMDB00250"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:45208"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:33018"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:45212"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:33019"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:33017"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:8683"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:45067"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:29888"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:42009"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:13420"/>
+                  <rdf:li rdf:resource="http://identifiers.org/chebi/CHEBI:18361"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM96409"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM89571"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM130127"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM125031"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM125030"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM108377"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM11"/>
+                  <rdf:li rdf:resource="http://identifiers.org/bigg.metabolite/M_ppi"/>
+                  <rdf:li rdf:resource="http://identifiers.org/bigg.metabolite/ppi"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#d5548281dcf9d43c64d15592ad2845f4">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:smiles>O=P(O)(O)OP(=O)(O)O</brsynth:smiles>
+                <brsynth:inchi>InChI=1S/H4O7P2/c1-8(2,3)7-9(4,5)6/h(H2,1,2,3)(H2,4,5,6)</brsynth:inchi>
+                <brsynth:inchikey>XPPKVPWEQAFLFU-UHFFFAOYSA-N</brsynth:inchikey>
+                <brsynth:dfG_prime_o units="kj_per_mol" value="0.0"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="0.0"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="0.0"/>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_6e694fdec29477e8fbd8734a2d5aba5e" id="MNXM36__64__MNXC3" name="MNXM36" compartment="MNXC3" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#_6e694fdec29477e8fbd8734a2d5aba5e">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://identifiers.org/seed.compound/cpd26978"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM96038"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM36"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metacyc.compound/Donor-H2"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#_6e694fdec29477e8fbd8734a2d5aba5e">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:dfG_prime_o units="kj_per_mol" value="0.0"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="0.0"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="0.0"/>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+      </species>
+      <species metaid="_0f78fe7e390dc8825ed6d386e6551dcc" id="MNXM8975__64__MNXC3" name="MNXM8975" compartment="MNXC3" initialConcentration="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#_0f78fe7e390dc8825ed6d386e6551dcc">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://identifiers.org/seed.compound/cpd22290"/>
+                  <rdf:li rdf:resource="http://identifiers.org/seed.compound/cpd12040"/>
+                  <rdf:li rdf:resource="http://identifiers.org/sabiork.compound/6051"/>
+                  <rdf:li rdf:resource="http://identifiers.org/sabiork.compound/3062"/>
+                  <rdf:li rdf:resource="http://identifiers.org/reactome/R-ALL-5359011"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metacyc.compound/Acceptor"/>
+                  <rdf:li rdf:resource="http://identifiers.org/metanetx.chemical/MNXM8975"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#_0f78fe7e390dc8825ed6d386e6551dcc">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:dfG_prime_o units="kj_per_mol" value="0.0"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="0.0"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="0.0"/>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter metaid="_6adf97f83acf6453d4a6a4b1070f3754" sboTerm="SBO:0000625" id="B_999999" value="999999" units="mmol_per_gDW_per_hr" constant="true"/>
+      <parameter metaid="_6adf97f83acf6453d4a6a4b1070f3754" sboTerm="SBO:0000625" id="B_0" value="0" units="mmol_per_gDW_per_hr" constant="true"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction metaid="_1188325172d10b08e3a79bf5c7db0b9c" sboTerm="SBO:0000176" id="RP1" reversible="true" fast="false" fbc:lowerFluxBound="B_0" fbc:upperFluxBound="B_999999">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#_1188325172d10b08e3a79bf5c7db0b9c">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B3QHC3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q17428"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P54924"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P33990"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P55348"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q0P4J9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5RIU9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A8R7G4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SI62"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O23118"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P33247"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7S4Z6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O74165"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9Y753"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P78589"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q54DR1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q752X9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q92459"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9HGZ6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A5A545"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P95619"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0AFP4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P53798"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q02769"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q32KR6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P53800"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O48666"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5R6U3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SDW9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P29704"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P36596"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37268"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/G0Y287"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P53799"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q46856"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P27250"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2KNL6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P75691"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2KNL5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/H1ZV38"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2NI93"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B3Y522"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q603D5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q92206"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9C1W3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q75F69"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O13306"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q1PID4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O48651"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O65403"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P52020"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O65727"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O65726"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O65402"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P52019"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O65404"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O81000"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SM02"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8VYH2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q14534"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P32476"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D2WKD9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0CJ43"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q675K8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q66PX9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A4FVP2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q84LB2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q84KL5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2KSJ6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B9RXW0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P17059"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P17055"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/H2E7T5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/H2E7T6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q01670"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7X3G5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P17058"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q83YH7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9LSF8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P54906"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D5AP78"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P95618"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9JPB5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q01671"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q870P2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q50892"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/E6ZZ11"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q4L976"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P17056"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9ACU1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/E4UPP6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q0V6M5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A2QM49"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2YWE7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/E3Q717"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D1Z4K7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2U4X9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P49085"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8NUQ5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O07854"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O07333"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2FDU5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2ATB0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/E4ZUB5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2WAQ3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D4D802"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7A3E1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q99R75"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6G6B2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5HCY8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q4P0S6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P55350"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7Z859"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37271"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q52QW5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SSU8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8X0Z1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P53797"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P49293"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9UUQ6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37273"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P21683"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37294"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37295"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P54975"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A9JQL9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37272"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P08196"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q67GH9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D5KXJ0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2FV59"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37269"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9P854"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q38933"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q38932"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q43503"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q70YP8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6YUU2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/G3G010"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P21687"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9HNE5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O65837"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9AXK7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q40424"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D9IL23"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q43415"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q43578"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q55276"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B0R753"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q4VKV1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q99R76"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5HCY9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2FV60"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8NUQ6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6GDN7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2FDU6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q4L975"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6G6B3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2YWE8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O07855"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7A3E2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B1XHV0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q0ILK1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q53589"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2FV57"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9JP98"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P48537"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P54980"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P22871"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P54978"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9R6X4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q31N27"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P54982"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P74306"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SE20"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9FV46"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9M9Y8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/C3VEP9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O49901"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/C3VEQ0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9ZTP4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P80093"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P21334"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8S4R4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B4FHU1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q07356"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SMJ3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P54979"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SAC0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q38893"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P17054"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P21685"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q02861"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P26294"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2VEX9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q52QW2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q52QW3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/ec-code/1.3.99.31"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#_1188325172d10b08e3a79bf5c7db0b9c">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:rule_id>RR-02-bdf7d8715e2e4d93-16-F</brsynth:rule_id>
+                <brsynth:rule_ori_reac>
+                  <brsynth:mnxr value="MNXR117536"/>
+                </brsynth:rule_ori_reac>
+                <brsynth:rule_score value="0.7486085128675456"/>
+                <brsynth:path_id value="1"/>
+                <brsynth:step_id value="1"/>
+                <brsynth:sub_step_id value="8"/>
+                <brsynth:smiles>[H]C(=C([H])C([H])=C(C([H])=C([H])C([H])=C(C([H])=C([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H])C([H])([H])[H])C([H])([H])[H])C([H])=C(C([H])=C([H])C([H])=C(C([H])=C([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H])C([H])([H])[H])C([H])([H])[H]&gt;&gt;[H]C(=C([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H]</brsynth:smiles>
+                <brsynth:dfG_prime_o units="kj_per_mol" value="7094.111570158646"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="7094.111570158646"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="82.3212570007845"/>
+                <brsynth:fba_obj_biomass units="mmol_per_gDW_per_hr" value="0.0"/>
+                <brsynth:fba_obj_fraction units="mmol_per_gDW_per_hr" value="0.0"/>
+                <brsynth:norm_dfG_prime_m value="0.109710676071333"/>
+                <brsynth:norm_dfG_uncert value="0.5354055358378289"/>
+                <brsynth:norm_dfG_prime_o value="0.109710676071333"/>
+                <brsynth:norm_fba_obj_biomass value="0.0"/>
+                <brsynth:norm_fba_obj_fraction value="0.0"/>
+                <brsynth:selenzyme>
+                  <brsynth:Q52QW3 value="90.118"/>
+                  <brsynth:Q52QW2 value="90.118"/>
+                  <brsynth:Q2VEX9 value="90.118"/>
+                  <brsynth:P26294 value="89.82"/>
+                  <brsynth:Q02861 value="89.82"/>
+                  <brsynth:P21685 value="89.82"/>
+                  <brsynth:P17054 value="89.82"/>
+                  <brsynth:Q38893 value="89.82"/>
+                  <brsynth:Q9SAC0 value="89.82"/>
+                  <brsynth:P54979 value="89.82"/>
+                  <brsynth:Q9SMJ3 value="89.82"/>
+                  <brsynth:Q07356 value="89.82"/>
+                  <brsynth:B4FHU1 value="89.82"/>
+                  <brsynth:Q8S4R4 value="89.82"/>
+                  <brsynth:P21334 value="89.82"/>
+                  <brsynth:P80093 value="89.82"/>
+                  <brsynth:Q9ZTP4 value="89.72"/>
+                  <brsynth:C3VEQ0 value="89.72"/>
+                  <brsynth:O49901 value="89.72"/>
+                  <brsynth:C3VEP9 value="89.72"/>
+                  <brsynth:Q9M9Y8 value="89.72"/>
+                  <brsynth:Q9FV46 value="89.72"/>
+                  <brsynth:Q9SE20 value="89.72"/>
+                  <brsynth:P74306 value="89.62"/>
+                  <brsynth:P54982 value="89.62"/>
+                  <brsynth:Q31N27 value="89.62"/>
+                  <brsynth:Q9R6X4 value="89.62"/>
+                  <brsynth:P54978 value="89.62"/>
+                  <brsynth:P22871 value="89.62"/>
+                  <brsynth:P54980 value="89.62"/>
+                  <brsynth:P48537 value="89.62"/>
+                  <brsynth:Q9JP98 value="89.52"/>
+                  <brsynth:Q2FV57 value="84.222"/>
+                  <brsynth:Q53589 value="84.022"/>
+                  <brsynth:Q0ILK1 value="83.729"/>
+                  <brsynth:B1XHV0 value="80.513"/>
+                  <brsynth:Q7A3E2 value="75.643"/>
+                  <brsynth:O07855 value="75.643"/>
+                  <brsynth:Q2YWE8 value="75.443"/>
+                  <brsynth:Q6G6B3 value="75.443"/>
+                  <brsynth:Q4L975 value="75.443"/>
+                  <brsynth:Q2FDU6 value="75.443"/>
+                  <brsynth:Q6GDN7 value="75.443"/>
+                  <brsynth:Q8NUQ6 value="75.443"/>
+                  <brsynth:Q2FV60 value="75.443"/>
+                  <brsynth:Q5HCY9 value="75.443"/>
+                  <brsynth:Q99R76 value="75.443"/>
+                  <brsynth:Q4VKV1 value="75.343"/>
+                  <brsynth:B0R753 value="74.991"/>
+                  <brsynth:Q55276 value="74.991"/>
+                  <brsynth:Q43578 value="74.991"/>
+                  <brsynth:Q43415 value="74.891"/>
+                  <brsynth:D9IL23 value="74.891"/>
+                  <brsynth:Q40424 value="74.891"/>
+                  <brsynth:Q9AXK7 value="74.796"/>
+                  <brsynth:O65837 value="74.796"/>
+                  <brsynth:Q9HNE5 value="74.791"/>
+                  <brsynth:P21687 value="74.691"/>
+                  <brsynth:G3G010 value="74.691"/>
+                  <brsynth:Q6YUU2 value="74.691"/>
+                  <brsynth:Q70YP8 value="74.008"/>
+                  <brsynth:Q43503 value="72.027"/>
+                  <brsynth:Q38932 value="71.927"/>
+                  <brsynth:Q38933 value="71.927"/>
+                  <brsynth:Q9P854 value="71.183"/>
+                  <brsynth:P37269 value="71.183"/>
+                  <brsynth:Q2FV59 value="71.183"/>
+                  <brsynth:D5KXJ0 value="71.183"/>
+                  <brsynth:Q67GH9 value="71.183"/>
+                  <brsynth:P08196 value="71.183"/>
+                  <brsynth:P37272 value="71.183"/>
+                  <brsynth:A9JQL9 value="71.183"/>
+                  <brsynth:P54975 value="71.183"/>
+                  <brsynth:P37295 value="71.183"/>
+                  <brsynth:P37294 value="71.183"/>
+                  <brsynth:P21683 value="71.183"/>
+                  <brsynth:P37273 value="71.083"/>
+                  <brsynth:Q9UUQ6 value="71.083"/>
+                  <brsynth:P49293 value="71.083"/>
+                  <brsynth:P53797 value="71.083"/>
+                  <brsynth:Q8X0Z1 value="71.083"/>
+                  <brsynth:Q9SSU8 value="71.083"/>
+                  <brsynth:Q52QW5 value="71.083"/>
+                  <brsynth:P37271 value="71.083"/>
+                  <brsynth:Q7Z859 value="71.083"/>
+                  <brsynth:P55350 value="70.983"/>
+                  <brsynth:Q4P0S6 value="70.983"/>
+                  <brsynth:Q5HCY8 value="70.983"/>
+                  <brsynth:Q6G6B2 value="70.983"/>
+                  <brsynth:Q99R75 value="70.983"/>
+                  <brsynth:Q7A3E1 value="70.983"/>
+                  <brsynth:D4D802 value="70.983"/>
+                  <brsynth:B2WAQ3 value="70.983"/>
+                  <brsynth:E4ZUB5 value="70.983"/>
+                  <brsynth:B2ATB0 value="70.983"/>
+                  <brsynth:Q2FDU5 value="70.983"/>
+                  <brsynth:O07333 value="70.983"/>
+                  <brsynth:O07854 value="70.983"/>
+                  <brsynth:Q8NUQ5 value="70.983"/>
+                  <brsynth:P49085 value="70.983"/>
+                  <brsynth:Q2U4X9 value="70.983"/>
+                  <brsynth:D1Z4K7 value="70.983"/>
+                  <brsynth:E3Q717 value="70.983"/>
+                  <brsynth:Q2YWE7 value="70.983"/>
+                  <brsynth:A2QM49 value="70.983"/>
+                  <brsynth:Q0V6M5 value="70.983"/>
+                  <brsynth:E4UPP6 value="70.983"/>
+                  <brsynth:Q9ACU1 value="70.983"/>
+                  <brsynth:P17056 value="70.983"/>
+                  <brsynth:Q4L976 value="70.983"/>
+                  <brsynth:E6ZZ11 value="70.983"/>
+                  <brsynth:Q50892 value="70.883"/>
+                  <brsynth:Q870P2 value="66.84"/>
+                  <brsynth:Q01671 value="61.867"/>
+                  <brsynth:Q9JPB5 value="61.867"/>
+                  <brsynth:P95618 value="61.567"/>
+                  <brsynth:D5AP78 value="58.598"/>
+                  <brsynth:P54906 value="58.398"/>
+                  <brsynth:Q9LSF8 value="57.537"/>
+                  <brsynth:Q83YH7 value="55.975"/>
+                  <brsynth:P17058 value="55.302"/>
+                  <brsynth:Q7X3G5 value="55.302"/>
+                  <brsynth:Q01670 value="55.102"/>
+                  <brsynth:H2E7T6 value="54.574"/>
+                  <brsynth:H2E7T5 value="54.574"/>
+                  <brsynth:P17055 value="54.383"/>
+                  <brsynth:P17059 value="53.052"/>
+                  <brsynth:B9RXW0 value="51.493"/>
+                  <brsynth:B2KSJ6 value="51.493"/>
+                  <brsynth:Q84KL5 value="51.493"/>
+                  <brsynth:Q84LB2 value="51.493"/>
+                  <brsynth:A4FVP2 value="51.393"/>
+                  <brsynth:Q66PX9 value="51.393"/>
+                  <brsynth:Q675K8 value="51.393"/>
+                  <brsynth:P0CJ43 value="51.393"/>
+                  <brsynth:D2WKD9 value="51.29"/>
+                  <brsynth:P32476 value="51.162"/>
+                  <brsynth:Q14534 value="51.162"/>
+                  <brsynth:Q8VYH2 value="51.162"/>
+                  <brsynth:Q9SM02 value="51.162"/>
+                  <brsynth:O81000 value="51.162"/>
+                  <brsynth:O65404 value="51.062"/>
+                  <brsynth:P52019 value="51.062"/>
+                  <brsynth:O65402 value="51.062"/>
+                  <brsynth:O65726 value="51.062"/>
+                  <brsynth:O65727 value="51.062"/>
+                  <brsynth:P52020 value="51.062"/>
+                  <brsynth:O65403 value="51.062"/>
+                  <brsynth:O48651 value="51.062"/>
+                  <brsynth:Q1PID4 value="51.062"/>
+                  <brsynth:O13306 value="50.962"/>
+                  <brsynth:Q75F69 value="50.962"/>
+                  <brsynth:Q9C1W3 value="50.962"/>
+                  <brsynth:Q92206 value="50.962"/>
+                  <brsynth:Q603D5 value="50.862"/>
+                  <brsynth:B3Y522 value="50.126"/>
+                  <brsynth:B2NI93 value="48.973"/>
+                  <brsynth:H1ZV38 value="48.973"/>
+                  <brsynth:Q2KNL5 value="48.973"/>
+                  <brsynth:P75691 value="48.973"/>
+                  <brsynth:Q2KNL6 value="48.973"/>
+                  <brsynth:P27250 value="48.973"/>
+                  <brsynth:Q46856 value="48.973"/>
+                  <brsynth:P53799 value="48.88"/>
+                  <brsynth:G0Y287 value="48.88"/>
+                  <brsynth:P37268 value="48.88"/>
+                  <brsynth:P36596 value="48.88"/>
+                  <brsynth:P29704 value="48.88"/>
+                  <brsynth:Q9SDW9 value="48.88"/>
+                  <brsynth:Q5R6U3 value="48.78"/>
+                  <brsynth:O48666 value="48.78"/>
+                  <brsynth:P53800 value="48.78"/>
+                  <brsynth:Q32KR6 value="48.78"/>
+                  <brsynth:Q02769 value="48.78"/>
+                  <brsynth:P53798 value="48.78"/>
+                  <brsynth:P0AFP4 value="48.773"/>
+                  <brsynth:P95619 value="48.738"/>
+                  <brsynth:A5A545 value="48.689"/>
+                  <brsynth:Q9HGZ6 value="48.68"/>
+                  <brsynth:Q92459 value="48.68"/>
+                  <brsynth:Q752X9 value="48.68"/>
+                  <brsynth:Q54DR1 value="48.68"/>
+                  <brsynth:P78589 value="48.68"/>
+                  <brsynth:Q9Y753 value="48.68"/>
+                  <brsynth:O74165 value="48.68"/>
+                  <brsynth:Q7S4Z6 value="48.68"/>
+                  <brsynth:P33247 value="48.618"/>
+                  <brsynth:O23118 value="48.58"/>
+                  <brsynth:Q9SI62 value="48.554"/>
+                  <brsynth:A8R7G4 value="48.518"/>
+                  <brsynth:Q5RIU9 value="48.454"/>
+                  <brsynth:Q0P4J9 value="48.454"/>
+                  <brsynth:P55348 value="48.418"/>
+                  <brsynth:P33990 value="48.418"/>
+                  <brsynth:P54924 value="48.418"/>
+                  <brsynth:Q17428 value="48.354"/>
+                  <brsynth:B3QHC3 value="48.318"/>
+                </brsynth:selenzyme>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="CMPD_0000000001__64__MNXC3" stoichiometry="1" constant="true"/>
+          <speciesReference species="MNXM8975__64__MNXC3" stoichiometry="4" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="TARGET_0000000001__64__MNXC3" stoichiometry="1" constant="true"/>
+          <speciesReference species="MNXM36__64__MNXC3" stoichiometry="4" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction metaid="_56a73dc2ff8dc0141eba10f4f33af97d" sboTerm="SBO:0000176" id="RP2" reversible="true" fast="false" fbc:lowerFluxBound="B_0" fbc:upperFluxBound="B_999999">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#_56a73dc2ff8dc0141eba10f4f33af97d">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2C4D4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D5KXD2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2C4D5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2C4D0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q66PX8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6ZJL3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B1B1U3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O64404"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/I6RAQ6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B1W019"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8SA63"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q84UU4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/K4LMW2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O64405"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q4KSH9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/E2E2N7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/J7LMP2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P59287"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q43714"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q39760"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O49853"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2KSJ5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/K4L9M2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B5GS26"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B9S9Z3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P93665"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q39761"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q49SP3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D0VMR8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D0VMR7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D0VMR6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9AR04"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8L5K3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9ZUH4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q675L3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q675L1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9FUW5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2NM15"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/C5YHI2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/C1K5M3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/G1JUH1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q948Z0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5SBP2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9M7C9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q40322"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A7IZZ1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9M7D0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q84SM8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2XSC6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O22340"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9M7D1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q4U3F6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A8NE23"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5W283"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5GJ60"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D2YZP9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/E5GAG1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/C5YHH7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5SBP4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q70EZ7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q70EZ6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9FQ26"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/E2E2P0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8L5K4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/I6QPS5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q49SP4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5SBP6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D8RLD3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q49SP6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q0VHD6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/J9RLZ7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6Q3H3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9X839"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q675L6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O81086"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8S3A6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q1PDD2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/F8UL80"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8S3A5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q4U3F7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8LSC3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8LSC2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B0FGA9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q49SP5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/I6QSN0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O34707"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q84ZW8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0CV94"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q93YV0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0CV96"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D8RNZ9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0CV95"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q675L2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q49SP7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2QQJ5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B3TPQ7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5SBP0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q308N0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q4JHG3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8GUE4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6USK1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q1XBU4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q58GE8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q675K9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q93X23"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O24474"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9LRZ6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q84ND0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5SBP1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q84NC9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B4YYR2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9FQ27"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q4QSN4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9T0K1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9T0J9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O64961"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P11491"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/C7E5W0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q94JS8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/C7E5V7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q675L0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9K498"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/C7E5V8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9FXY7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O48935"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/C7E5V9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P78589"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7S4Z6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9Y753"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9HGZ6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q92459"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q752X9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q54DR1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O74165"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q02769"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q32KR6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5R6U3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P53798"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O48666"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P53800"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P53799"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37268"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P36596"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SDW9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P29704"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q66PX9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q675K8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A4FVP2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0CJ43"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2KSJ6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q84LB2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q84KL5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B9RXW0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/E4ZUB5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D4D802"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7A3E1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9ACU1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q99R75"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6G6B2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5HCY8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P55350"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2ATB0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2YWE7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q0V6M5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/E6ZZ11"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q4L976"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/E4UPP6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2WAQ3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q4P0S6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2FDU5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O07333"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/E3Q717"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D1Z4K7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2U4X9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P49085"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O07854"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8NUQ5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A2QM49"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8X0Z1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P49293"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P53797"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37273"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7Z859"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q52QW5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9UUQ6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37271"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SSU8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A9JQL9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37269"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P54975"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q2FV59"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/D5KXJ0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37272"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9P854"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37295"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P21683"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P08196"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P37294"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q67GH9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/ec-code/2.5.1.32"/>
+                  <rdf:li rdf:resource="http://identifiers.org/ec-code/2.5.1.99"/>
+                  <rdf:li rdf:resource="http://identifiers.org/ec-code/2.5.1.96"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#_56a73dc2ff8dc0141eba10f4f33af97d">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:rule_id>RR-02-b25156a335e3e30f-16-F</brsynth:rule_id>
+                <brsynth:rule_ori_reac>
+                  <brsynth:mnxr value="MNXR113543"/>
+                </brsynth:rule_ori_reac>
+                <brsynth:rule_score value="0.5683242688496836"/>
+                <brsynth:path_id value="1"/>
+                <brsynth:step_id value="2"/>
+                <brsynth:sub_step_id value="8"/>
+                <brsynth:smiles>[H]C(=C([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H].O=P(O)(O)OP(=O)(O)O.O=P(O)(O)OP(=O)(O)O&gt;&gt;[H]OP(=O)(O[H])OP(=O)(O[H])OC([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H]</brsynth:smiles>
+                <brsynth:dfG_prime_o units="kj_per_mol" value="-3665.4386455081158"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="-3699.668320577558"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="56.98940350737686"/>
+                <brsynth:fba_obj_biomass units="mmol_per_gDW_per_hr" value="0.0"/>
+                <brsynth:fba_obj_fraction units="mmol_per_gDW_per_hr" value="0.0"/>
+                <brsynth:norm_dfG_prime_m value="0.7650150151521764"/>
+                <brsynth:norm_dfG_uncert value="0.5369434654305416"/>
+                <brsynth:norm_dfG_prime_o value="0.7629368873021186"/>
+                <brsynth:norm_fba_obj_biomass value="0.0"/>
+                <brsynth:norm_fba_obj_fraction value="0.0"/>
+                <brsynth:selenzyme>
+                  <brsynth:Q67GH9 value="99.9"/>
+                  <brsynth:P37294 value="99.9"/>
+                  <brsynth:P08196 value="99.9"/>
+                  <brsynth:P21683 value="99.9"/>
+                  <brsynth:P37295 value="99.9"/>
+                  <brsynth:Q9P854 value="99.9"/>
+                  <brsynth:P37272 value="99.9"/>
+                  <brsynth:D5KXJ0 value="99.9"/>
+                  <brsynth:Q2FV59 value="99.9"/>
+                  <brsynth:P54975 value="99.9"/>
+                  <brsynth:P37269 value="99.9"/>
+                  <brsynth:A9JQL9 value="99.9"/>
+                  <brsynth:Q9SSU8 value="99.8"/>
+                  <brsynth:P37271 value="99.8"/>
+                  <brsynth:Q9UUQ6 value="99.8"/>
+                  <brsynth:Q52QW5 value="99.8"/>
+                  <brsynth:Q7Z859 value="99.8"/>
+                  <brsynth:P37273 value="99.8"/>
+                  <brsynth:P53797 value="99.8"/>
+                  <brsynth:P49293 value="99.8"/>
+                  <brsynth:Q8X0Z1 value="99.8"/>
+                  <brsynth:A2QM49 value="99.7"/>
+                  <brsynth:Q8NUQ5 value="99.7"/>
+                  <brsynth:O07854 value="99.7"/>
+                  <brsynth:P49085 value="99.7"/>
+                  <brsynth:Q2U4X9 value="99.7"/>
+                  <brsynth:D1Z4K7 value="99.7"/>
+                  <brsynth:E3Q717 value="99.7"/>
+                  <brsynth:O07333 value="99.7"/>
+                  <brsynth:Q2FDU5 value="99.7"/>
+                  <brsynth:Q4P0S6 value="99.7"/>
+                  <brsynth:B2WAQ3 value="99.7"/>
+                  <brsynth:E4UPP6 value="99.7"/>
+                  <brsynth:Q4L976 value="99.7"/>
+                  <brsynth:E6ZZ11 value="99.7"/>
+                  <brsynth:Q0V6M5 value="99.7"/>
+                  <brsynth:Q2YWE7 value="99.7"/>
+                  <brsynth:B2ATB0 value="99.7"/>
+                  <brsynth:P55350 value="99.7"/>
+                  <brsynth:Q5HCY8 value="99.7"/>
+                  <brsynth:Q6G6B2 value="99.7"/>
+                  <brsynth:Q99R75 value="99.7"/>
+                  <brsynth:Q9ACU1 value="99.7"/>
+                  <brsynth:Q7A3E1 value="99.7"/>
+                  <brsynth:D4D802 value="99.7"/>
+                  <brsynth:E4ZUB5 value="99.7"/>
+                  <brsynth:B9RXW0 value="92.66"/>
+                  <brsynth:Q84KL5 value="92.66"/>
+                  <brsynth:Q84LB2 value="92.66"/>
+                  <brsynth:B2KSJ6 value="92.66"/>
+                  <brsynth:P0CJ43 value="92.56"/>
+                  <brsynth:A4FVP2 value="92.56"/>
+                  <brsynth:Q675K8 value="92.56"/>
+                  <brsynth:Q66PX9 value="92.56"/>
+                  <brsynth:P29704 value="92.267"/>
+                  <brsynth:Q9SDW9 value="92.267"/>
+                  <brsynth:P36596 value="92.267"/>
+                  <brsynth:P37268 value="92.267"/>
+                  <brsynth:P53799 value="92.267"/>
+                  <brsynth:P53800 value="92.167"/>
+                  <brsynth:O48666 value="92.167"/>
+                  <brsynth:P53798 value="92.167"/>
+                  <brsynth:Q5R6U3 value="92.167"/>
+                  <brsynth:Q32KR6 value="92.167"/>
+                  <brsynth:Q02769 value="92.167"/>
+                  <brsynth:O74165 value="92.067"/>
+                  <brsynth:Q54DR1 value="92.067"/>
+                  <brsynth:Q752X9 value="92.067"/>
+                  <brsynth:Q92459 value="92.067"/>
+                  <brsynth:Q9HGZ6 value="92.067"/>
+                  <brsynth:Q9Y753 value="92.067"/>
+                  <brsynth:Q7S4Z6 value="92.067"/>
+                  <brsynth:P78589 value="92.067"/>
+                  <brsynth:C7E5V9 value="91.223"/>
+                  <brsynth:O48935 value="91.223"/>
+                  <brsynth:Q9FXY7 value="91.223"/>
+                  <brsynth:C7E5V8 value="91.223"/>
+                  <brsynth:Q9K498 value="91.223"/>
+                  <brsynth:Q675L0 value="91.223"/>
+                  <brsynth:C7E5V7 value="91.223"/>
+                  <brsynth:Q94JS8 value="91.223"/>
+                  <brsynth:C7E5W0 value="91.223"/>
+                  <brsynth:P11491 value="89.716"/>
+                  <brsynth:O64961 value="89.186"/>
+                  <brsynth:Q9T0J9 value="88.436"/>
+                  <brsynth:Q9T0K1 value="88.436"/>
+                  <brsynth:Q4QSN4 value="88.436"/>
+                  <brsynth:Q9FQ27 value="88.216"/>
+                  <brsynth:B4YYR2 value="88.116"/>
+                  <brsynth:Q84NC9 value="87.368"/>
+                  <brsynth:Q5SBP1 value="87.368"/>
+                  <brsynth:Q84ND0 value="87.368"/>
+                  <brsynth:Q9LRZ6 value="87.368"/>
+                  <brsynth:O24474 value="87.368"/>
+                  <brsynth:Q93X23 value="87.368"/>
+                  <brsynth:Q675K9 value="87.268"/>
+                  <brsynth:Q58GE8 value="87.268"/>
+                  <brsynth:Q1XBU4 value="87.268"/>
+                  <brsynth:Q6USK1 value="87.239"/>
+                  <brsynth:Q8GUE4 value="87.239"/>
+                  <brsynth:Q4JHG3 value="87.139"/>
+                  <brsynth:Q308N0 value="87.139"/>
+                  <brsynth:Q5SBP0 value="86.506"/>
+                  <brsynth:B3TPQ7 value="86.506"/>
+                  <brsynth:Q2QQJ5 value="86.427"/>
+                  <brsynth:Q49SP7 value="86.427"/>
+                  <brsynth:Q675L2 value="86.406"/>
+                  <brsynth:P0CV95 value="86.213"/>
+                  <brsynth:D8RNZ9 value="86.213"/>
+                  <brsynth:P0CV96 value="86.213"/>
+                  <brsynth:Q93YV0 value="86.213"/>
+                  <brsynth:P0CV94 value="86.213"/>
+                  <brsynth:Q84ZW8 value="86.213"/>
+                  <brsynth:O34707 value="85.87"/>
+                  <brsynth:I6QSN0 value="85.739"/>
+                  <brsynth:Q49SP5 value="85.739"/>
+                  <brsynth:B0FGA9 value="85.739"/>
+                  <brsynth:Q8LSC2 value="85.739"/>
+                  <brsynth:Q8LSC3 value="85.739"/>
+                  <brsynth:Q4U3F7 value="85.739"/>
+                  <brsynth:Q8S3A5 value="85.639"/>
+                  <brsynth:F8UL80 value="85.639"/>
+                  <brsynth:Q1PDD2 value="85.639"/>
+                  <brsynth:Q8S3A6 value="85.639"/>
+                  <brsynth:O81086 value="85.55"/>
+                  <brsynth:Q675L6 value="85.45"/>
+                  <brsynth:Q9X839 value="85.308"/>
+                  <brsynth:Q6Q3H3 value="85.308"/>
+                  <brsynth:J9RLZ7 value="85.308"/>
+                  <brsynth:Q0VHD6 value="85.308"/>
+                  <brsynth:Q49SP6 value="85.308"/>
+                  <brsynth:D8RLD3 value="85.308"/>
+                  <brsynth:Q5SBP6 value="85.308"/>
+                  <brsynth:Q49SP4 value="85.308"/>
+                  <brsynth:I6QPS5 value="85.308"/>
+                  <brsynth:Q8L5K4 value="85.296"/>
+                  <brsynth:E2E2P0 value="85.212"/>
+                  <brsynth:Q9FQ26 value="85.208"/>
+                  <brsynth:Q70EZ6 value="85.208"/>
+                  <brsynth:Q70EZ7 value="85.208"/>
+                  <brsynth:Q5SBP4 value="85.164"/>
+                  <brsynth:C5YHH7 value="85.164"/>
+                  <brsynth:E5GAG1 value="85.133"/>
+                  <brsynth:D2YZP9 value="84.777"/>
+                  <brsynth:Q5GJ60 value="84.777"/>
+                  <brsynth:Q5W283 value="84.549"/>
+                  <brsynth:A8NE23 value="83.889"/>
+                  <brsynth:Q4U3F6 value="83.889"/>
+                  <brsynth:Q9M7D1 value="83.886"/>
+                  <brsynth:O22340 value="83.886"/>
+                  <brsynth:Q2XSC6 value="83.886"/>
+                  <brsynth:Q84SM8 value="83.886"/>
+                  <brsynth:Q9M7D0 value="83.886"/>
+                  <brsynth:A7IZZ1 value="83.886"/>
+                  <brsynth:Q40322 value="83.886"/>
+                  <brsynth:Q9M7C9 value="83.886"/>
+                  <brsynth:Q5SBP2 value="83.886"/>
+                  <brsynth:Q948Z0 value="83.886"/>
+                  <brsynth:G1JUH1 value="83.886"/>
+                  <brsynth:C1K5M3 value="83.886"/>
+                  <brsynth:C5YHI2 value="83.837"/>
+                  <brsynth:Q2NM15 value="83.837"/>
+                  <brsynth:Q9FUW5 value="83.786"/>
+                  <brsynth:Q675L1 value="83.786"/>
+                  <brsynth:Q675L3 value="83.786"/>
+                  <brsynth:Q9ZUH4 value="83.786"/>
+                  <brsynth:Q8L5K3 value="83.786"/>
+                  <brsynth:Q9AR04 value="83.738"/>
+                  <brsynth:D0VMR6 value="83.699"/>
+                  <brsynth:D0VMR7 value="83.699"/>
+                  <brsynth:D0VMR8 value="83.699"/>
+                  <brsynth:Q49SP3 value="83.699"/>
+                  <brsynth:Q39761 value="83.645"/>
+                  <brsynth:P93665 value="83.645"/>
+                  <brsynth:B9S9Z3 value="83.645"/>
+                  <brsynth:B5GS26 value="83.645"/>
+                  <brsynth:K4L9M2 value="83.645"/>
+                  <brsynth:B2KSJ5 value="83.645"/>
+                  <brsynth:O49853 value="83.545"/>
+                  <brsynth:Q39760 value="83.545"/>
+                  <brsynth:Q43714 value="83.545"/>
+                  <brsynth:P59287 value="83.537"/>
+                  <brsynth:J7LMP2 value="83.537"/>
+                  <brsynth:E2E2N7 value="83.537"/>
+                  <brsynth:Q4KSH9 value="83.508"/>
+                  <brsynth:O64405 value="83.433"/>
+                  <brsynth:K4LMW2 value="83.377"/>
+                  <brsynth:Q84UU4 value="83.345"/>
+                  <brsynth:Q8SA63 value="83.345"/>
+                  <brsynth:B1W019 value="83.345"/>
+                  <brsynth:I6RAQ6 value="83.345"/>
+                  <brsynth:O64404 value="83.345"/>
+                  <brsynth:B1B1U3 value="83.345"/>
+                  <brsynth:Q6ZJL3 value="83.245"/>
+                  <brsynth:Q66PX8 value="83.245"/>
+                  <brsynth:B2C4D0 value="83.245"/>
+                  <brsynth:B2C4D5 value="83.245"/>
+                  <brsynth:D5KXD2 value="83.245"/>
+                  <brsynth:B2C4D4 value="83.245"/>
+                </brsynth:selenzyme>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="CMPD_0000000003__64__MNXC3" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="CMPD_0000000001__64__MNXC3" stoichiometry="1" constant="true"/>
+          <speciesReference species="MNXM11__64__MNXC3" stoichiometry="2" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction metaid="dfa47c6841055ba004d4e48be9bb1768" sboTerm="SBO:0000176" id="RP3" reversible="true" fast="false" fbc:lowerFluxBound="B_0" fbc:upperFluxBound="B_999999">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#dfa47c6841055ba004d4e48be9bb1768">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9LRR0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P55784"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9HP68"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0C9E0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P60474"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6LN28"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P17060"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P48368"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P21684"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P60475"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8V9T7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P38119"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8Z9A5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8ZH61"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P55785"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6D8D8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6KZ89"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q54BK1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8DBF7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P44938"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q758K0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5H1E5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q54VJ9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P80042"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7MIG4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q97B58"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q42698"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5WZ40"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5V1I1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P57330"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5PD68"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8D2G7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8ZU54"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8PW34"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8PAV7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q667J4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O29049"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q976K2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9PEH8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5NHX6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7VM20"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q886N9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7VRE1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q980W4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5ZY69"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8PZ76"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O26334"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q92236"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q87ME1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0C9E2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q0PAX5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8U0I8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q83BV5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q89AP0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8TXA7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8ZRP2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9V157"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9HKQ0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9KPV6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7N8P2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q87EH7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8EGH1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8K9S6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P95999"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9CJL4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9C446"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9YC66"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P9WFF6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0AD58"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5E3E3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5X7N9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P54976"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8PMK9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q88MH6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q58767"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5JGE1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8TJQ7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O59258"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9HXY2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P60478"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0C9E1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6FCH1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9LJY2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O22043"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q6F596"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9ZU77"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9WTN0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SSU0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SLG2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9LIA0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5U2R1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9LHR4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9LUD9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P24322"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9LUE1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P56966"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q94ID7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8PYS1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q97W92"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q88VJ8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A2PZA5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P31112"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O66127"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P22873"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q53479"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P44916"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2DBE8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q3IPL1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q65164"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P60472"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O59703"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9UWR6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8S948"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O95749"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O43091"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O82827"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P39464"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P9WFF7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P34802"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/C9K2Q3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P60473"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0AD57"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O66129"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A0R0S4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q86YH6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5HZ00"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q12051"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5T2R2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O04046"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q47RM6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9HH76"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P31114"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B2DBE9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q33DR2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q03175"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P35196"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9P885"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q33DR3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q43133"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O13851"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q76FS5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P18900"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P55539"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9CB36"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8K9A0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O66126"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P49349"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P9WFF4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7U0P8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q92250"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P9WKH0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P57537"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q55EU7"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q0INZ4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O66952"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q92235"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q54XP1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P54383"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P45204"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P0A5H9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q45220"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O65004"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O64905"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O24241"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9NH03"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q43315"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P49351"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P49350"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q09152"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P49352"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P05369"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q5YJK5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O24242"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P49353"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/B8XA40"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q8WMY2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O14230"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/O24743"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q47SS3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7XYS9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P14324"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/A0R2W4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P08836"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q75HZ9"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7XYT0"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P22939"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P9WKH1"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P9WFF5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q08291"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q920E5"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q653T6"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/P08524"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q58GE8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/C1K5M2"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SBR3"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q7XYS8"/>
+                  <rdf:li rdf:resource="http://identifiers.org/uniprot/Q9SBR4"/>
+                  <rdf:li rdf:resource="http://identifiers.org/ec-code/2.5.1.29"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#dfa47c6841055ba004d4e48be9bb1768">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:rule_id>RR-02-90bcfd187709eb1b-16-F</brsynth:rule_id>
+                <brsynth:rule_ori_reac>
+                  <brsynth:mnxr value="MNXR132232"/>
+                </brsynth:rule_ori_reac>
+                <brsynth:rule_score value="0.5869134225065102"/>
+                <brsynth:path_id value="1"/>
+                <brsynth:step_id value="3"/>
+                <brsynth:sub_step_id value="8"/>
+                <brsynth:smiles>[H]OP(=O)(O[H])OP(=O)(O[H])OC([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])C([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H].O=P(O)(O)OP(=O)(O)O.O=P(O)(O)OP(=O)(O)O.O=P(O)(O)OP(=O)(O)O&gt;&gt;[H]OP(=O)(O[H])OP(=O)(O[H])OC([H])([H])C([H])([H])C(=C([H])[H])C([H])([H])[H].[H]OP(=O)(O[H])OP(=O)(O[H])OC([H])([H])C([H])=C(C([H])([H])[H])C([H])([H])[H]</brsynth:smiles>
+                <brsynth:dfG_prime_o units="kj_per_mol" value="-2744.189073339464"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="-2778.418748408906"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="27.941950505006652"/>
+                <brsynth:fba_obj_biomass units="mmol_per_gDW_per_hr" value="0.0"/>
+                <brsynth:fba_obj_fraction units="mmol_per_gDW_per_hr" value="0.0"/>
+                <brsynth:norm_dfG_prime_m value="0.7090847619758434"/>
+                <brsynth:norm_dfG_uncert value="0.5387069738756265"/>
+                <brsynth:norm_dfG_prime_o value="0.7070066341257856"/>
+                <brsynth:norm_fba_obj_biomass value="0.0"/>
+                <brsynth:norm_fba_obj_fraction value="0.0"/>
+                <brsynth:selenzyme>
+                  <brsynth:Q9SBR4 value="99.309"/>
+                  <brsynth:Q7XYS8 value="99.309"/>
+                  <brsynth:Q9SBR3 value="99.309"/>
+                  <brsynth:C1K5M2 value="99.309"/>
+                  <brsynth:Q58GE8 value="99.209"/>
+                  <brsynth:P08524 value="94.592"/>
+                  <brsynth:Q653T6 value="94.592"/>
+                  <brsynth:Q920E5 value="94.592"/>
+                  <brsynth:Q08291 value="94.592"/>
+                  <brsynth:P9WFF5 value="94.592"/>
+                  <brsynth:P9WKH1 value="94.592"/>
+                  <brsynth:P22939 value="94.592"/>
+                  <brsynth:Q7XYT0 value="94.592"/>
+                  <brsynth:Q75HZ9 value="94.592"/>
+                  <brsynth:P08836 value="94.592"/>
+                  <brsynth:A0R2W4 value="94.592"/>
+                  <brsynth:P14324 value="94.592"/>
+                  <brsynth:Q7XYS9 value="94.592"/>
+                  <brsynth:Q47SS3 value="94.592"/>
+                  <brsynth:O24743 value="94.592"/>
+                  <brsynth:O14230 value="94.592"/>
+                  <brsynth:Q8WMY2 value="94.592"/>
+                  <brsynth:B8XA40 value="94.592"/>
+                  <brsynth:P49353 value="94.492"/>
+                  <brsynth:O24242 value="94.492"/>
+                  <brsynth:Q5YJK5 value="94.492"/>
+                  <brsynth:P05369 value="94.492"/>
+                  <brsynth:P49352 value="94.492"/>
+                  <brsynth:Q09152 value="94.492"/>
+                  <brsynth:P49350 value="94.492"/>
+                  <brsynth:P49351 value="94.492"/>
+                  <brsynth:Q43315 value="94.492"/>
+                  <brsynth:Q9NH03 value="94.492"/>
+                  <brsynth:O24241 value="94.492"/>
+                  <brsynth:O64905 value="94.492"/>
+                  <brsynth:O65004 value="94.492"/>
+                  <brsynth:Q45220 value="94.392"/>
+                  <brsynth:P0A5H9 value="94.392"/>
+                  <brsynth:P45204 value="94.392"/>
+                  <brsynth:P54383 value="94.392"/>
+                  <brsynth:Q54XP1 value="94.392"/>
+                  <brsynth:Q92235 value="94.392"/>
+                  <brsynth:O66952 value="94.392"/>
+                  <brsynth:Q0INZ4 value="94.392"/>
+                  <brsynth:Q55EU7 value="94.392"/>
+                  <brsynth:P57537 value="94.392"/>
+                  <brsynth:P9WKH0 value="94.392"/>
+                  <brsynth:Q92250 value="94.392"/>
+                  <brsynth:Q7U0P8 value="94.392"/>
+                  <brsynth:P9WFF4 value="94.392"/>
+                  <brsynth:P49349 value="94.392"/>
+                  <brsynth:O66126 value="94.392"/>
+                  <brsynth:Q8K9A0 value="94.392"/>
+                  <brsynth:Q9CB36 value="94.392"/>
+                  <brsynth:P55539 value="94.392"/>
+                  <brsynth:P18900 value="94.158"/>
+                  <brsynth:Q76FS5 value="94.158"/>
+                  <brsynth:O13851 value="94.158"/>
+                  <brsynth:Q43133 value="94.158"/>
+                  <brsynth:Q33DR3 value="94.158"/>
+                  <brsynth:Q9P885 value="94.158"/>
+                  <brsynth:P35196 value="94.158"/>
+                  <brsynth:Q03175 value="94.158"/>
+                  <brsynth:Q33DR2 value="94.158"/>
+                  <brsynth:B2DBE9 value="94.158"/>
+                  <brsynth:P31114 value="94.158"/>
+                  <brsynth:Q9HH76 value="94.158"/>
+                  <brsynth:Q47RM6 value="94.158"/>
+                  <brsynth:O04046 value="94.158"/>
+                  <brsynth:Q5T2R2 value="94.158"/>
+                  <brsynth:Q12051 value="94.158"/>
+                  <brsynth:Q5HZ00 value="94.158"/>
+                  <brsynth:Q86YH6 value="94.158"/>
+                  <brsynth:A0R0S4 value="94.158"/>
+                  <brsynth:O66129 value="94.158"/>
+                  <brsynth:P0AD57 value="94.158"/>
+                  <brsynth:P60473 value="94.158"/>
+                  <brsynth:C9K2Q3 value="94.158"/>
+                  <brsynth:P34802 value="94.158"/>
+                  <brsynth:P9WFF7 value="94.158"/>
+                  <brsynth:P39464 value="94.158"/>
+                  <brsynth:O82827 value="94.158"/>
+                  <brsynth:O43091 value="94.158"/>
+                  <brsynth:O95749 value="94.158"/>
+                  <brsynth:Q8S948 value="94.158"/>
+                  <brsynth:Q9UWR6 value="94.158"/>
+                  <brsynth:O59703 value="94.158"/>
+                  <brsynth:P60472 value="94.158"/>
+                  <brsynth:Q65164 value="94.158"/>
+                  <brsynth:Q3IPL1 value="94.158"/>
+                  <brsynth:B2DBE8 value="94.158"/>
+                  <brsynth:P44916 value="94.158"/>
+                  <brsynth:Q53479 value="94.158"/>
+                  <brsynth:P22873 value="94.158"/>
+                  <brsynth:O66127 value="94.158"/>
+                  <brsynth:P31112 value="94.158"/>
+                  <brsynth:A2PZA5 value="94.158"/>
+                  <brsynth:Q88VJ8 value="94.158"/>
+                  <brsynth:Q97W92 value="94.158"/>
+                  <brsynth:Q8PYS1 value="94.158"/>
+                  <brsynth:Q94ID7 value="94.158"/>
+                  <brsynth:P56966 value="94.158"/>
+                  <brsynth:Q9LUE1 value="94.158"/>
+                  <brsynth:P24322 value="94.058"/>
+                  <brsynth:Q9LUD9 value="94.058"/>
+                  <brsynth:Q9LHR4 value="94.058"/>
+                  <brsynth:Q5U2R1 value="94.058"/>
+                  <brsynth:Q9LIA0 value="94.058"/>
+                  <brsynth:Q9SLG2 value="94.058"/>
+                  <brsynth:Q9SSU0 value="94.058"/>
+                  <brsynth:Q9WTN0 value="94.058"/>
+                  <brsynth:Q9ZU77 value="94.058"/>
+                  <brsynth:Q6F596 value="94.058"/>
+                  <brsynth:O22043 value="94.058"/>
+                  <brsynth:Q9LJY2 value="94.058"/>
+                  <brsynth:Q6FCH1 value="93.958"/>
+                  <brsynth:P0C9E1 value="93.958"/>
+                  <brsynth:P60478 value="93.958"/>
+                  <brsynth:Q9HXY2 value="93.958"/>
+                  <brsynth:O59258 value="93.958"/>
+                  <brsynth:Q8TJQ7 value="93.958"/>
+                  <brsynth:Q5JGE1 value="93.958"/>
+                  <brsynth:Q58767 value="93.958"/>
+                  <brsynth:Q88MH6 value="93.958"/>
+                  <brsynth:Q8PMK9 value="93.958"/>
+                  <brsynth:P54976 value="93.958"/>
+                  <brsynth:Q5X7N9 value="93.958"/>
+                  <brsynth:Q5E3E3 value="93.958"/>
+                  <brsynth:P0AD58 value="93.958"/>
+                  <brsynth:P9WFF6 value="93.958"/>
+                  <brsynth:Q9YC66 value="93.958"/>
+                  <brsynth:Q9C446 value="93.958"/>
+                  <brsynth:Q9CJL4 value="93.958"/>
+                  <brsynth:P95999 value="93.958"/>
+                  <brsynth:Q8K9S6 value="93.958"/>
+                  <brsynth:Q8EGH1 value="93.958"/>
+                  <brsynth:Q87EH7 value="93.958"/>
+                  <brsynth:Q7N8P2 value="93.958"/>
+                  <brsynth:Q9KPV6 value="93.958"/>
+                  <brsynth:Q9HKQ0 value="93.958"/>
+                  <brsynth:Q9V157 value="93.958"/>
+                  <brsynth:Q8ZRP2 value="93.958"/>
+                  <brsynth:Q8TXA7 value="93.958"/>
+                  <brsynth:Q89AP0 value="93.958"/>
+                  <brsynth:Q83BV5 value="93.958"/>
+                  <brsynth:Q8U0I8 value="93.958"/>
+                  <brsynth:Q0PAX5 value="93.958"/>
+                  <brsynth:P0C9E2 value="93.958"/>
+                  <brsynth:Q87ME1 value="93.958"/>
+                  <brsynth:Q92236 value="93.958"/>
+                  <brsynth:O26334 value="93.958"/>
+                  <brsynth:Q8PZ76 value="93.958"/>
+                  <brsynth:Q5ZY69 value="93.958"/>
+                  <brsynth:Q980W4 value="93.958"/>
+                  <brsynth:Q7VRE1 value="93.958"/>
+                  <brsynth:Q886N9 value="93.958"/>
+                  <brsynth:Q7VM20 value="93.958"/>
+                  <brsynth:Q5NHX6 value="93.958"/>
+                  <brsynth:Q9PEH8 value="93.958"/>
+                  <brsynth:Q976K2 value="93.958"/>
+                  <brsynth:O29049 value="93.958"/>
+                  <brsynth:Q667J4 value="93.958"/>
+                  <brsynth:Q8PAV7 value="93.958"/>
+                  <brsynth:Q8PW34 value="93.958"/>
+                  <brsynth:Q8ZU54 value="93.958"/>
+                  <brsynth:Q8D2G7 value="93.958"/>
+                  <brsynth:Q5PD68 value="93.958"/>
+                  <brsynth:P57330 value="93.958"/>
+                  <brsynth:Q5V1I1 value="93.958"/>
+                  <brsynth:Q5WZ40 value="93.958"/>
+                  <brsynth:Q42698 value="93.958"/>
+                  <brsynth:Q97B58 value="93.958"/>
+                  <brsynth:Q7MIG4 value="93.958"/>
+                  <brsynth:P80042 value="93.958"/>
+                  <brsynth:Q54VJ9 value="93.958"/>
+                  <brsynth:Q5H1E5 value="93.958"/>
+                  <brsynth:Q758K0 value="93.958"/>
+                  <brsynth:P44938 value="93.958"/>
+                  <brsynth:Q8DBF7 value="93.958"/>
+                  <brsynth:Q54BK1 value="93.958"/>
+                  <brsynth:Q6KZ89 value="93.958"/>
+                  <brsynth:Q6D8D8 value="93.958"/>
+                  <brsynth:P55785 value="93.958"/>
+                  <brsynth:Q8ZH61 value="93.958"/>
+                  <brsynth:Q8Z9A5 value="93.958"/>
+                  <brsynth:P38119 value="93.958"/>
+                  <brsynth:Q8V9T7 value="93.958"/>
+                  <brsynth:P60475 value="93.958"/>
+                  <brsynth:P21684 value="93.958"/>
+                  <brsynth:P48368 value="93.958"/>
+                  <brsynth:P17060 value="93.958"/>
+                  <brsynth:Q6LN28 value="93.958"/>
+                  <brsynth:P60474 value="93.958"/>
+                  <brsynth:P0C9E0 value="93.958"/>
+                  <brsynth:Q9HP68 value="93.958"/>
+                  <brsynth:P55784 value="93.858"/>
+                  <brsynth:Q9LRR0 value="93.758"/>
+                </brsynth:selenzyme>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="MNXM132__64__MNXC3" stoichiometry="1" constant="true"/>
+          <speciesReference species="MNXM83__64__MNXC3" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="CMPD_0000000003__64__MNXC3" stoichiometry="1" constant="true"/>
+          <speciesReference species="MNXM11__64__MNXC3" stoichiometry="3" constant="true"/>
+        </listOfProducts>
+      </reaction>
+      <reaction metaid="b98fe416ed3e9cb1d98745756bdc0f03" sboTerm="SBO:0000176" id="RP1_sink" reversible="true" fast="false" fbc:lowerFluxBound="B_0" fbc:upperFluxBound="B_999999">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:Description rdf:about="#b98fe416ed3e9cb1d98745756bdc0f03">
+              <bqbiol:is>
+                <rdf:Bag/>
+              </bqbiol:is>
+            </rdf:Description>
+            <rdf:BRSynth rdf:about="#b98fe416ed3e9cb1d98745756bdc0f03">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu"/>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="TARGET_0000000001__64__MNXC3" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+      </reaction>
+    </listOfReactions>
+    <groups:listOfGroups>
+      <groups:group metaid="f6370751b7d7e51be4a78651e904fd2c" groups:id="rp_pathway" groups:kind="collection">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:BRSynth rdf:about="#f6370751b7d7e51be4a78651e904fd2c">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:dfG_prime_o units="kj_per_mol" value="684.4838513110667"/>
+                <brsynth:dfG_prime_m units="kj_per_mol" value="-2812.648423478348"/>
+                <brsynth:dfG_uncert units="kj_per_mol" value="164.7896418696257"/>
+                <brsynth:fba_obj_biomass units="mmol_per_gDW_per_hr" value="0.8769972144269637"/>
+                <brsynth:fba_obj_fraction units="mmol_per_gDW_per_hr" value="0.0"/>
+                <brsynth:norm_fba_obj_biomass value="0.29233240480898787"/>
+                <brsynth:norm_fba_obj_fraction value="0.0"/>
+                <brsynth:norm_dfG_prime_m value="0.6156630496230544"/>
+                <brsynth:norm_dfG_uncert value="0.7678349018083335"/>
+                <brsynth:norm_dfG_prime_o value="0.6154587014470458"/>
+                <brsynth:norm_rule_score value="0.6346154014079132"/>
+                <brsynth:norm_steps value="0.0"/>
+                <brsynth:global_score value="0.14748839423124827"/>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+        <groups:listOfMembers>
+          <groups:member groups:idRef="RP1"/>
+          <groups:member groups:idRef="RP2"/>
+          <groups:member groups:idRef="RP3"/>
+        </groups:listOfMembers>
+      </groups:group>
+      <groups:group metaid="_2c184de7682298a1c6bba34dfc45a33b" groups:id="central_species" groups:kind="collection">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:BRSynth rdf:about="#_2c184de7682298a1c6bba34dfc45a33b">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu"/>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+        <groups:listOfMembers>
+          <groups:member groups:idRef="CMPD_0000000001__64__MNXC3"/>
+          <groups:member groups:idRef="CMPD_0000000003__64__MNXC3"/>
+          <groups:member groups:idRef="TARGET_0000000001__64__MNXC3"/>
+          <groups:member groups:idRef="M_ipdp_c"/>
+          <groups:member groups:idRef="M_dmpp_c"/>
+        </groups:listOfMembers>
+      </groups:group>
+    </groups:listOfGroups>
+    <fbc:listOfObjectives fbc:activeObjective="obj_fraction">
+      <fbc:objective fbc:id="obj_biomass" fbc:type="maximize">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:BRSynth rdf:about="#">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:flux_value units="mmol_per_gDW_per_hr" value="0.8769972144269637"/>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+        <fbc:listOfFluxObjectives>
+          <fbc:fluxObjective fbc:reaction="biomass" fbc:coefficient="1">
+            <annotation>
+              <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                <rdf:BRSynth rdf:about="#">
+                  <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                    <brsynth:flux_value units="mmol_per_gDW_per_hr" value="0.8769972144269637"/>
+                  </brsynth:brsynth>
+                </rdf:BRSynth>
+              </rdf:RDF>
+            </annotation>
+          </fbc:fluxObjective>
+        </fbc:listOfFluxObjectives>
+      </fbc:objective>
+      <fbc:objective fbc:id="obj_fraction" fbc:type="maximize">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            <rdf:BRSynth rdf:about="#">
+              <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                <brsynth:flux_value units="mmol_per_gDW_per_hr" value="0.0"/>
+              </brsynth:brsynth>
+            </rdf:BRSynth>
+          </rdf:RDF>
+        </annotation>
+        <fbc:listOfFluxObjectives>
+          <fbc:fluxObjective metaid="_179c610abf62f29bbac626d15097da36" fbc:reaction="RP1_sink" fbc:coefficient="1">
+            <annotation>
+              <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                <rdf:BRSynth rdf:about="#_179c610abf62f29bbac626d15097da36">
+                  <brsynth:brsynth xmlns:brsynth="http://brsynth.eu">
+                    <brsynth:flux_value units="mmol_per_gDW_per_hr" value="0.0"/>
+                  </brsynth:brsynth>
+                </rdf:BRSynth>
+              </rdf:RDF>
+            </annotation>
+          </fbc:fluxObjective>
+        </fbc:listOfFluxObjectives>
+      </fbc:objective>
+    </fbc:listOfObjectives>
+  </model>
+</sbml>
