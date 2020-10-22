@@ -1,0 +1,11 @@
+name: dnaprep
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python < 3.9
+  - jupyterlab
+  - python-libsbml
+  - pip
+  - pip:
+      - pysbol

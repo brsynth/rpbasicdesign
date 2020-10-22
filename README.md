@@ -8,12 +8,10 @@ Formal description of parts involved in constructs is outputted in SBOL files.
 ## Install
 
 ```bash
-conda create -n <myenv> python=3
-conda activate <myenv>
-conda install -c conda-forge rdkit=2020 jupyterlab python-libsbml
-pip install brs_libs=0.3.1
+conda env create -f environment.yaml -n <myenv>
 ```
 `<myenv>` has to be replaced by whatever meaningful name that will pleased the user.
+If the no environment name is specified using the `-n` argument, the created environment will be `dnaprep`. 
 
 ## Usage
 
