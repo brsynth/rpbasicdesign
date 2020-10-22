@@ -388,12 +388,15 @@ class BASICDesigner:
         if not os.path.exists(out_dir):
             os.makedirs(out_dir)
         plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
+        nb_constructs = 0
         for construct in self.constructs:
+            nb_constructs += 1
             coord = next(plate_coords)
             fname = 'BASIC_construct_{}.xml'.format(coord)
             construct_id = 'BASIC_construct_{}'.format(coord)
             with open(os.path.join(out_dir, fname), 'w') as ofh:
                 ofh.write(construct.get_sbol(construct_id=construct_id, validate=False).writeString())
+        return nb_constructs
 
     # def _iter_sample_fast_custom(self, iterable, sample_size):
     #     """Reservoir sampling.
