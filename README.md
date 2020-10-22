@@ -7,9 +7,14 @@ Formal description of parts involved in constructs is outputted in SBOL files.
 
 ## Install
 
+From source code
 ```bash
+git clone https://forgemia.inra.fr/thomas.duigou/dnaprep.git
+cd dnaprep
 conda env create -f environment.yaml -n <myenv>
+pip install -e .
 ```
+
 `<myenv>` has to be replaced by whatever meaningful name that will pleased the user.
 If the no environment name is specified using the `-n` argument, the created environment will be `dnaprep`. 
 
@@ -17,8 +22,17 @@ If the no environment name is specified using the `-n` argument, the created env
 
 ```bash
 conda activate <myenv>
-  ..
+python -m dnaprep.cli --rpsbml_file tests/input/rp_1_12.sbml.xml --sample_size 12 --o_dnabot_file lala.csv --o_sbol_dir lala_sbol
 ```
+
+Argument usage are described within the tool
+```
+python -m dnaprep.cli --help
+```
+
+## TODO
+
+- Write tests
 
 ## References
 
