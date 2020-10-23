@@ -11,7 +11,7 @@ import sys
 import logging
 import argparse
 
-from dnaprep import BASICDesigner
+from rpbasicdesign import BASICDesigner
 
 
 def __cli():

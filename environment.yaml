@@ -1,4 +1,4 @@
-name: dnaprep
+name: rpbasicdesign
 channels:
   - conda-forge
   - defaults
