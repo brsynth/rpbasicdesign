@@ -33,6 +33,9 @@ python -m dnaprep.cli --help
 ## TODO
 
 - Write tests
+- Better handle logs and add `verbose` option
+- Conda packaging
+- CI
 
 ## References
 
