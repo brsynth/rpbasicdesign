@@ -30,6 +30,25 @@ Argument usage are described within the tool
 python -m rpbasicdesign.cli --help
 ```
 
+## BASIC linkers
+
+The BASIC linker set is a major piece of the BASIC assembly method. For a detailed explanation of the BASIS approach, see Storch et. al., ACS Synth. Biol., 2015 (doi: [10.1021/sb500356d](https://doi.org/10.1021/sb500356d)).
+
+### Predefined set of linkers
+
+By default, the set of linkers used is the one presented in the original BASIC approach.
+If one wants to use its own set of linkers, the user is advised to do it carefully and to look for more information.
+
+### Linker naming naming conventions
+
+Due to DNA-Bot implementation:
+- RBS linkers should start with the `UTRn` suffix, where could be any alpha numeric character.
+- Any linkers should have its two half linkers ending with the `-P` and `-S` suffixes listed in the "part file", ie in the file that provides the well locations containing the DNA fragment. See the BASIC approach paper, and especially the supplementary files for more information.  
+
+## Default parts
+
+Default backbone, linkers and promoters are used. Definition of the parts are in `rpbasicdesign/data/default_parts.tsv`.
+
 ## TODO
 
 - Write tests
