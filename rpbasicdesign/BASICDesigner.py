@@ -20,11 +20,13 @@ from sbol import SO_PROMOTER, SO_CDS, SO_RBS, SO_MISC, SO_PLASMID, SO_CIRCULAR
 
 logging.basicConfig(level=logging.DEBUG)
 
-_DNABOT_HEADER = ['Well',
-                  'Linker 1', 'Part 1', 'Linker 2', 'Part 2', 'Linker 3', 'Part 3', 'Linker 4', 'Part 4',
-                  'Linker 5', 'Part 5', 'Linker 6', 'Part 6', 'Linker 7', 'Part 7', 'Linker 8', 'Part 8',
-                  'Linker 9', 'Part 9', 'Linker 10', 'Part 10',
-                  ]
+_DNABOT_CONSTRUCT_HEADER = ['Well',
+                            'Linker 1', 'Part 1', 'Linker 2', 'Part 2', 'Linker 3', 'Part 3', 'Linker 4', 'Part 4',
+                            'Linker 5', 'Part 5', 'Linker 6', 'Part 6', 'Linker 7', 'Part 7', 'Linker 8', 'Part 8',
+                            'Linker 9', 'Part 9', 'Linker 10', 'Part 10',
+                            ]
+_DNABOT_PART_HEADER = ['Part/linker', 'Well', 'Part concentration (ng/uL)']
+
 
 def _gen_plate_coords(nb_row=8, nb_col=12, by_row=True):
     """Generator that generates the label coordinates for plate
@@ -150,7 +152,7 @@ class BASICConstruct:
         :param coord: str, plate coordinate (opt)
         :return: [str, ..], row
         """
-        header_iter = iter(_DNABOT_HEADER)
+        header_iter = iter(_DNABOT_CONSTRUCT_HEADER)
         row = {next(header_iter): coord}
         for part in self._parts:
             row[next(header_iter)] = part.id
@@ -164,6 +166,18 @@ class BASICConstruct:
         if len(self._parts) != len(set([part.id for part in self._parts])):
             return True
         return False
+
+    def get_part_ids(self, role=[]):
+        """Get the list of part IDs involved in the construct
+
+        :param role: [str, ...]: list of part role to include. If empty, parts of any role are included
+        :return: [str, ...]: list of part IDs
+        """
+        ids = []
+        for part in self._parts:
+            if len(role) == 0 or part.role in role:
+                ids.append(part.id)
+        return ids
 
     def get_sbol(self, construct_id='BASIC_construct', validate=False):
         """Get the SBOL string representation of the construct.
@@ -216,9 +230,8 @@ class BASICDesigner:
     """
 
     def __init__(self, monocistronic_design=True, verbose=False):
-        self._ref_backbone_file = 'data/backbone.tsv'
-        self._ref_promoters_file = 'data/promoters.tsv'
-        self._ref_linkers_file = 'data/linkers.tsv'
+        self._default_part_file = 'data/default_parts.tsv'
+        self._ref_coord_part_file = 'data/default_coords.csv'
         self._verbose = verbose
         self._monocistronic_design = monocistronic_design
         self._parts = {}
@@ -227,29 +240,31 @@ class BASICDesigner:
         self._MAX_ENZ = 5
         self._SEED = 42
 
-        # Load ref data
-        content = pkgutil.get_data(__name__, self._ref_backbone_file).decode().splitlines()
+        # Load default data
+        content = pkgutil.get_data(__name__, self._default_part_file).decode().splitlines()
         for item in DictReader(content, delimiter='\t'):
+            if item['id'].startswith('#'):  # Skip if commented
+                continue
             if item['id'] in self._parts:
                 logging.warning(f'Warning, part {id} duplicated, only the last definition kept.')
-            self._parts[item['id']] = Part(id=item['id'], role='backbone', type=item['type'], seq=item['sequence'])
-        content = pkgutil.get_data(__name__, self._ref_promoters_file).decode().splitlines()
-        for item in DictReader(content, delimiter='\t'):
-            if item['id'] in self._parts:
-                logging.warning(f'Warning, part {id} duplicated, only the last definition kept.')
-            self._parts[item['id']] = Part(id=item['id'], role='promoter', type=item['type'], seq=item['sequence'])
-        content = pkgutil.get_data(__name__, self._ref_linkers_file).decode().splitlines()
-        for item in DictReader(content, delimiter='\t'):
-            if item['id'] in self._parts:
-                logging.warning(f'Warning, part {id} duplicated, only the last definition kept.')
-            if item['type'].lower() == 'utr-rbs linker':
-                self._parts[item['id']] = Part(id=item['id'], role='rbs', type=item['type'], seq=item['sequence'])
-            elif item['type'].lower() == 'neutral linker':
-                self._parts[item['id']] = Part(id=item['id'], role='misc', type=item['type'], seq=item['sequence'])
-            elif item['type'].lower() == 'methylated linker':
-                self._parts[item['id']] = Part(id=item['id'], role='misc', type=item['type'], seq=item['sequence'])
+            if item['type'].lower() == 'backbone':
+                self._parts[item['id']] = Part(id=item['id'], role='backbone',
+                                               type=item['type'].lower(), seq=item['sequence']
+                                               )
+            elif item['type'].lower() == 'constitutive promoter':
+                self._parts[item['id']] = Part(id=item['id'], role='promoter',
+                                               type=item['type'].lower(), seq=item['sequence']
+                                               )
+            elif item['type'].lower() in ['neutral linker', 'methylated linker']:
+                self._parts[item['id']] = Part(id=item['id'], role='misc',
+                                               type=item['type'].lower(), seq=item['sequence']
+                                               )
+            elif item['type'].lower() == 'rbs linker':
+                self._parts[item['id']] = Part(id=item['id'], role='rbs',
+                                               type=item['type'].lower(), seq=item['sequence']
+                                               )
             else:
-                logging.warning(f'Linker "{id}" not imported because it does not fall any supported linker type.')
+                logging.warning(f'Part "{id}" not imported because it does not fall any supported part type.')
 
     def _read_MIRIAM_annotation(self, annot):
         """Return the MIRIAM annotations of species.
@@ -289,7 +304,7 @@ class BASICDesigner:
         model = document.getModel()
         for nb_rxn, reaction in enumerate(model.getListOfReactions()):
             if nb_rxn > self._MAX_ENZ:
-                logging.warning(f'Number of reaction steps exceed the defined allowed number of enzymes {self._MAX_ENZ}')
+                logging.warning(f'Number of reactions exceed the defined allowed number of enzymes {self._MAX_ENZ}')
             if not reaction.id.endswith('_sink'):
                 annot = reaction.getAnnotation()
                 for uni_id in self._read_MIRIAM_annotation(annot)['uniprot']:
@@ -356,25 +371,35 @@ class BASICDesigner:
                 self.constructs.append(construct)
         # Logs
         if nb_dupe_parts:
-            logging.debug(f'{nb_dupe_parts} construct skipped because of duplicated parts within a construct.')
+            logging.debug(f'{nb_dupe_parts} constructs skipped because of duplicated parts within a construct.')
         if nb_dupe_constructs:
-            logging.debug(f'{nb_dupe_constructs} construct skipped because the construct already exists.')
+            logging.debug(f'{nb_dupe_constructs} constructs skipped because the construct already exists.')
         return len(self.constructs)
 
-    def write_dnabot_input(self, out_file):
+    def write_dnabot_inputs(self, construct_file, coord_file):
         """Write constructs in CSV format expected by DNA-Bot
 
-        :param out_file: str, out file path
+        :param construct_file: str, file path where constructs will be written
+        :param coord_file: str, file path where individual parts will be written
         :return: int, number of constructs written to file
         """
         plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
-        with open(out_file, 'w') as ofh:
-            writer = DictWriter(f=ofh, fieldnames=_DNABOT_HEADER, delimiter=',', restval='')
+        with open(construct_file, 'w') as ofh:
+            writer = DictWriter(f=ofh, fieldnames=_DNABOT_CONSTRUCT_HEADER, delimiter=',', restval='')
             writer.writeheader()
             nb_constructs = 0
             for construct in self.constructs:
                 nb_constructs += 1
                 writer.writerow(construct.get_dnabot_row(coord=next(plate_coords)))
+        with open(coord_file, 'w') as ofh:
+            writer = DictWriter(f=ofh, fieldnames=_DNABOT_PART_HEADER, delimiter=',', restval='')
+            writer.writeheader()
+            part_ids = set()
+            for construct in self.constructs:  # Collect parts that are used
+                part_ids |= set(construct.get_part_ids(role=['cds']))
+            for _ in sorted(part_ids):
+                writer.writerow({'Part/linker': _, 'Well': '', 'Part concentration (ng/uL)': ''})
+            print(part_ids)
         return nb_constructs
 
     def write_sbol(self, out_dir):

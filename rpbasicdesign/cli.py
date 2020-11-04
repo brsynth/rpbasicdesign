@@ -30,8 +30,10 @@ def __cli():
     parser.add_argument('--rpsbml_file', help='rpSBML file from which enzymes UniProt IDs will be collected',
                         required=True)
     parser.add_argument('--sample_size', help='Number of construct to generate.', default=6, type=int)
-    parser.add_argument('--o_dnabot_file', help='Output file ready to be used by DNA-Bot. Existing file will be'
-                                                'overwritten.')
+    parser.add_argument('--o_dnabot_construct_file', help='Output file listing constructs, ready to be used by'
+                                                          ' DNA-Bot. Existing file will be overwritten.')
+    parser.add_argument('--o_dnabot_coord_file', help='Output file listing parts, ready to be used by'
+                                                     ' DNA-Bot. Existing file will be overwritten.')
     parser.add_argument('--o_sbol_dir', help='Output folder to write SBOL depictions of constructs. It will be '
                                              'created if it does not exist yet. Existing files will be overwritten.')
 
@@ -48,12 +50,16 @@ def __cli():
     o.enzyme_from_rpsbml(rpsbml_file=args.rpsbml_file)
     nb_constructs = o.combine(sample_size=args.sample_size)
     logging.info(f'{nb_constructs} generated.')
-    if args.o_dnabot_file:
-        nb_constructs = o.write_dnabot_input(out_file=args.o_dnabot_file)
-        logging.info(f'{nb_constructs} constructs written in {args.o_dnabot_file} file.')
+    if args.o_dnabot_construct_file or args.o_dnabot_coord_file:
+        assert args.o_dnabot_construct_file
+        assert args.o_dnabot_coord_file
+        nb_constructs = o.write_dnabot_inputs(construct_file=args.o_dnabot_construct_file,
+                                              coord_file=args.o_dnabot_coord_file
+                                              )
+        logging.info(f'{nb_constructs} constructs written in {args.o_dnabot_construct_file} file.')
     if args.o_sbol_dir:
         o.write_sbol(out_dir=args.o_sbol_dir)
-        logging.info(f'{nb_constructs} constructs written as SBOL in {args.o_dnabot_file} folder.')
+        logging.info(f'{nb_constructs} constructs written as SBOL in {args.o_sbol_dir} folder.')
 
 
 if __name__ == "__main__":
