@@ -25,8 +25,6 @@ def __cli():
     parser.add_argument('--monocistronic_design', help='Build monocistronic constructs. Default to false, ie'
                                                        'polycistronic constructs will be generated.',
                         default=True, type=lambda x: (str(x).lower() == 'false'))
-    # parser.add_argument('--verbose, -v', help="Let's the tool express itself to its full potential ;)",
-    #                     default=False)
     parser.add_argument('--rpsbml_file', help='rpSBML file from which enzymes UniProt IDs will be collected',
                         required=True)
     parser.add_argument('--sample_size', help='Number of construct to generate.', default=6, type=int)
