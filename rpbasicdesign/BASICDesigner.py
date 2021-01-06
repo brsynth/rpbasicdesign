@@ -376,30 +376,36 @@ class BASICDesigner:
             logging.debug(f'{nb_dupe_constructs} constructs skipped because the construct already exists.')
         return len(self.constructs)
 
-    def write_dnabot_inputs(self, construct_file, coord_file):
+    def write_dnabot_inputs(self, out_dir):
         """Write constructs in CSV format expected by DNA-Bot
 
-        :param construct_file: str, file path where constructs will be written
-        :param coord_file: str, file path where individual parts will be written
+        :param out_dir: str, folder path where construct and coord files be written
         :return: int, number of constructs written to file
         """
-        plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
-        with open(construct_file, 'w') as ofh:
+        __CONSTRUCT_FILE = 'constructs.csv'
+        __COORD_REF_FILE = 'ref_parts_coord.csv'
+        __COORD_CUSTOM_FILE = 'parts_coord.csv'
+        if not os.path.exists(out_dir):
+            os.makedirs(out_dir)
+        with open(os.path.join(out_dir, __CONSTRUCT_FILE), 'w') as ofh:
+            plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
             writer = DictWriter(f=ofh, fieldnames=_DNABOT_CONSTRUCT_HEADER, delimiter=',', restval='')
             writer.writeheader()
             nb_constructs = 0
             for construct in self.constructs:
                 nb_constructs += 1
                 writer.writerow(construct.get_dnabot_row(coord=next(plate_coords)))
-        with open(coord_file, 'w') as ofh:
+        with open(os.path.join(out_dir, __COORD_CUSTOM_FILE), 'w') as ofh:
+            plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
             writer = DictWriter(f=ofh, fieldnames=_DNABOT_PART_HEADER, delimiter=',', restval='')
             writer.writeheader()
             part_ids = set()
             for construct in self.constructs:  # Collect parts that are used
                 part_ids |= set(construct.get_part_ids(role=['cds']))
             for _ in sorted(part_ids):
-                writer.writerow({'Part/linker': _, 'Well': '', 'Part concentration (ng/uL)': ''})
-            print(part_ids)
+                writer.writerow({'Part/linker': _, 'Well': next(plate_coords), 'Part concentration (ng/uL)': ''})
+        with open(os.path.join(out_dir, __COORD_REF_FILE), 'wb') as ofh:
+            ofh.write(pkgutil.get_data(__name__, self._ref_coord_part_file))
         return nb_constructs
 
     def write_sbol(self, out_dir):
