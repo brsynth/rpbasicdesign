@@ -56,6 +56,34 @@ Default backbone, linkers and promoters are used. Definition of the parts are in
 - Conda packaging
 - CI
 
+## Constraints and limitations
+
+### Controlled vocabulary
+
+Parts and linkers provided in the `*_parts.csv` files have to match on the following type:
+- `neutral linker`
+- `methylated linker`
+- `RBS linker`
+- `peptide fusion linker`
+- `backbone`
+- `constitutive promoter`
+
+### Providing CDSs 
+
+As of today, CDS are obtained only by parsing rpSBML files. 
+
+### Custom linkers
+For advanced users wishing to play with custom linkers:
+- Linkers have to be listed in `[biolegio|legacy]_parts.csv`.  
+- Linker prefixes and suffixes well coordinates have to be listed in `[biolegio|legacy]_plate.csv`.
+- Linkers described `user_parts.csv` are not considered.
+- RBS linker IDs have to be in the form `AAA-BBB` with `AAA` being the linker suffix ID.
+
+### Maximum number of CDSs per construct
+
+The maximum number of genes in a construct limited to 3 with the default `biolegio_plate.csv` RBS library, because
+there is only 3 different RBS suffix in the commercial BioLegio library.  
+
 ## References
 
 - Galaxy-SynBioCAD: https://doi.org/10.1101/2020.06.14.145730
