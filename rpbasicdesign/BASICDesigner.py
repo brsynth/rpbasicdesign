@@ -30,9 +30,14 @@ _DNABOT_PART_HEADER = ['Part/linker', 'Well', 'Part concentration (ng/uL)']
 def _gen_plate_coords(nb_row=8, nb_col=12, by_row=True):
     """Generator that generates the label coordinates for plate
 
-    :param nb_row: int, number of rows in the plate (max: 26)
-    :param nb_col: int, number of columns in the plate (max: 99)
-    :param by_row, bool, True to work by row
+    :param nb_row: number of rows in the plate (max: 26)
+    :type nb_row: int
+    :param nb_col: number of columns in the plate (max: 99)
+    :type nb_col: int
+    :param by_row: True to work by row
+    :type by_row: bool
+    :returns: well coordinate
+    :rtype: str
     """
     assert nb_row <= 26 and nb_col <= 99
     row_names = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -55,13 +60,20 @@ def _gen_plate_coords(nb_row=8, nb_col=12, by_row=True):
 class Part:
     """Handle information on a single part.
 
-    :param id: str, part ID
-    :param basic_role: str, structural role of the part according to BASIC method, (eg linker, part, backbone, ...)
-    :param biological_role: str, biological role of the part, (eg promoter, rbs, cds)
-    :param linker_class: str, linker class (only for linkers) or None
-    :param cds_step: int, "step" of the CDS (eg first, second, third enzyme of a pathway...)
-    :param seq: str, part DNA sequence
-    :return: <Part>
+    :param id: part ID
+    :type id: str
+    :param basic_role: structural role of the part according to BASIC method, (eg linker, part, backbone, ...)
+    :type basic_role: str
+    :param biological_role: biological role of the part, (eg promoter, rbs, cds)
+    :type biological_role: str
+    :param linker_class: linker class (only for linkers) or None
+    :type linker_class: str or None
+    :param cds_step: "step" of the CDS (eg first, second, third enzyme of a pathway...)
+    :type cds_step: int or None
+    :param seq: part DNA sequence
+    :type seq: str
+    :return: Part object
+    :rtype: <Part>
     """
 
     def __init__(self, id, basic_role, biological_role,
@@ -71,8 +83,6 @@ class Part:
         self.biological_role = biological_role
         self.linker_class = linker_class
         self.cds_step = cds_step
-        # self.role = role
-        # self.type = type
         self.seq = seq.lower()
 
     def __repr__(self):
@@ -102,7 +112,8 @@ class Part:
          - prefix IDs end by "-P"
          - suffix IDs end by "-S"
 
-        :return: tuple(str, str), prefix and suffix
+        :return: prefix and suffix
+        :rtype: tuple(str, str)
         """
         if self.basic_role == 'linker':
             if self.linker_class == 'rbs linker':
@@ -117,6 +128,9 @@ class Part:
         """Get a part ID compliant with SBOL rules.
 
         NOTICE: Invalid characters are replaced by "_"
+
+        :returns: SBOL-ready part ID
+        :rtype: str
         """
         valid_characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'
         i = 0
@@ -131,15 +145,21 @@ class Part:
 class BASICConstruct:
     """Everything about construct.
 
-    :param backbone: <Part>, backbone
-    :param lms: <Part>, suffix methylated linker
-    :param lmp: <Part>, prefix methylated linker
-    :param blocks: [{k: <Part>}, .. ], blocks to be included
-    :param nlinkers: [<Part>, ..], available neutral linker
-    :param monocistronic_design: bool, True if construct should be monocistronic
-    :return: <BASICConstruct>
+    :param backbone: backbone
+    :type backbone: <Part>
+    :param lms: suffix methylated linker
+    :type lms: <Part>
+    :param lmp: prefix methylated linker
+    :type lmp: <Part>
+    :param blocks: blocks embedding parts to be used
+    :type blocks: list of dict of <Part>, [{k: <Part>}, .. ]
+    :param nlinkers: available neutral linker (if junction necessary, used for monocistronic designs)
+    :type nlinkers: list of <Part>
+    :param monocistronic_design: True if construct should be monocistronic
+    :type monocistronic_design: bool
+    :return: a BASICConstruct object
+    :rtype: <BASICConstruct>
     """
-
     def __init__(self, backbone, lms, lmp, blocks, nlinkers, monocistronic_design=True):
         self._nlinkers = nlinkers.copy()  # Prevent any side effect
         self._monocistronic_design = monocistronic_design
@@ -172,8 +192,10 @@ class BASICConstruct:
     def get_dnabot_row(self, coord=None):
         """Get the row format expected by DNA-Bot.
 
-        :param coord: str, plate coordinate (opt)
-        :return: [str, ..], row
+        :param coord: plate coordinate (opt)
+        :type coord: str
+        :return: formatted row to ready to be written
+        :rtype: list of str
         """
         header_iter = iter(_DNABOT_CONSTRUCT_HEADER)
         row = {next(header_iter): coord}
@@ -184,7 +206,8 @@ class BASICConstruct:
     def has_duplicate_part(self):
         """Check if some parts are used several times.
 
-        :return: bool, True if any part is duplicated
+        :return: True if any part is duplicated
+        :rtype: bool
         """
         if len(self._parts) != len(set([part.id for part in self._parts])):
             return True
@@ -193,7 +216,8 @@ class BASICConstruct:
     def has_duplicate_suffix(self):
         """Check if some linkers are used several times
 
-        :return: bool, True if any linker is duplicated
+        :return: True if any linker is duplicated
+        :rtype: bool
         """
         suffixes = [part.get_prefix_suffix()[1] for part in self._parts if part.basic_role == 'linker']
         if len(suffixes) != len(set(suffixes)):
@@ -203,8 +227,10 @@ class BASICConstruct:
     def get_part_ids(self, basic_roles=[]):
         """Get the list of part IDs involved in the construct
 
-        :param basic_roles: [str, ...]: list of part role to include. If empty, parts of any basic_role are included
-        :return: [str, ...]: list of part IDs
+        :param basic_roles: part roles to include. If empty, parts of any basic_role are included
+        :type basic_roles: list of str
+        :return: part IDs
+        :rtype: list of str
         """
         ids = []
         for part in self._parts:
@@ -220,9 +246,12 @@ class BASICConstruct:
 
         WARNING: validation needs internet connexion.
 
-        :param construct_id: str, BASICConstruct object ID
-        :param validate: bool, perform online SBOL validation
-        :return: <sbol.Document>, SBOL object
+        :param construct_id: BASICConstruct object ID
+        :type construct_id: str
+        :param validate: perform online SBOL validation
+        :type validate: bool
+        :return: SBOL object
+        :rtype: <sbol.Document>
         """
 
         _SBOL_ROLE_ASSOC = {
@@ -259,25 +288,40 @@ class BASICDesigner:
 
     WARNING: promoters and RBSs are randomly chosen from amongst all available
 
-    :return: <BASICDesigner>
-    """
+    :param monocistronic_design: True if monocistronic design should be prepared
+    :type monocistronic_design: bool
+    :param verbose: True to increase log verbosity
+    :type verbose: bool
+    :param linker_parts_file: path providing linkers available for constructs
+    :type linker_parts_file: str
+    :param linker_plate_file: path providing half linkers coordinates
+    :type linker_plate_file: str
+    :param user_parts_file: path providing user parts (eg backbone, promoters) available for constructs
+    :type user_parts_file: str
+    :param lms_id: part ID that corresponds to the LMS methylated linker
+    :type lms_id: str
+    :param lmp_id: part ID that corresponds to the LMP methylated linker
+    :type lmp_id: str
+    :param backbone_id: part ID that corresponds to the backbone
+    :type backbone_id: str
 
+    :return: BASICDesigner object
+    :rtype: <BASICDesigner>
+    """
     def __init__(self, monocistronic_design=True, verbose=False,
                  linker_parts_file='data/biolegio_parts.csv',
                  linker_plate_file='data/biolegio_plate.csv',
-                 user_parts_file='data/user_parts.csv'):
+                 user_parts_file='data/user_parts.csv',
+                 lms_id='LMS', lmp_id='LMP', backbone_id='BASIC_SEVA_37_CmR-p15A.1'):
         self._verbose = verbose
         self._monocistronic_design = monocistronic_design
         self._linker_parts_file = linker_parts_file
         self._linker_plate_file = linker_plate_file
         self._user_parts_file = user_parts_file
+        self._lms_id = lms_id
+        self._lmp_id = lmp_id
+        self._backbone_id = backbone_id
 
-        # lms_id: str, part ID that corresponds to the LMS methylated linker
-        # lmp_id: str, part ID that corresponds to the LMP methylated linker
-        # backbone_id: str, part ID that corresponds to the backbone
-        self._lms_id = 'LMS'
-        self._lmp_id = 'LMP'
-        self._backbone_id = 'BASIC_SEVA_37_CmR-p15A.1'
         self._MAX_ENZ = 3
         self._SEED = 42
 
@@ -314,8 +358,12 @@ class BASICDesigner:
     def _read_MIRIAM_annotation(self, annot):
         """Return the MIRIAM annotations of species.
 
+        Notice: an empty dict is return if the parsing failed.
+
         :param annot: SBML annotation block
-        :return: dict of annotations
+        :type annot: <libsbml.XMLNode>
+        :return: annotations as a dictionary
+        :rtype dict
         """
         try:
             to_keep = {}
@@ -342,7 +390,8 @@ class BASICDesigner:
 
         WARNING: the rpSBML file is expected to follow the specific schema of annotations used for rpSBMLs
 
-        :param rpsbml_file: str, path to rpSBML from which enzyme will be extracted.
+        :param rpsbml_file: path to rpSBML from which enzyme will be extracted.
+        :type rpsbml_file: str
         """
         reader = SBMLReader()
         document = reader.readSBML(rpsbml_file)
@@ -366,8 +415,10 @@ class BASICDesigner:
         - special attention is made to prevent reusing the same RBS suffix in a given construct, to this end RBS
             linker IDs are expected to be in the form AAA-BBB with "AAA" being the linker suffix ID.
 
-        :param sample_size: int, expected number of distinct constructs
+        :param sample_size: expected number of distinct constructs
+        :type sample_size: int
         :return: number of constructs generated
+        :rtype: int
         """
         random.seed(self._SEED)
         cds_steps = set([part.cds_step for part in self._parts.values() if part.biological_role == 'cds'])
@@ -428,8 +479,10 @@ class BASICDesigner:
     def write_dnabot_inputs(self, out_dir):
         """Write constructs in CSV format expected by DNA-Bot
 
-        :param out_dir: str, folder path where construct and coord files be written
-        :return: int, number of constructs written to file
+        :param out_dir: folder path where construct and coord files be written
+        :type out_dir: str
+        :return: number of constructs written to file
+        :rtype: int
         """
         __CONSTRUCT_FILE = 'constructs.csv'
         __COORD_LINKER_FILE = 'linker_parts_coord.csv'
@@ -462,8 +515,10 @@ class BASICDesigner:
 
         NOTICE: out_dir will be created if not existing yet.
 
-        :param out_dir: str, out dir path
-        :return: int, number of SBOL files written
+        :param out_dir: out dir path
+        :type out_dir: str
+        :return: number of SBOL files written
+        :rtype: int
         """
         if not os.path.exists(out_dir):
             os.makedirs(out_dir)
