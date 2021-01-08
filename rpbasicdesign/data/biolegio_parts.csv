@@ -1,0 +1,24 @@
+id,type,sequence,comment
+L1,neutral linker,,
+L2,neutral linker,,
+L3,neutral linker,,
+L4,neutral linker,,
+L5,neutral linker,,
+L6,neutral linker,,
+LMP,methylated linker,,
+LMS,methylated linker,,
+U1-RBS1,RBS linker,,"alt IDs: L1RBS1, UTR1-RBS1"
+U1-RBS2,RBS linker,,"alt IDs: L1RBS2, UTR1-RBS2, UTR-A-RBSc"
+U1-RBS3,RBS linker,,"alt IDs: L1RBS3, UTR1-RBS3, UTR-A-RBSa"
+U2-RBS1,RBS linker,,"alt IDs: L2RBS1, UTR2-RBS1"
+U2-RBS2,RBS linker,,"alt IDs: L2RBS2, UTR2-RBS2, UTR C-RBSc"
+U2-RBS3,RBS linker,,"alt IDs: L2RBS3, UTR2-RBS3"
+U3-RBS1,RBS linker,,
+U3-RBS2,RBS linker,,
+U3-RBS3,RBS linker,,
+LF1,peptide fusion linker,,
+LF2,peptide fusion linker,,
+LF3,peptide fusion linker,,
+LF4,peptide fusion linker,,
+LF5,peptide fusion linker,,
+LF6,peptide fusion linker,,
