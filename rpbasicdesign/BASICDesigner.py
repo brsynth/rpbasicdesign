@@ -56,25 +56,62 @@ class Part:
     """Handle information on a single part.
 
     :param id: str, part ID
-    :param role: str, part role, (eg promoter, rbs, cds)
-    :param type: str, part type (eg linker, ..)
+    :param basic_role: str, structural role of the part according to BASIC method, (eg linker, part, backbone, ...)
+    :param biological_role: str, biological role of the part, (eg promoter, rbs, cds)
+    :param linker_class: str, linker class (only for linkers) or None
+    :param cds_step: int, "step" of the CDS (eg first, second, third enzyme of a pathway...)
     :param seq: str, part DNA sequence
     :return: <Part>
     """
 
-    def __init__(self, id, role, type=None, seq=''):
+    def __init__(self, id, basic_role, biological_role,
+                 linker_class=None, cds_step=None, seq=''):
         self.id = id
-        self.role = role
-        self.type = type
+        self.basic_role = basic_role
+        self.biological_role = biological_role
+        self.linker_class = linker_class
+        self.cds_step = cds_step
+        # self.role = role
+        # self.type = type
         self.seq = seq.lower()
 
     def __repr__(self):
         return str({
             'id': self.id,
-            'role': self.role,
-            'type': self.type,
+            'basic_role': self.basic_role,
+            'biological_role': self.biological_role,
+            'linker_class': self.linker_class,
+            'cds_step': self.cds_step,
             'seq': (self.seq[:10] + '...') if len(self.seq) > 11 else self.seq
         })
+
+    def get_prefix_suffix(self):
+        """Return the expected prefix suffix according to naming convention. Caution this should be used only for linkers.
+
+        Notice:
+        Prefix and suffix are named so-called when regarding the surrounded part, ie
+        [linker A suffix]-[A first DNA part]-[linker B prefix] that would combine with
+        [linker B suffix]-[Another DNA part]-[linker C prefix] which would give in the final construct
+        [A first DNA part]-[linker B]-[Another DNA part]
+
+        This means, when parsing a "full" linker:
+         - the first half is the suffix
+         - the second half is the prefix
+
+         By convention:
+         - prefix IDs end by "-P"
+         - suffix IDs end by "-S"
+
+        :return: tuple(str, str), prefix and suffix
+        """
+        if self.basic_role == 'linker':
+            if self.linker_class == 'rbs linker':
+                suffix = f"{self.id.split('-')[0]}-S"
+            else:
+                suffix = f"{self.id}-S"
+            prefix = f"{self.id}-P"
+            return prefix, suffix
+        return None
 
     def get_sbol_id(self):
         """Get a part ID compliant with SBOL rules.
@@ -95,22 +132,22 @@ class BASICConstruct:
     """Everything about construct.
 
     :param backbone: <Part>, backbone
-    :param LMS: <Part>, suffix methylated linker
-    :param LMP: <Part>, prefix methylated linker
+    :param lms: <Part>, suffix methylated linker
+    :param lmp: <Part>, prefix methylated linker
     :param blocks: [{k: <Part>}, .. ], blocks to be included
     :param nlinkers: [<Part>, ..], available neutral linker
     :param monocistronic_design: bool, True if construct should be monocistronic
     :return: <BASICConstruct>
     """
 
-    def __init__(self, backbone, LMS, LMP, blocks, nlinkers, monocistronic_design=True):
+    def __init__(self, backbone, lms, lmp, blocks, nlinkers, monocistronic_design=True):
         self._nlinkers = nlinkers.copy()  # Prevent any side effect
         self._monocistronic_design = monocistronic_design
 
         self._parts = []
-        self._parts.append(LMS)
+        self._parts.append(lms)
         self._parts.append(backbone)
-        self._parts.append(LMP)
+        self._parts.append(lmp)
         for block_idx, block in enumerate(blocks):
             if monocistronic_design or block_idx == 0:
                 self._parts.append(block['promoter'])
@@ -144,24 +181,34 @@ class BASICConstruct:
             row[next(header_iter)] = part.id
         return row
 
-    def has_duplicates(self):
+    def has_duplicate_part(self):
         """Check if some parts are used several times.
 
-        :return: bool, True if any parts is duplicated
+        :return: bool, True if any part is duplicated
         """
         if len(self._parts) != len(set([part.id for part in self._parts])):
             return True
         return False
 
-    def get_part_ids(self, role=[]):
+    def has_duplicate_suffix(self):
+        """Check if some linkers are used several times
+
+        :return: bool, True if any linker is duplicated
+        """
+        suffixes = [part.get_prefix_suffix()[1] for part in self._parts if part.basic_role == 'linker']
+        if len(suffixes) != len(set(suffixes)):
+            return True
+        return False
+
+    def get_part_ids(self, basic_roles=[]):
         """Get the list of part IDs involved in the construct
 
-        :param role: [str, ...]: list of part role to include. If empty, parts of any role are included
+        :param basic_roles: [str, ...]: list of part role to include. If empty, parts of any basic_role are included
         :return: [str, ...]: list of part IDs
         """
         ids = []
         for part in self._parts:
-            if len(role) == 0 or part.role in role:
+            if len(basic_roles) == 0 or part.basic_role in basic_roles:
                 ids.append(part.id)
         return ids
 
@@ -183,7 +230,7 @@ class BASICConstruct:
             'promoter': SO_PROMOTER,
             'rbs': SO_RBS,
             'cds': SO_CDS,
-            'backbone': SO_CIRCULAR
+            'ori': SO_CIRCULAR
         }
 
         setHomespace('https://localhost')
@@ -192,7 +239,7 @@ class BASICConstruct:
         components = []
         for part in self._parts:
             component = ComponentDefinition(part.get_sbol_id())
-            component.roles = _SBOL_ROLE_ASSOC[part.role]
+            component.roles = _SBOL_ROLE_ASSOC[part.biological_role]
             component.sequence = Sequence(part.get_sbol_id(), part.seq)
             doc.addComponentDefinition(component)
             components.append(component)
@@ -215,42 +262,54 @@ class BASICDesigner:
     :return: <BASICDesigner>
     """
 
-    def __init__(self, monocistronic_design=True, verbose=False):
-        self._default_part_file = 'data/default_parts.tsv'
-        self._ref_coord_part_file = 'data/default_coords.csv'
+    def __init__(self, monocistronic_design=True, verbose=False,
+                 linker_parts_file='data/biolegio_parts.csv',
+                 linker_plate_file='data/biolegio_plate.csv',
+                 user_parts_file='data/user_parts.csv'):
         self._verbose = verbose
         self._monocistronic_design = monocistronic_design
+        self._linker_parts_file = linker_parts_file
+        self._linker_plate_file = linker_plate_file
+        self._user_parts_file = user_parts_file
+
+        # lms_id: str, part ID that corresponds to the LMS methylated linker
+        # lmp_id: str, part ID that corresponds to the LMP methylated linker
+        # backbone_id: str, part ID that corresponds to the backbone
+        self._lms_id = 'LMS'
+        self._lmp_id = 'LMP'
+        self._backbone_id = 'BASIC_SEVA_37_CmR-p15A.1'
+        self._MAX_ENZ = 3
+        self._SEED = 42
+
         self._parts = {}
         self.constructs = []
 
-        self._MAX_ENZ = 5
-        self._SEED = 42
-
         # Load default data
-        content = pkgutil.get_data(__name__, self._default_part_file).decode().splitlines()
-        for item in DictReader(content, delimiter='\t'):
+        content = pkgutil.get_data(__name__, self._linker_parts_file).decode().splitlines()
+        for item in DictReader(content):
             if item['id'].startswith('#'):  # Skip if commented
                 continue
             if item['id'] in self._parts:
-                logging.warning(f'Warning, part {id} duplicated, only the last definition kept.')
-            if item['type'].lower() == 'backbone':
-                self._parts[item['id']] = Part(id=item['id'], role='backbone',
-                                               type=item['type'].lower(), seq=item['sequence']
-                                               )
-            elif item['type'].lower() == 'constitutive promoter':
-                self._parts[item['id']] = Part(id=item['id'], role='promoter',
-                                               type=item['type'].lower(), seq=item['sequence']
-                                               )
-            elif item['type'].lower() in ['neutral linker', 'methylated linker']:
-                self._parts[item['id']] = Part(id=item['id'], role='misc',
-                                               type=item['type'].lower(), seq=item['sequence']
-                                               )
+                logging.warning(f'Warning, part {item["id"]} duplicated, only the last definition kept.')
+            elif item['type'].lower() in ['neutral linker', 'methylated linker', 'peptide fusion linker']:
+                self._parts[item['id']] = Part(id=item['id'], basic_role='linker', biological_role='misc',
+                                               linker_class=item['type'].lower(), seq=item['sequence'])
             elif item['type'].lower() == 'rbs linker':
-                self._parts[item['id']] = Part(id=item['id'], role='rbs',
-                                               type=item['type'].lower(), seq=item['sequence']
-                                               )
+                self._parts[item['id']] = Part(id=item['id'], basic_role='linker', biological_role='rbs',
+                                               linker_class=item['type'].lower(), seq=item['sequence'])
             else:
-                logging.warning(f'Part "{id}" not imported because it does not fall any supported part type.')
+                logging.warning(f'Part "{item["id"]}" not imported because it does not fall any supported part type.')
+
+        content = pkgutil.get_data(__name__, self._user_parts_file).decode().splitlines()
+        for item in DictReader(content):
+            if item['id'].startswith('#'):  # Skip if commented
+                continue
+            if item['type'].lower() == 'backbone':
+                self._parts[item['id']] = Part(id=item['id'], basic_role='backbone', biological_role='ori',
+                                               seq=item['sequence'])
+            elif item['type'].lower() == 'constitutive promoter':
+                self._parts[item['id']] = Part(id=item['id'], basic_role='part', biological_role='promoter',
+                                               seq=item['sequence'])
 
     def _read_MIRIAM_annotation(self, annot):
         """Return the MIRIAM annotations of species.
@@ -296,58 +355,62 @@ class BASICDesigner:
                 for uni_id in self._read_MIRIAM_annotation(annot)['uniprot']:
                     if uni_id in self._parts and self._verbose:
                         logging.warning(f'Warning, part {uni_id} duplicated, only the last definition kept.')
-                    self._parts[uni_id] = Part(id=uni_id, role='cds', type=f'enzyme {reaction.id}', seq='tata')
+                    self._parts[uni_id] = Part(id=uni_id, basic_role='part', biological_role='cds',
+                                               cds_step=reaction.id, seq='atgc')
 
-    def combine(self, sample_size, lms_id='LMS', lmp_id='LMP', backbone_id='BASIC_SEVA_37_CmR-p15A.1'):
+    def combine(self, sample_size):
         """Generate random constructs
 
-        NOTICE: special attention is made to prevent combination that would contain the same promoter, rbs and CDS.
+        NOTICE:
+        - special attention is made to prevent combination that would contain the same promoter, rbs and CDS.
+        - special attention is made to prevent reusing the same RBS suffix in a given construct, to this end RBS
+            linker IDs are expected to be in the form AAA-BBB with "AAA" being the linker suffix ID.
 
         :param sample_size: int, expected number of distinct constructs
-        :param lms_id: str, part ID that corresponds to the LMS methylated linker
-        :param lmp_id: str, part ID that corresponds to the LMP methylated linker
-        :param backbone_id: str, part ID that corresponds to the backbone
         :return: number of constructs generated
         """
         random.seed(self._SEED)
-        cds_levels = set([part.type for part in self._parts.values() if part.role == 'cds'])
-        if len(cds_levels) == 0:
-            logging.error(f'No CDS registered so far, method aborted')
+        cds_steps = set([part.cds_step for part in self._parts.values() if part.biological_role == 'cds'])
+        if len(cds_steps) == 0:
+            logging.error(f'No CDS registered so far, generation of combination aborted')
             return []
-        nb_promoter = len(cds_levels) if self._monocistronic_design else 1
+        nb_promoter = len(cds_steps) if self._monocistronic_design else 1
         nb_dupe_parts = 0
         nb_dupe_constructs = 0
         while len(self.constructs) < sample_size:
             # Get variants
             promoters = random.choices(
-                population=[part.id for part in self._parts.values() if part.role == 'promoter'],
+                population=[part.id for part in self._parts.values() if part.biological_role == 'promoter'],
                 k=nb_promoter
             )
             rbss = random.choices(
-                population=[part.id for part in self._parts.values() if part.role == 'rbs'],
-                k=len(cds_levels)
+                population=[part.id for part in self._parts.values() if part.biological_role == 'rbs'],
+                k=len(cds_steps)
             )
             cdss = []
-            for cds_lvl in cds_levels:
-                variants = [part.id for part in self._parts.values() if part.type == cds_lvl]
+            for cds_step in cds_steps:
+                variants = [part.id for part in self._parts.values() if part.cds_step == cds_step]
                 cdss.append(random.choice(variants))
             # Build blocks
             blocks = []
-            for idx in range(len(cds_levels)):
+            for idx in range(len(cds_steps)):
                 block = {'rbs': self._parts[rbss[idx]], 'cds': self._parts[cdss[idx]]}
                 if idx == 0 or self._monocistronic_design:
                     block['promoter'] = self._parts[promoters[idx]]
                 blocks.append(block)
             # Instantiate
             construct = BASICConstruct(
-                backbone=self._parts['BASIC_SEVA_37_CmR-p15A.1'],
-                LMS=self._parts['LMS'],
-                LMP=self._parts['LMP'],
+                backbone=self._parts[self._backbone_id],
+                lms=self._parts[self._lms_id],
+                lmp=self._parts[self._lmp_id],
                 blocks=blocks,
-                nlinkers=[part for part in self._parts.values() if part.type == 'neutral linker'],
+                nlinkers=[part for part in self._parts.values() if part.linker_class == 'neutral linker'],
                 monocistronic_design=self._monocistronic_design
             )
-            if construct.has_duplicates():
+            if construct.has_duplicate_part():
+                nb_dupe_parts += 1
+                continue
+            if construct.has_duplicate_suffix():
                 nb_dupe_parts += 1
                 continue
             elif construct in self.constructs:
@@ -369,8 +432,8 @@ class BASICDesigner:
         :return: int, number of constructs written to file
         """
         __CONSTRUCT_FILE = 'constructs.csv'
-        __COORD_REF_FILE = 'ref_parts_coord.csv'
-        __COORD_CUSTOM_FILE = 'parts_coord.csv'
+        __COORD_LINKER_FILE = 'linker_parts_coord.csv'
+        __COORD_USER_FILE = 'user_parts_coord.csv'
         if not os.path.exists(out_dir):
             os.makedirs(out_dir)
         with open(os.path.join(out_dir, __CONSTRUCT_FILE), 'w') as ofh:
@@ -381,17 +444,17 @@ class BASICDesigner:
             for construct in self.constructs:
                 nb_constructs += 1
                 writer.writerow(construct.get_dnabot_row(coord=next(plate_coords)))
-        with open(os.path.join(out_dir, __COORD_CUSTOM_FILE), 'w') as ofh:
+        with open(os.path.join(out_dir, __COORD_USER_FILE), 'w') as ofh:
             plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
             writer = DictWriter(f=ofh, fieldnames=_DNABOT_PART_HEADER, delimiter=',', restval='')
             writer.writeheader()
             part_ids = set()
             for construct in self.constructs:  # Collect parts that are used
-                part_ids |= set(construct.get_part_ids(role=['cds']))
+                part_ids |= set(construct.get_part_ids(basic_roles=['part', 'backbone']))
             for _ in sorted(part_ids):
                 writer.writerow({'Part/linker': _, 'Well': next(plate_coords), 'Part concentration (ng/uL)': ''})
-        with open(os.path.join(out_dir, __COORD_REF_FILE), 'wb') as ofh:
-            ofh.write(pkgutil.get_data(__name__, self._ref_coord_part_file))
+        with open(os.path.join(out_dir, __COORD_LINKER_FILE), 'wb') as ofh:
+            ofh.write(pkgutil.get_data(__name__, self._linker_plate_file))
         return nb_constructs
 
     def write_sbol(self, out_dir):
