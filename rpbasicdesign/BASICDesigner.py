@@ -12,7 +12,6 @@ import logging
 import pkgutil
 import random
 from csv import DictReader, DictWriter
-# from itertools import product
 
 from libsbml import SBMLReader
 from sbol import setHomespace, Document, ComponentDefinition, Sequence
@@ -51,19 +50,6 @@ def _gen_plate_coords(nb_row=8, nb_col=12, by_row=True):
     for i in range(i_nb):
         for j in range(j_nb):
             yield ''.join([i_dim[i], j_dim[j]])
-
-
-# def part_duplicated(parts, types=['rbs']):
-#     """Check if some parts are used several times
-#
-#     :param parts: list, parts
-#     :param types: list of str, types of part to be checked
-#     :return: bool, True if any parts is duplicated
-#     """
-#     for t in types:
-#         if len(set([part[t] for part in parts])) != len(parts):
-#             return True
-#     return False
 
 
 class Part:
