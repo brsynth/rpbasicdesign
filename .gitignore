@@ -2,7 +2,9 @@
 package.json
 package-lock.json
 node_modules
+
 *.egg-info/
 lala*/
+out/
 .ipynb_checkpoints/
 __pycache__

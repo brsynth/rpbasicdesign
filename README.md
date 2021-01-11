@@ -22,7 +22,7 @@ If the no environment name is specified using the `-n` argument, the created env
 
 ```bash
 conda activate <myenv>
-python -m rpbasicdesign.cli --rpsbml_file tests/input/rp_1_12.sbml.xml --sample_size 12 --o_dnabot_file lala.csv --o_sbol_dir lala_sbol
+python -m rpbasicdesign.cli --rpsbml_file tests/input/rp_1_12.sbml.xml --sample_size 12 --o_dnabot_dir lala.csv --o_sbol_dir lala_sbol
 ```
 
 Argument usage are described within the tool

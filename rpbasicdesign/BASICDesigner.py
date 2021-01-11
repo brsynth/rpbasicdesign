@@ -288,15 +288,15 @@ class BASICDesigner:
 
     WARNING: promoters and RBSs are randomly chosen from amongst all available
 
-    :param monocistronic_design: True if monocistronic design should be prepared
-    :type monocistronic_design: bool
+    :param monocistronic: True if monocistronic design should be prepared
+    :type monocistronic: bool
     :param verbose: True to increase log verbosity
     :type verbose: bool
-    :param linker_parts_file: path providing linkers available for constructs
+    :param linker_parts_file: file listing available linkers for constructs
     :type linker_parts_file: str
-    :param linker_plate_file: path providing half linkers coordinates
+    :param linker_plate_file: file providing half linkers coordinates
     :type linker_plate_file: str
-    :param user_parts_file: path providing user parts (eg backbone, promoters) available for constructs
+    :param user_parts_file: file listing user parts (eg backbone, promoters) available for constructs
     :type user_parts_file: str
     :param lms_id: part ID that corresponds to the LMS methylated linker
     :type lms_id: str
@@ -308,13 +308,14 @@ class BASICDesigner:
     :return: BASICDesigner object
     :rtype: <BASICDesigner>
     """
-    def __init__(self, monocistronic_design=True, verbose=False,
+    def __init__(self, monocistronic=True, verbose=False,
                  linker_parts_file='data/biolegio_parts.csv',
                  linker_plate_file='data/biolegio_plate.csv',
                  user_parts_file='data/user_parts.csv',
-                 lms_id='LMS', lmp_id='LMP', backbone_id='BASIC_SEVA_37_CmR-p15A.1'):
+                 lms_id='LMS', lmp_id='LMP',
+                 backbone_id='BASIC_SEVA_37_CmR-p15A.1'):
         self._verbose = verbose
-        self._monocistronic_design = monocistronic_design
+        self._monocistronic_design = monocistronic
         self._linker_parts_file = linker_parts_file
         self._linker_plate_file = linker_plate_file
         self._user_parts_file = user_parts_file
@@ -329,31 +330,33 @@ class BASICDesigner:
         self.constructs = []
 
         # Load default data
-        content = pkgutil.get_data(__name__, self._linker_parts_file).decode().splitlines()
-        for item in DictReader(content):
-            if item['id'].startswith('#'):  # Skip if commented
-                continue
-            if item['id'] in self._parts:
-                logging.warning(f'Warning, part {item["id"]} duplicated, only the last definition kept.')
-            elif item['type'].lower() in ['neutral linker', 'methylated linker', 'peptide fusion linker']:
-                self._parts[item['id']] = Part(id=item['id'], basic_role='linker', biological_role='misc',
-                                               linker_class=item['type'].lower(), seq=item['sequence'])
-            elif item['type'].lower() == 'rbs linker':
-                self._parts[item['id']] = Part(id=item['id'], basic_role='linker', biological_role='rbs',
-                                               linker_class=item['type'].lower(), seq=item['sequence'])
-            else:
-                logging.warning(f'Part "{item["id"]}" not imported because it does not fall any supported part type.')
+        # content = pkgutil.get_data(__name__, self._linker_parts_file).decode().splitlines()
+        with open(self._linker_parts_file) as ifh:
+            for item in DictReader(ifh):
+                if item['id'].startswith('#'):  # Skip if commented
+                    continue
+                if item['id'] in self._parts:
+                    logging.warning(f'Warning, part {item["id"]} duplicated, only the last definition kept.')
+                elif item['type'].lower() in ['neutral linker', 'methylated linker', 'peptide fusion linker']:
+                    self._parts[item['id']] = Part(id=item['id'], basic_role='linker', biological_role='misc',
+                                                   linker_class=item['type'].lower(), seq=item['sequence'])
+                elif item['type'].lower() == 'rbs linker':
+                    self._parts[item['id']] = Part(id=item['id'], basic_role='linker', biological_role='rbs',
+                                                   linker_class=item['type'].lower(), seq=item['sequence'])
+                else:
+                    logging.warning(f'Part "{item["id"]}" not imported because it does not fall any supported part type.')
 
-        content = pkgutil.get_data(__name__, self._user_parts_file).decode().splitlines()
-        for item in DictReader(content):
-            if item['id'].startswith('#'):  # Skip if commented
-                continue
-            if item['type'].lower() == 'backbone':
-                self._parts[item['id']] = Part(id=item['id'], basic_role='backbone', biological_role='ori',
-                                               seq=item['sequence'])
-            elif item['type'].lower() == 'constitutive promoter':
-                self._parts[item['id']] = Part(id=item['id'], basic_role='part', biological_role='promoter',
-                                               seq=item['sequence'])
+        # content = pkgutil.get_data(__name__, self._user_parts_file).decode().splitlines()
+        with open(self._user_parts_file) as ifh:
+            for item in DictReader(ifh):
+                if item['id'].startswith('#'):  # Skip if commented
+                    continue
+                if item['type'].lower() == 'backbone':
+                    self._parts[item['id']] = Part(id=item['id'], basic_role='backbone', biological_role='ori',
+                                                   seq=item['sequence'])
+                elif item['type'].lower() == 'constitutive promoter':
+                    self._parts[item['id']] = Part(id=item['id'], basic_role='part', biological_role='promoter',
+                                                   seq=item['sequence'])
 
     def _read_MIRIAM_annotation(self, annot):
         """Return the MIRIAM annotations of species.
@@ -506,8 +509,9 @@ class BASICDesigner:
                 part_ids |= set(construct.get_part_ids(basic_roles=['part', 'backbone']))
             for _ in sorted(part_ids):
                 writer.writerow({'Part/linker': _, 'Well': next(plate_coords), 'Part concentration (ng/uL)': ''})
-        with open(os.path.join(out_dir, __COORD_LINKER_FILE), 'wb') as ofh:
-            ofh.write(pkgutil.get_data(__name__, self._linker_plate_file))
+        with open(self._linker_plate_file, 'rb') as ifh:
+            with open(os.path.join(out_dir, __COORD_LINKER_FILE), 'wb') as ofh:
+                ofh.writelines(ifh.readlines())
         return nb_constructs
 
     def write_sbol(self, out_dir):

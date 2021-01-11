@@ -22,16 +22,34 @@ def __cli():
            " words gene variants, of enzymes are randomly chosen from amongst the UniProt IDs extracted. Constructs" \
            " generated can be stored as (i) a CSV file ready to be used by DNA-Bot, (ii) as SBOL files. "
     parser = argparse.ArgumentParser(description=help, prog='python -m dnaprep.cli')
-    parser.add_argument('--monocistronic', help='Build monocistronic constructs. Default to false, ie polycistronic '
-                                                'constructs will be generated.',
+    parser.add_argument('--monocistronic',
+                        help='Build monocistronic constructs. Default to false, ie polycistronic constructs will be '
+                             'generated.',
                         default=True, type=lambda x: (str(x).lower() == 'false'))
-    parser.add_argument('--rpsbml_file', help='rpSBML file from which enzymes UniProt IDs will be collected',
+    parser.add_argument('--rpsbml_file',
+                        help='rpSBML file from which enzymes UniProt IDs will be collected',
                         required=True)
-    parser.add_argument('--sample_size', help='Number of construct to generate.', default=6, type=int)
-    parser.add_argument('--o_dnabot_dir', help='Output folder to write construct and coord part files. It will be '
-                                               'created if it does not exist yet. Existing files will be overwritten.')
-    parser.add_argument('--o_sbol_dir', help='Output folder to write SBOL depictions of constructs. It will be '
-                                             'created if it does not exist yet. Existing files will be overwritten.')
+    parser.add_argument('--linker_parts_file',
+                        help='File listing available linkers for constructs.',
+                        default='data/biolegio_parts.csv', type=str)
+    parser.add_argument('--linker_plate_file',
+                        help='File providing half linkers coordinates.',
+                        default='data/biolegio_plate.csv')
+    parser.add_argument('--user_parts_file',
+                        help='File listing user parts (eg backbone, promoters) available for constructs.',
+                        default='data/user_parts.csv')
+    parser.add_argument('--lms_id', help='part ID to be used as the LMS methylated linker', default='LMS')
+    parser.add_argument('--lmp_id', help='part ID to be used as the LMP methylated linker', default='LMP')
+    parser.add_argument('--backbone_id', help='part ID to be used as the backbone', default='BASIC_SEVA_37_CmR-p15A.1')
+    parser.add_argument('--sample_size', help='Number of construct to generate.', default=3, type=int)
+    parser.add_argument('--o_dnabot_dir',
+                        help='Output folder to write construct and coord part files. It will be created if it does '
+                             'not exist yet. Existing files will be overwritten.',
+                        default='out/dnabot_in')
+    parser.add_argument('--o_sbol_dir',
+                        help='Output folder to write SBOL depictions of constructs. It will be created if it does not '
+                             'exist yet. Existing files will be overwritten.',
+                        default='out/sbol_export')
 
     # Logging
     logging.basicConfig(
@@ -42,7 +60,12 @@ def __cli():
 
     # Compute
     args = parser.parse_args()
-    o = BASICDesigner.BASICDesigner(monocistronic_design=args.monocistronic_design)
+    o = BASICDesigner.BASICDesigner(monocistronic=args.monocistronic,
+                                    linker_parts_file=args.linker_parts_file,
+                                    linker_plate_file=args.linker_plate_file,
+                                    user_parts_file=args.user_parts_file,
+                                    lms_id=args.lms_id, lmp_id=args.lmp_id,
+                                    backbone_id=args.backbone_id)
     o.enzyme_from_rpsbml(rpsbml_file=args.rpsbml_file)
     nb_constructs = o.combine(sample_size=args.sample_size)
     logging.info(f'{nb_constructs} generated.')
