@@ -17,11 +17,11 @@ from rpbasicdesign import BASICDesigner
 def __cli():
     """CLI for dnaprep."""
 
-    help = "Convert rpSBML enzyme info in to BASIC construct. UniProt IDs corresponding enzyme variants are extracted" \
-           " from rpSBMl files. Promoters and RBSs are randomly chosen from a default list (see TODO). CDSs, in other" \
+    desc = "Convert rpSBML enzyme info in to BASIC construct. UniProt IDs corresponding enzyme variants are extracted" \
+           " from rpSBMl files. Promoters and RBSs are randomly chosen from a default list. CDSs, in other" \
            " words gene variants, of enzymes are randomly chosen from amongst the UniProt IDs extracted. Constructs" \
            " generated can be stored as (i) a CSV file ready to be used by DNA-Bot, (ii) as SBOL files. "
-    parser = argparse.ArgumentParser(description=help, prog='python -m dnaprep.cli')
+    parser = argparse.ArgumentParser(description=desc, prog='python -m dnaprep.cli')
     parser.add_argument('--rpsbml_file',
                         help='rpSBML file from which enzymes UniProt IDs will be collected',
                         required=True)
