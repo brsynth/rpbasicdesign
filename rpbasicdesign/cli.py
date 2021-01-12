@@ -22,10 +22,6 @@ def __cli():
            " words gene variants, of enzymes are randomly chosen from amongst the UniProt IDs extracted. Constructs" \
            " generated can be stored as (i) a CSV file ready to be used by DNA-Bot, (ii) as SBOL files. "
     parser = argparse.ArgumentParser(description=help, prog='python -m dnaprep.cli')
-    parser.add_argument('--monocistronic',
-                        help='Build monocistronic constructs. Default to false, ie polycistronic constructs will be '
-                             'generated.',
-                        default=True, type=lambda x: (str(x).lower() == 'false'))
     parser.add_argument('--rpsbml_file',
                         help='rpSBML file from which enzymes UniProt IDs will be collected',
                         required=True)
@@ -38,6 +34,10 @@ def __cli():
     parser.add_argument('--user_parts_file',
                         help='File listing user parts (eg backbone, promoters) available for constructs.',
                         default='data/user_parts.csv')
+    parser.add_argument('--monocistronic',
+                        help='Build monocistronic constructs. Default to false, ie polycistronic constructs will be '
+                             'generated.',
+                        default=False, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--lms_id', help='part ID to be used as the LMS methylated linker', default='LMS')
     parser.add_argument('--lmp_id', help='part ID to be used as the LMP methylated linker', default='LMP')
     parser.add_argument('--backbone_id', help='part ID to be used as the backbone', default='BASIC_SEVA_37_CmR-p15A.1')
