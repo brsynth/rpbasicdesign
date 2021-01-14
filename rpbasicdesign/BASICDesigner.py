@@ -13,8 +13,6 @@ import random
 from csv import DictReader, DictWriter
 
 from libsbml import SBMLReader
-
-logging.basicConfig(level=logging.DEBUG)
 from sbol2 import setHomespace, Document, ComponentDefinition, Sequence
 from sbol2 import SO_PROMOTER, SO_CDS, SO_RBS, SO_MISC, SO_PLASMID, SO_CIRCULAR
 
