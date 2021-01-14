@@ -8,4 +8,4 @@ dependencies:
   - python-libsbml
   - pip
   - pip:
-      - pysbol
+      - sbol2

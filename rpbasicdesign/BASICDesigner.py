@@ -14,10 +14,10 @@ import random
 from csv import DictReader, DictWriter
 
 from libsbml import SBMLReader
-from sbol import setHomespace, Document, ComponentDefinition, Sequence
-from sbol import SO_PROMOTER, SO_CDS, SO_RBS, SO_MISC, SO_PLASMID, SO_CIRCULAR
 
 logging.basicConfig(level=logging.DEBUG)
+from sbol2 import setHomespace, Document, ComponentDefinition, Sequence
+from sbol2 import SO_PROMOTER, SO_CDS, SO_RBS, SO_MISC, SO_PLASMID, SO_CIRCULAR
 
 _DNABOT_CONSTRUCT_HEADER = ['Well',
                             'Linker 1', 'Part 1', 'Linker 2', 'Part 2', 'Linker 3', 'Part 3', 'Linker 4', 'Part 4',
