@@ -9,7 +9,6 @@ __date__ = '2020.10.21'
 
 import os
 import logging
-import pkgutil
 import random
 from csv import DictReader, DictWriter
 
@@ -330,7 +329,6 @@ class BASICDesigner:
         self.constructs = []
 
         # Load default data
-        # content = pkgutil.get_data(__name__, self._linker_parts_file).decode().splitlines()
         with open(self._linker_parts_file) as ifh:
             for item in DictReader(ifh):
                 if item['id'].startswith('#'):  # Skip if commented
@@ -346,7 +344,6 @@ class BASICDesigner:
                 else:
                     logging.warning(f'Part "{item["id"]}" not imported because it does not fall any supported part type.')
 
-        # content = pkgutil.get_data(__name__, self._user_parts_file).decode().splitlines()
         with open(self._user_parts_file) as ifh:
             for item in DictReader(ifh):
                 if item['id'].startswith('#'):  # Skip if commented
