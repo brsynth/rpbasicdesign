@@ -4,8 +4,5 @@ channels:
   - defaults
 dependencies:
   - python < 3.9
-  - jupyterlab
   - python-libsbml
-  - pip
-  - pip:
-      - sbol2
+  - sbol2
