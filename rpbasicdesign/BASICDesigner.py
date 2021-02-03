@@ -14,7 +14,7 @@ from csv import DictReader, DictWriter
 
 from libsbml import SBMLReader
 from sbol2 import setHomespace, Document, ComponentDefinition, Sequence
-from sbol2 import SO_PROMOTER, SO_CDS, SO_RBS, SO_MISC, SO_PLASMID, SO_CIRCULAR
+from sbol2 import SO_PROMOTER, SO_CDS, SO_RBS, SO_MISC, SO_CIRCULAR
 
 _DNABOT_CONSTRUCT_HEADER = ['Well',
                             'Linker 1', 'Part 1', 'Linker 2', 'Part 2', 'Linker 3', 'Part 3', 'Linker 4', 'Part 4',
@@ -93,7 +93,8 @@ class Part:
         })
 
     def get_prefix_suffix(self):
-        """Return the expected prefix suffix according to naming convention. Caution this should be used only for linkers.
+        """Return the expected prefix suffix according to naming convention. Caution this should be used only
+        for linkers.
 
         Notice:
         Prefix and suffix are named so-called when regarding the surrounded part, ie
@@ -340,7 +341,8 @@ class BASICDesigner:
                     self._parts[item['id']] = Part(id=item['id'], basic_role='linker', biological_role='rbs',
                                                    linker_class=item['type'].lower(), seq=item['sequence'])
                 else:
-                    logging.warning(f'Part "{item["id"]}" not imported because it does not fall any supported part type.')
+                    logging.warning(f'Part "{item["id"]}" not imported because it does not fall any supported part '
+                                    f'type.')
 
         with open(self._user_parts_file) as ifh:
             for item in DictReader(ifh):
