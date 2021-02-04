@@ -1,10 +1,21 @@
+# MacOS stuff
 .DS_Store
+
+# node
 package.json
 package-lock.json
 node_modules
 
-*.egg-info/
+# pytest-cov
+.coverage
+htmlcov
+
+# jupyter
+.ipynb_checkpoints/
+
+# python
+__pycache__
+
+# IOs
 lala*/
 out/
-.ipynb_checkpoints/
-__pycache__
