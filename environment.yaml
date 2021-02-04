@@ -1,8 +1,11 @@
 name: rpbasicdesign
 channels:
   - conda-forge
+  - brsynth
   - defaults
 dependencies:
   - python < 3.9
   - python-libsbml
   - sbol2
+  - pytest
+  - pytest-cov
