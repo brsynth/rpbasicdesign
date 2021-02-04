@@ -2,18 +2,18 @@
 Test BASIC Part
 """
 import pytest
-from rpbasicdesign.BASICDesigner import Part
+from rpbasicdesign.Part import Part
 
 
 def test_init_1():
     # Empty is not OK
     with pytest.raises(TypeError):
-        o = Part()
+        Part()
 
 
 def test_init_2():
     # Args are just strings, keywords are not controlled
-    o = Part(id='ID', basic_role='misc', biological_role='unknown')
+    Part(id='ID', basic_role='misc', biological_role='unknown')
 
 
 def test_repr():
