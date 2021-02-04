@@ -15,7 +15,7 @@ from pathlib import Path
 
 from libsbml import SBMLReader
 
-from rpbasicdesign import DNABOT_PART_HEADER, DNABOT_CONSTRUCT_HEADER
+from rpbasicdesign import DNABOT_PART_HEADER
 from rpbasicdesign.Part import Part
 from rpbasicdesign.Construct import Construct
 
@@ -279,15 +279,25 @@ class Designer:
             os.makedirs(out_dir)
         with open(os.path.join(out_dir, __CONSTRUCT_FILE), 'w') as ofh:
             plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
-            writer = DictWriter(f=ofh, fieldnames=DNABOT_CONSTRUCT_HEADER, delimiter=',', restval='')
+            writer = DictWriter(
+                f=ofh,
+                fieldnames=Construct.get_construct_file_header(),
+                delimiter=',',
+                restval=''
+            )
             writer.writeheader()
             nb_constructs = 0
             for construct in self.constructs:
                 nb_constructs += 1
-                writer.writerow(construct.get_dnabot_row(coord=next(plate_coords)))
+                writer.writerow(construct.get_construct_file_row(coord=next(plate_coords)))
         with open(os.path.join(out_dir, __COORD_USER_FILE), 'w') as ofh:
             plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
-            writer = DictWriter(f=ofh, fieldnames=DNABOT_PART_HEADER, delimiter=',', restval='')
+            writer = DictWriter(
+                f=ofh,
+                fieldnames=DNABOT_PART_HEADER,
+                delimiter=',',
+                restval=''
+            )
             writer.writeheader()
             part_ids = set()
             for construct in self.constructs:  # Collect parts that are used

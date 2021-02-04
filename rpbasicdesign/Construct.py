@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import logging
+
 
 from sbol2 import setHomespace, Document, ComponentDefinition, Sequence
 from sbol2 import SO_PROMOTER, SO_CDS, SO_RBS, SO_MISC, SO_CIRCULAR
-from rpbasicdesign import DNABOT_PART_HEADER, DNABOT_CONSTRUCT_HEADER
+from rpbasicdesign import DNABOT_CONSTRUCT_HEADER
 
 
 class Construct:
@@ -42,7 +44,7 @@ class Construct:
                 self._parts.append(self._nlinkers.pop(0))
 
     def __repr__(self):
-        return str(self.get_dnabot_row())
+        return str(self.get_construct_file_row())
 
     def __eq__(self, other):
         if not isinstance(other, Construct):
@@ -54,7 +56,16 @@ class Construct:
                 return False
         return True
 
-    def get_dnabot_row(self, coord=None):
+    @staticmethod
+    def get_construct_file_header():
+        """Return the header for DNABOT construct file
+
+        :return: construct file header
+        :rtype: list of str
+        """
+        return DNABOT_CONSTRUCT_HEADER
+
+    def get_construct_file_row(self, coord=None):
         """Get the row format expected by DNA-Bot.
 
         :param coord: plate coordinate (opt)
@@ -62,7 +73,7 @@ class Construct:
         :return: formatted row to ready to be written
         :rtype: list of str
         """
-        header_iter = iter(DNABOT_CONSTRUCT_HEADER)
+        header_iter = iter(self.get_construct_file_header())
         row = {next(header_iter): coord}
         for part in self._parts:
             row[next(header_iter)] = part.id
