@@ -21,10 +21,13 @@ with open(os.path.join(_extras, '.env'), 'r', encoding='utf-8') as f:
         if line.startswith('CORR_AUTHOR='):
             _corr_author = line.splitlines()[0].split('=')[1].lower()
 
-with open(os.path.join(_package, '_version.py'), 'r') as f:
-    m = re.search('"(.+)"', f.readline().split('=')[1])
-    if m:
-        _version = m.group(1)
+with open(os.path.join(_package, '__init__.py'), 'r') as ifh:
+    for line in ifh:
+        m = re.search('__version__.*=.*"(.+)"', line)
+        if m:
+            _version = m.group(1)
+            break
+
 
 setup(
     name=_package,
