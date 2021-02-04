@@ -15,7 +15,7 @@ From source code
 git clone https://github.com/brsynth/rpbasicdesign.git
 cd rpbasicdesign
 conda env create -f environment.yaml -n <myenv>
-pip install -e .
+conda develop -n <myenv> .
 ```
 
 `<myenv>` has to be replaced by whatever meaningful name that will pleased the user.
@@ -106,7 +106,26 @@ python -m rpbasicdesign.cli -h
   `rpbasicdesign/data/biolegio_plate.csv` CSV file is used. An alternative file corresponding to an older version
   of the BioLegio plate is available in `rpbasicdesign/data/legacy_plate.csv`.
 - `user_parts_file` [OPTIONAL]: CSV file listing user parts (eg backbone, promoters) available for constructs. The 
-  content by default is ``  
+  content by default is ``
+  
+## For developers
+
+### Installation
+
+```bash
+git clone https://github.com/brsynth/rpbasicdesign.git
+cd rpbasicdesign
+conda env create -f environment.yaml -n <myenv>
+conda develop -n <myenv> .
+```
+
+### Tests
+
+```bash
+python -m pytest -v --cov=rpbasicdesign --cov-report html 
+```
+
+
 
 ## Constraints and limitations
 
