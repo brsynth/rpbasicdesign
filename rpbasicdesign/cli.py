@@ -11,7 +11,7 @@ import sys
 import logging
 import argparse
 
-from rpbasicdesign import BASICDesigner
+from rpbasicdesign.Designer import Designer
 
 
 def __cli():
@@ -57,12 +57,12 @@ def __cli():
 
     # Compute
     args = parser.parse_args()
-    o = BASICDesigner.BASICDesigner(monocistronic=args.monocistronic,
-                                    linker_parts_file=args.linker_parts_file,
-                                    linker_plate_file=args.linker_plate_file,
-                                    user_parts_file=args.user_parts_file,
-                                    lms_id=args.lms_id, lmp_id=args.lmp_id,
-                                    backbone_id=args.backbone_id)
+    o = Designer(monocistronic=args.monocistronic,
+                 lms_id=args.lms_id, lmp_id=args.lmp_id, backbone_id=args.backbone_id,
+                 linker_parts_file=args.linker_parts_file,
+                 linker_plate_file=args.linker_plate_file,
+                 user_parts_file=args.user_parts_file,
+                 )
     o.enzyme_from_rpsbml(rpsbml_file=args.rpsbml_file)
     nb_constructs = o.combine(sample_size=args.sample_size)
     logging.info(f'{nb_constructs} generated.')
