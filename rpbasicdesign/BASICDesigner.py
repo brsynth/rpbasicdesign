@@ -11,6 +11,7 @@ import os
 import logging
 import random
 from csv import DictReader, DictWriter
+from pathlib import Path
 
 from libsbml import SBMLReader
 from sbol2 import setHomespace, Document, ComponentDefinition, Sequence
@@ -290,44 +291,62 @@ class BASICDesigner:
     :type monocistronic: bool
     :param verbose: True to increase log verbosity
     :type verbose: bool
-    :param linker_parts_file: file listing available linkers for constructs
-    :type linker_parts_file: str
-    :param linker_plate_file: file providing half linkers coordinates
-    :type linker_plate_file: str
-    :param user_parts_file: file listing user parts (eg backbone, promoters) available for constructs
-    :type user_parts_file: str
     :param lms_id: part ID that corresponds to the LMS methylated linker
     :type lms_id: str
     :param lmp_id: part ID that corresponds to the LMP methylated linker
     :type lmp_id: str
     :param backbone_id: part ID that corresponds to the backbone
     :type backbone_id: str
+    :param linker_parts_file: file listing available linkers for constructs
+    :type linker_parts_file: str
+    :param linker_plate_file: file providing half linkers coordinates
+    :type linker_plate_file: str
+    :param user_parts_file: file listing user parts (eg backbone, promoters) available for constructs
+    :type user_parts_file: str
 
     :return: BASICDesigner object
     :rtype: <BASICDesigner>
     """
     def __init__(self, monocistronic=True, verbose=False,
-                 linker_parts_file='data/biolegio_parts.csv',
-                 linker_plate_file='data/biolegio_plate.csv',
-                 user_parts_file='data/user_parts.csv',
                  lms_id='LMS', lmp_id='LMP',
-                 backbone_id='BASIC_SEVA_37_CmR-p15A.1'):
+                 backbone_id='BASIC_SEVA_37_CmR-p15A.1',
+                 linker_parts_file=None, linker_plate_file=None, user_parts_file=None,
+                 ):
+        # Default settings
+        self._MAX_ENZ = 3
+        self._SEED = 42
+        self._DATA_PATH = Path(__file__).resolve().parent / 'data'
+        self._DEFAULT_DATA = {
+            'linker_parts_file': self._DATA_PATH / 'biolegio_parts.csv',
+            'linker_plate_file': self._DATA_PATH / 'biolegio_plate.csv',
+            'user_parts_file': self._DATA_PATH / 'user_parts.csv'
+        }
+
         self._verbose = verbose
         self._monocistronic_design = monocistronic
-        self._linker_parts_file = linker_parts_file
-        self._linker_plate_file = linker_plate_file
-        self._user_parts_file = user_parts_file
         self._lms_id = lms_id
         self._lmp_id = lmp_id
         self._backbone_id = backbone_id
 
-        self._MAX_ENZ = 3
-        self._SEED = 42
+        # Data files
+        if linker_plate_file is None:
+            self._linker_parts_file = self._DEFAULT_DATA['linker_parts_file']
+        else:
+            self._linker_parts_file = linker_parts_file
+        if linker_plate_file is None:
+            self._linker_plate_file = self._DEFAULT_DATA['linker_plate_file']
+        else:
+            self._linker_plate_file = linker_plate_file
+        if user_parts_file is None:
+            self._user_parts_file = self._DEFAULT_DATA['user_parts_file']
+        else:
+            self._user_parts_file = user_parts_file
 
+        # Storage
         self._parts = {}
         self.constructs = []
 
-        # Load default data
+        # Get resources
         with open(self._linker_parts_file) as ifh:
             for item in DictReader(ifh):
                 if item['id'].startswith('#'):  # Skip if commented

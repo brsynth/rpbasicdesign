@@ -26,14 +26,11 @@ def __cli():
                         help='rpSBML file from which enzymes UniProt IDs will be collected',
                         required=True)
     parser.add_argument('--linker_parts_file',
-                        help='File listing available linkers for constructs.',
-                        default='data/biolegio_parts.csv', type=str)
+                        help='File listing available linkers for constructs.', type=str)
     parser.add_argument('--linker_plate_file',
-                        help='File providing half linkers coordinates.',
-                        default='data/biolegio_plate.csv')
+                        help='File providing half linkers coordinates.', type=str)
     parser.add_argument('--user_parts_file',
-                        help='File listing user parts (eg backbone, promoters) available for constructs.',
-                        default='data/user_parts.csv')
+                        help='File listing user parts (eg backbone, promoters) available for constructs.', type=str)
     parser.add_argument('--monocistronic',
                         help='Build monocistronic constructs. Default to false, ie polycistronic constructs will be '
                              'generated.',
