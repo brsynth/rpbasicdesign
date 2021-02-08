@@ -82,7 +82,6 @@ class Designer:
                  ):
         # Default settings
         self._MAX_ENZ = 3
-        self._SEED = 42
         self._DATA_PATH = Path(__file__).resolve().parent / 'data'
         self._DEFAULT_DATA = {
             'linker_parts_file': self._DATA_PATH / 'biolegio_parts.csv',
@@ -195,20 +194,23 @@ class Designer:
                                                biological_role='cds',
                                                cds_step=reaction.id, seq='atgc')
 
-    def combine(self, sample_size):
+    def combine(self, sample_size, random_seed=42):
         """Generate random constructs
 
         NOTICE:
         - special attention is made to prevent combination that would contain the same promoter, rbs and CDS.
         - special attention is made to prevent reusing the same RBS suffix in a given construct, to this end RBS
             linker IDs are expected to be in the form AAA-BBB with "AAA" being the linker suffix ID.
+        - randomness is reset at the begining of each execution by `random.seed(random_seed)`
 
         :param sample_size: expected number of distinct constructs
         :type sample_size: int
+        :param random_seed: seed to be used for random-related operations
+        :type random_seed: int
         :return: number of constructs generated
         :rtype: int
         """
-        random.seed(self._SEED)
+        random.seed(random_seed)
         cds_steps = sorted(list(set([part.cds_step for part in self._parts.values() if part.biological_role == 'cds'])))
         if len(cds_steps) == 0:
             logging.error(f'No CDS registered so far, generation of combination aborted')
