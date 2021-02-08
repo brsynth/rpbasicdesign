@@ -141,4 +141,7 @@ def test_get_sbol():
             ],
         nlinkers=[_LN1, _LN2]
     )
-    o.get_sbol(construct_id='TEST')
+    doc = o.get_sbol(construct_id='TEST')
+    # Item order are random in SBOL file
+    query = '\n'.join(sorted(doc.writeString().split('\n')))
+    assert sha1(query.encode()).hexdigest() == '59ea3b9f26e29546b62475799a401f09cfa0e6f8'
