@@ -190,7 +190,7 @@ class Designer:
                 annot = reaction.getAnnotation()
                 for uni_id in self._read_MIRIAM_annotation(annot)['uniprot']:
                     if uni_id in self._parts and self._verbose:
-                        logging.warning(f'Warning, part {uni_id} duplicated, only the last definition kept.')
+                        logging.warning(f'Warning, part {uni_id} already defined, only the last definition kept.')
                     self._parts[uni_id] = Part(id=uni_id, basic_role='part',
                                                biological_role='cds',
                                                cds_step=reaction.id, seq='atgc')
@@ -209,7 +209,7 @@ class Designer:
         :rtype: int
         """
         random.seed(self._SEED)
-        cds_steps = set([part.cds_step for part in self._parts.values() if part.biological_role == 'cds'])
+        cds_steps = sorted(list(set([part.cds_step for part in self._parts.values() if part.biological_role == 'cds'])))
         if len(cds_steps) == 0:
             logging.error(f'No CDS registered so far, generation of combination aborted')
             return []
@@ -219,16 +219,16 @@ class Designer:
         while len(self.constructs) < sample_size:
             # Get variants
             promoters = random.choices(
-                population=[part.id for part in self._parts.values() if part.biological_role == 'promoter'],
+                population=sorted([part.id for part in self._parts.values() if part.biological_role == 'promoter']),
                 k=nb_promoter
             )
             rbss = random.choices(
-                population=[part.id for part in self._parts.values() if part.biological_role == 'rbs'],
+                population=sorted([part.id for part in self._parts.values() if part.biological_role == 'rbs']),
                 k=len(cds_steps)
             )
             cdss = []
             for cds_step in cds_steps:
-                variants = [part.id for part in self._parts.values() if part.cds_step == cds_step]
+                variants = sorted([part.id for part in self._parts.values() if part.cds_step == cds_step])
                 cdss.append(random.choice(variants))
             # Build blocks
             blocks = []
