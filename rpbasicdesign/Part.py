@@ -11,7 +11,7 @@ class Part:
     :type basic_role: str
     :param biological_role: biological role of the part, (eg promoter, rbs, cds)
     :type biological_role: str
-    :param linker_class: linker class (only for linkers) or None
+    :param linker_class: linker class (only for linkers, eg neutral linker, rbs linker, ...) or None
     :type linker_class: str or None
     :param cds_step: "step" of the CDS (eg first, second, third enzyme of a pathway...)
     :type cds_step: int or None
