@@ -10,22 +10,18 @@ genetic constructs using [OpenTrons](https://opentrons.com/) liquid handling rob
 
 ## Installation
 
-From source code
 ```bash
-git clone https://github.com/brsynth/rpbasicdesign.git
-cd rpbasicdesign
-conda env create -f environment.yaml -n <myenv>
-conda develop -n <myenv> .
-```
 
-`<myenv>` has to be replaced by whatever meaningful name that will pleased the user.
-If no environment name is specified (using the `-n` argument) the created environment will be `rpbasicdesign`. 
+conda install -c brsynth -c conda-forge rpbasicdesign
+``` 
+
 
 ## Usage
 
 Simple call:
 ```bash
 conda activate <myenv>
+cd rpbasicdesign
 python -m rpbasicdesign.cli --rpsbml_file tests/input/rp_1_12.sbml.xml
 ```
 
@@ -110,7 +106,7 @@ python -m rpbasicdesign.cli -h
   
 ## For developers
 
-### Installation
+### Installation from source code
 
 ```bash
 git clone https://github.com/brsynth/rpbasicdesign.git
@@ -174,10 +170,7 @@ there is only 3 different RBS suffix in the commercial BioLegio library.
 
 ## TODO
 
-- Write tests
 - Better handle logs and add `verbose` option
-- Conda packaging
-- CI
 
 ## References
 
