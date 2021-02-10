@@ -56,7 +56,3 @@ def test_write_sbol(tmp_path):
     o.write_sbol(out_dir=tmp_path)
     files = list(tmp_path.iterdir())
     assert len(files) == 10
-
-
-
-

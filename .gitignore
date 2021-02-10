@@ -1,14 +1,14 @@
-# MacOS stuff
+# macos
 .DS_Store
 
 # node
 package.json
 package-lock.json
-node_modules
+/node_modules
 
 # pytest-cov
 .coverage
-htmlcov/
+/htmlcov/
 
 # jupyter
 .ipynb_checkpoints/
@@ -17,5 +17,5 @@ htmlcov/
 __pycache__
 
 # IOs
-lala*/
-out/
+/lala*/
+/out/

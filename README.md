@@ -122,7 +122,7 @@ conda develop -n <myenv> .
 ### Tests
 
 ```bash
-python -m pytest -v --cov=rpbasicdesign --cov-report html 
+python -m pytest -v --cov=rpbasicdesign --cov-report html
 ```
 
 
