@@ -275,8 +275,8 @@ class Designer:
         :rtype: int
         """
         __CONSTRUCT_FILE = 'constructs.csv'
-        __COORD_LINKER_FILE = 'linker_parts_coord.csv'
-        __COORD_USER_FILE = 'user_parts_coord.csv'
+        __COORD_LINKER_FILE = 'linker_parts_coords.csv'
+        __COORD_USER_FILE = 'user_parts_coords.csv'
         if not os.path.exists(out_dir):
             os.makedirs(out_dir)
         with open(os.path.join(out_dir, __CONSTRUCT_FILE), 'w') as ofh:
