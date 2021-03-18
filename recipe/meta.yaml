@@ -18,7 +18,7 @@ requirements:
   run:
     - python {{ python }}
     - python-libsbml
-    - sbol2
+    - pysbol2
 
 test:
   source_files:
