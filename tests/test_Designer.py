@@ -45,7 +45,7 @@ def test_write_dnabot_inputs(tmp_path):
     o.write_dnabot_inputs(out_dir=tmp_path)
     files = list(tmp_path.iterdir())
     assert tmp_path / 'constructs.csv' in files
-    assert tmp_path / 'user_parts_coord.csv' in files
+    assert tmp_path / 'user_parts_coords.csv' in files
 
 
 def test_write_sbol(tmp_path):
