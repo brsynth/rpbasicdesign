@@ -5,6 +5,6 @@ channels:
 dependencies:
   - python < 3.9
   - python-libsbml
-  - sbol2
+  - pysbol2
   - pytest
   - pytest-cov
