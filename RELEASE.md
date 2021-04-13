@@ -1,5 +1,12 @@
 # Release history
 
+## 0.1.1
+- test(test_designer.py): fix unsuccessful test (output file renamed)
+- build(environment.yaml): fix sbol2 package not found (due to package new name)
+- fix(designer): fix spelling in output files
+- build(recipe): update dependencies
+- build: no longer need brsynth conda channel, pysbol2 is in conda-forge
+
 ## 0.1.0
 - fix(designer): fix random generation not "reproductible" with a fixed seed
 - refactor: separate classes
