@@ -1,6 +1,10 @@
 # macos
 .DS_Store
 
+# IDE
+.vscode
+.idea
+
 # node
 package.json
 package-lock.json
