@@ -1,5 +1,9 @@
 # rpbasicdesign
 
+
+[![Anaconda-Server Badge](https://anaconda.org/brsynth/rpbasicdesign/badges/latest_release_date.svg)](https://anaconda.org/brsynth/rxn_rebuild)
+[![Anaconda-Server Badge](https://anaconda.org/brsynth/rpbasicdesign/badges/version.svg)](https://anaconda.org/brsynth/rxn_rebuild)
+
 **A command-line tool to convert rpSBML files into SBOL and CSV files ready-to-be used with DNA-Bot.**
 
 **rpbasicdesign** extracts enzyme IDs from rpSBML files -- produced by the RP suite available in the 
@@ -10,7 +14,7 @@ genetic constructs using [OpenTrons](https://opentrons.com/) liquid handling rob
 
 ## Installation
 
-```bash
+```sh
 
 conda install -c brsynth -c conda-forge rpbasicdesign
 ``` 
@@ -19,14 +23,14 @@ conda install -c brsynth -c conda-forge rpbasicdesign
 ## Usage
 
 Simple call:
-```bash
+```sh
 conda activate <myenv>
 cd rpbasicdesign
 python -m rpbasicdesign.cli --rpsbml_file tests/input/rp_1_12.sbml.xml
 ```
 
 Output folders for dnabot-ready files and SBOL export can be set using `o_dnabot_dir` and `o_sbol_dir` options:
-```
+```sh
 python -m rpbasicdesign.cli \
   --rpsbml_file tests/input/rp_1_12.sbml.xml \
   --o_dnabot_dir out/dnabot_input \
@@ -34,14 +38,14 @@ python -m rpbasicdesign.cli \
 ```
 
 The number of constructs to design is tuned using `sample_size`:
-```
+```sh
 python -m rpbasicdesign.cli \
   --rpsbml_file tests/input/rp_1_12.sbml.xml \
   --sample_size 5
 ```
 
 Polycistronic constructs are built by default. To swtich to monocistronic, one can use the `monocistronic` option:
-```
+```sh
 python -m rpbasicdesign.cli \
   --rpsbml_file tests/input/rp_1_12.sbml.xml \
   --monocistronic true
@@ -108,7 +112,7 @@ python -m rpbasicdesign.cli -h
 
 ### Installation from source code
 
-```bash
+```sh
 git clone https://github.com/brsynth/rpbasicdesign.git
 cd rpbasicdesign
 conda env create -f environment.yaml -n <myenv>
@@ -117,7 +121,7 @@ conda develop -n <myenv> .
 
 ### Tests
 
-```bash
+```sh
 python -m pytest -v --cov=rpbasicdesign --cov-report html
 ```
 
