@@ -1,6 +1,7 @@
 # Release history
 
 ## 0.2.0
+- fix(Designer): _parts_files not defined
 - feat: single argument for all part files (linker, user)
 - feat: remove the need for the linker plate file
 - fix(Designer): uniprot ID extraction
