@@ -1,5 +1,12 @@
 # Release history
 
+## 0.2.0
+- feat: single argument for all part files (linker, user)
+- feat: remove the need for the linker plate file
+- fix(Designer): uniprot ID extraction
+- docs(README): update input section
+- docs(README): update command line example
+
 ## 0.1.1
 - test(test_designer.py): fix unsuccessful test (output file renamed)
 - build(environment.yaml): fix sbol2 package not found (due to package new name)
