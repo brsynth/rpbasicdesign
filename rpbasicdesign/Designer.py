@@ -172,14 +172,19 @@ class Designer:
         :param rpsbml_file: path to rpSBML from which enzyme will be extracted.
         :type rpsbml_file: str
         """
+        TO_SKIP_RXN_IDS = ['rxn_target']
         reader = SBMLReader()
         document = reader.readSBML(rpsbml_file)
         model = document.getModel()
         for nb_rxn, reaction in enumerate(model.getListOfReactions()):
-            if nb_rxn > self._MAX_ENZ:
+            if reaction.id in TO_SKIP_RXN_IDS:
+                logging.info(f'Reaction `{reaction.id}` skipped when extracting UniProt IDs. See TO_SKIP_RXN_IDS.')
+            elif nb_rxn > self._MAX_ENZ:
                 logging.warning(f'Number of reactions exceed the defined allowed number of enzymes {self._MAX_ENZ}')
-            if not reaction.id.endswith('_sink'):
+            else:
                 annot = reaction.getAnnotation()
+                if 'uniprot' not in self._read_MIRIAM_annotation(annot):
+                    raise KeyError(f'Missing UniProt ID for reaction {reaction.id}. Execution cancelled.')
                 for uni_id in self._read_MIRIAM_annotation(annot)['uniprot']:
                     if uni_id in self._parts and self._verbose:
                         logging.warning(f'Warning, part {uni_id} already defined, only the last definition kept.')
