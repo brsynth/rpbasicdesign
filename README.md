@@ -26,13 +26,13 @@ Simple call:
 ```sh
 conda activate <myenv>
 cd rpbasicdesign
-python -m rpbasicdesign.cli --rpsbml_file tests/input/rp_1_12.sbml.xml
+python -m rpbasicdesign.cli --rpsbml_file tests/input/muconate_example.xml
 ```
 
 Output folders for dnabot-ready files and SBOL export can be set using `o_dnabot_dir` and `o_sbol_dir` options:
 ```sh
 python -m rpbasicdesign.cli \
-  --rpsbml_file tests/input/rp_1_12.sbml.xml \
+  --rpsbml_file tests/input/muconate_example.xml \
   --o_dnabot_dir out/dnabot_input \
   --o_sbol_dir out/sbol_export
 ```
@@ -40,14 +40,14 @@ python -m rpbasicdesign.cli \
 The number of constructs to design is tuned using `sample_size`:
 ```sh
 python -m rpbasicdesign.cli \
-  --rpsbml_file tests/input/rp_1_12.sbml.xml \
+  --rpsbml_file tests/input/muconate_example.xml \
   --sample_size 5
 ```
 
 Polycistronic constructs are built by default. To swtich to monocistronic, one can use the `monocistronic` option:
 ```sh
 python -m rpbasicdesign.cli \
-  --rpsbml_file tests/input/rp_1_12.sbml.xml \
+  --rpsbml_file tests/input/muconate_example.xml \
   --monocistronic true
 ```
 
