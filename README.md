@@ -107,7 +107,7 @@ By default, the `rpbasicdesign/data/biolegio_parts.csv` file is used which corre
 
 For linkers, the `type` annotation should be one of `neutral linker`, `methylated linker`, `peptide fusion linker` or `RBS linker`. For user parts, `type` should be one of `backbone` or `constitutive promoter`. Other type will raise a warning and will be omited. By default, [biolegio_parts.csv](rpbasicdesign/data/biolegio_parts.csv) and [user_parts.csv](rpbasicdesign/data/user_parts.csv) are used.
 
-Use the `_parts_files` arguments to override.
+Use the `parts_files` arguments to override.
 
 **Important**:
 - IDs should match the linker naming conventions (see below).
