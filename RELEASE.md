@@ -2,6 +2,7 @@
 
 ## 0.2.1
 - fix(Designer): _parts_files not defined
+- fix(Designer): raise exception if no linkers / parts provided
 
 ## 0.2.0
 - feat: single argument for all part files (linker, user)
