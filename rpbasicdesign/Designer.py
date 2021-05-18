@@ -67,8 +67,6 @@ class Designer:
     :type backbone_id: str
     :param linker_parts_file: file listing available linkers for constructs
     :type linker_parts_file: str
-    :param linker_plate_file: file providing half linkers coordinates
-    :type linker_plate_file: str
     :param user_parts_file: file listing user parts (eg backbone, promoters) available for constructs
     :type user_parts_file: str
 
@@ -78,14 +76,13 @@ class Designer:
     def __init__(self, monocistronic=True, verbose=False,
                  lms_id='LMS', lmp_id='LMP',
                  backbone_id='BASIC_SEVA_37_CmR-p15A.1',
-                 linker_parts_file=None, linker_plate_file=None, user_parts_file=None,
+                 linker_parts_file=None, user_parts_file=None,
                  ):
         # Default settings
         self._MAX_ENZ = 3
         self._DATA_PATH = Path(__file__).resolve().parent / 'data'
         self._DEFAULT_DATA = {
             'linker_parts_file': self._DATA_PATH / 'biolegio_parts.csv',
-            'linker_plate_file': self._DATA_PATH / 'biolegio_plate.csv',
             'user_parts_file': self._DATA_PATH / 'user_parts.csv'
         }
 
@@ -96,14 +93,10 @@ class Designer:
         self._backbone_id = backbone_id
 
         # Data files
-        if linker_plate_file is None:
+        if linker_parts_file is None:
             self._linker_parts_file = self._DEFAULT_DATA['linker_parts_file']
         else:
             self._linker_parts_file = linker_parts_file
-        if linker_plate_file is None:
-            self._linker_plate_file = self._DEFAULT_DATA['linker_plate_file']
-        else:
-            self._linker_plate_file = linker_plate_file
         if user_parts_file is None:
             self._user_parts_file = self._DEFAULT_DATA['user_parts_file']
         else:
@@ -306,9 +299,6 @@ class Designer:
                 part_ids |= set(construct.get_part_ids(basic_roles=['part', 'backbone']))
             for _ in sorted(part_ids):
                 writer.writerow({'Part/linker': _, 'Well': next(plate_coords), 'Part concentration (ng/uL)': ''})
-        with open(self._linker_plate_file, 'rb') as ifh:
-            with open(os.path.join(out_dir, __COORD_LINKER_FILE), 'wb') as ofh:
-                ofh.writelines(ifh.readlines())
         return nb_constructs
 
     def write_sbol(self, out_dir):
