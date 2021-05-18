@@ -6,7 +6,7 @@ from pathlib import Path
 from rpbasicdesign.Designer import Designer
 
 
-_RPSBML_PATH = Path(__file__).resolve().parent / 'input' / 'rp_1_3.sbml.xml'
+_RPSBML_PATH = Path(__file__).resolve().parent / 'input' / 'muconate_example.xml'
 
 
 def test_init_1():
@@ -31,10 +31,10 @@ def test_combine():
     assert o.combine(sample_size=12, random_seed=42) == 12
     assert isinstance(o.constructs, list)
     assert o.constructs[0].get_part_ids() == [
-        'LMS', 'BASIC_SEVA_37_CmR-p15A.1', 'LMP', 'PJ23119_BASIC',
-        'U1-RBS1', 'D2WKD9', 'L1', 'PJ23104_BASIC',
-        'U2-RBS3', 'O48935', 'L2', 'PJ23101_BASIC',
-        'U3-RBS1', 'O66952']
+        'LMS', 'BASIC_SEVA_37_CmR-p15A.1', 'LMP', 'PJ23108_BASIC',
+        'U3-RBS1', 'Q3KIF2', 'L1', 'PJ23104_BASIC',
+        'U1-RBS2', 'Q0VH44', 'L2', 'PJ23119_BASIC',
+        'U2-RBS1', 'P31019']
 
 
 def test_write_dnabot_inputs(tmp_path):
