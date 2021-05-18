@@ -27,8 +27,6 @@ def __cli():
                         required=True)
     parser.add_argument('--linker_parts_file',
                         help='File listing available linkers for constructs.', type=str)
-    parser.add_argument('--linker_plate_file',
-                        help='File providing half linkers coordinates.', type=str)
     parser.add_argument('--user_parts_file',
                         help='File listing user parts (eg backbone, promoters) available for constructs.', type=str)
     parser.add_argument('--monocistronic',
@@ -60,7 +58,6 @@ def __cli():
     o = Designer(monocistronic=args.monocistronic,
                  lms_id=args.lms_id, lmp_id=args.lmp_id, backbone_id=args.backbone_id,
                  linker_parts_file=args.linker_parts_file,
-                 linker_plate_file=args.linker_plate_file,
                  user_parts_file=args.user_parts_file,
                  )
     o.enzyme_from_rpsbml(rpsbml_file=args.rpsbml_file)
