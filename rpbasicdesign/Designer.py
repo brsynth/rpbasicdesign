@@ -101,6 +101,11 @@ class Designer:
         self.constructs = []
 
         # Get resources
+        self._get_linkers_and_parts()
+        self._check_linkers_and_parts()
+
+    def _get_linkers_and_parts(self):
+        """Collect linkers and parts from the parts files."""
         for parts_file in self._parts_files:
             with open(parts_file) as ifh:
                 for item in DictReader(ifh):
@@ -123,6 +128,16 @@ class Designer:
                     else:
                         logging.warning(f'Part "{item["id"]}" not imported because it does not fall any supported part '
                                         f'type.')
+
+    def _check_linkers_and_parts(self):
+        """Check that a minimal set of ressources have been stored."""
+        _EXPECTED_ROLES = {'linker': 0, 'part': 0}
+        for item in self._parts.values():
+            if item.basic_role in _EXPECTED_ROLES.keys():
+                _EXPECTED_ROLES[item.basic_role] += 1
+        for role, count in _EXPECTED_ROLES.items():
+            if count == 0:
+                raise BaseException(f'No linker or part of type "{role}" provided. Does any have been provided? Exit.')
 
     def _read_MIRIAM_annotation(self, annot):
         """Return the MIRIAM annotations of species.

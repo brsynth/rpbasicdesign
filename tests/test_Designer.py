@@ -2,11 +2,15 @@
 Test Designer
 """
 
+import pytest
+
 from pathlib import Path
 from rpbasicdesign.Designer import Designer
 
 
 _RPSBML_PATH = Path(__file__).resolve().parent / 'input' / 'muconate_example.xml'
+_DATA_PATH = Path(__file__).resolve().parent / 'data'
+_PARTS_FILES = [ _DATA_PATH / 'biolegio_parts.csv', _DATA_PATH / 'user_parts.csv' ]
 
 
 def test_init_1():
@@ -16,6 +20,13 @@ def test_init_1():
     Designer(monocistronic=True, lms_id='LMS', lmp_id='LMP',
              backbone_id='BASIC_SEVA_37_CmR-p15A.1')
 
+def test_init_2():
+    # Not enough linkers / parts is not ok
+    with pytest.raises(BaseException):
+        Designer(monocistronic=True, lms_id='LMS', lmp_id='LMP',
+                backbone_id='BASIC_SEVA_37_CmR-p15A.1',
+                parts_files=_PARTS_FILES[0]
+        )
 
 def test_extract_from_rpsbml():
     o = Designer(monocistronic=True, lms_id='LMS', lmp_id='LMP',
