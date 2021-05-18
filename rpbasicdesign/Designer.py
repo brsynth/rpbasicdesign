@@ -93,6 +93,8 @@ class Designer:
         # Data files
         if parts_files is None:
             self._parts_files = self._DEFAULT_DATA
+        else:
+            self._parts_files = parts_files
 
         # Storage
         self._parts = {}
