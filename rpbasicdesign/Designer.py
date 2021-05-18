@@ -65,10 +65,8 @@ class Designer:
     :type lmp_id: str
     :param backbone_id: part ID that corresponds to the backbone
     :type backbone_id: str
-    :param linker_parts_file: file listing available linkers for constructs
-    :type linker_parts_file: str
-    :param user_parts_file: file listing user parts (eg backbone, promoters) available for constructs
-    :type user_parts_file: str
+    :param parts_files: files listing available linkers and user parts (backbone, promoters, ...)for constructs
+    :type parts_files: list of str
 
     :return: Designer object
     :rtype: <Designer>
@@ -76,15 +74,15 @@ class Designer:
     def __init__(self, monocistronic=True, verbose=False,
                  lms_id='LMS', lmp_id='LMP',
                  backbone_id='BASIC_SEVA_37_CmR-p15A.1',
-                 linker_parts_file=None, user_parts_file=None,
+                 parts_files=None
                  ):
         # Default settings
         self._MAX_ENZ = 3
         self._DATA_PATH = Path(__file__).resolve().parent / 'data'
-        self._DEFAULT_DATA = {
-            'linker_parts_file': self._DATA_PATH / 'biolegio_parts.csv',
-            'user_parts_file': self._DATA_PATH / 'user_parts.csv'
-        }
+        self._DEFAULT_DATA = [
+            self._DATA_PATH / 'biolegio_parts.csv',
+            self._DATA_PATH / 'user_parts.csv'
+        ]
 
         self._verbose = verbose
         self._monocistronic_design = monocistronic
@@ -93,46 +91,36 @@ class Designer:
         self._backbone_id = backbone_id
 
         # Data files
-        if linker_parts_file is None:
-            self._linker_parts_file = self._DEFAULT_DATA['linker_parts_file']
-        else:
-            self._linker_parts_file = linker_parts_file
-        if user_parts_file is None:
-            self._user_parts_file = self._DEFAULT_DATA['user_parts_file']
-        else:
-            self._user_parts_file = user_parts_file
+        if parts_files is None:
+            self._parts_files = self._DEFAULT_DATA
 
         # Storage
         self._parts = {}
         self.constructs = []
 
         # Get resources
-        with open(self._linker_parts_file) as ifh:
-            for item in DictReader(ifh):
-                if item['id'].startswith('#'):  # Skip if commented
-                    continue
-                if item['id'] in self._parts:
-                    logging.warning(f'Warning, part {item["id"]} duplicated, only the last definition kept.')
-                elif item['type'].lower() in ['neutral linker', 'methylated linker', 'peptide fusion linker']:
-                    self._parts[item['id']] = Part(id=item['id'], basic_role='linker', biological_role='misc',
-                                                   linker_class=item['type'].lower(), seq=item['sequence'])
-                elif item['type'].lower() == 'rbs linker':
-                    self._parts[item['id']] = Part(id=item['id'], basic_role='linker', biological_role='rbs',
-                                                   linker_class=item['type'].lower(), seq=item['sequence'])
-                else:
-                    logging.warning(f'Part "{item["id"]}" not imported because it does not fall any supported part '
-                                    f'type.')
-
-        with open(self._user_parts_file) as ifh:
-            for item in DictReader(ifh):
-                if item['id'].startswith('#'):  # Skip if commented
-                    continue
-                if item['type'].lower() == 'backbone':
-                    self._parts[item['id']] = Part(id=item['id'], basic_role='backbone', biological_role='ori',
-                                                   seq=item['sequence'])
-                elif item['type'].lower() == 'constitutive promoter':
-                    self._parts[item['id']] = Part(id=item['id'], basic_role='part', biological_role='promoter',
-                                                   seq=item['sequence'])
+        for parts_file in self._parts_files:
+            with open(parts_file) as ifh:
+                for item in DictReader(ifh):
+                    if item['id'].startswith('#'):  # Skip if commented
+                        continue
+                    elif item['id'] in self._parts:
+                        logging.warning(f'Warning, part {item["id"]} duplicated, only the last definition kept.')
+                    elif item['type'].lower() in ['neutral linker', 'methylated linker', 'peptide fusion linker']:
+                        self._parts[item['id']] = Part(id=item['id'], basic_role='linker', biological_role='misc',
+                                                    linker_class=item['type'].lower(), seq=item['sequence'])
+                    elif item['type'].lower() == 'rbs linker':
+                        self._parts[item['id']] = Part(id=item['id'], basic_role='linker', biological_role='rbs',
+                                                    linker_class=item['type'].lower(), seq=item['sequence'])
+                    elif item['type'].lower() == 'backbone':
+                        self._parts[item['id']] = Part(id=item['id'], basic_role='backbone', biological_role='ori',
+                                                    seq=item['sequence'])
+                    elif item['type'].lower() == 'constitutive promoter':
+                        self._parts[item['id']] = Part(id=item['id'], basic_role='part', biological_role='promoter',
+                                                    seq=item['sequence'])
+                    else:
+                        logging.warning(f'Part "{item["id"]}" not imported because it does not fall any supported part '
+                                        f'type.')
 
     def _read_MIRIAM_annotation(self, annot):
         """Return the MIRIAM annotations of species.
@@ -273,7 +261,6 @@ class Designer:
         :rtype: int
         """
         __CONSTRUCT_FILE = 'constructs.csv'
-        __COORD_LINKER_FILE = 'linker_parts_coords.csv'
         __COORD_USER_FILE = 'user_parts_coords.csv'
         if not os.path.exists(out_dir):
             os.makedirs(out_dir)

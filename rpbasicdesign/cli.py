@@ -25,10 +25,9 @@ def __cli():
     parser.add_argument('--rpsbml_file',
                         help='rpSBML file from which enzymes UniProt IDs will be collected',
                         required=True)
-    parser.add_argument('--linker_parts_file',
-                        help='File listing available linkers for constructs.', type=str)
-    parser.add_argument('--user_parts_file',
-                        help='File listing user parts (eg backbone, promoters) available for constructs.', type=str)
+    parser.add_argument('--parts_files',
+                        help='List of files providing available linkers and user parts (backbone, promoters, ...) for constructs.',
+                        type=str, nargs='+')
     parser.add_argument('--monocistronic',
                         help='Build monocistronic constructs. Default to false, ie polycistronic constructs will be '
                              'generated.',
@@ -56,9 +55,9 @@ def __cli():
     # Compute
     args = parser.parse_args()
     o = Designer(monocistronic=args.monocistronic,
-                 lms_id=args.lms_id, lmp_id=args.lmp_id, backbone_id=args.backbone_id,
-                 linker_parts_file=args.linker_parts_file,
-                 user_parts_file=args.user_parts_file,
+                 lms_id=args.lms_id, lmp_id=args.lmp_id,
+                 backbone_id=args.backbone_id,
+                 parts_files=args.parts_files
                  )
     o.enzyme_from_rpsbml(rpsbml_file=args.rpsbml_file)
     nb_constructs = o.combine(sample_size=args.sample_size)
