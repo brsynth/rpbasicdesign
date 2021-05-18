@@ -55,42 +55,34 @@ The complete list options is provided the embedded help, which can be printed us
 ```
 python -m rpbasicdesign.cli -h
 
->>> usage: python -m dnaprep.cli [-h] --rpsbml_file RPSBML_FILE [--linker_parts_file LINKER_PARTS_FILE]
->>>                              [--linker_plate_file LINKER_PLATE_FILE] [--user_parts_file USER_PARTS_FILE]
->>>                              [--monocistronic MONOCISTRONIC] [--lms_id LMS_ID]
->>>                              [--lmp_id LMP_ID] [--backbone_id BACKBONE_ID] [--sample_size SAMPLE_SIZE]
->>>                              [--o_dnabot_dir O_DNABOT_DIR] [--o_sbol_dir O_SBOL_DIR]
->>>
->>> Convert rpSBML enzyme info in to BASIC construct. UniProt IDs corresponding enzyme variants are extracted from
->>> rpSBMl files. Promoters and RBSs are randomly chosen from a default list. CDSs, in other words gene
->>> variants, of enzymes are randomly chosen from amongst the UniProt IDs extracted. Constructs generated can be
->>> stored as (i) a CSV file ready to be used by DNA-Bot, (ii) as SBOL files.
->>>
->>> optional arguments:
->>>   -h, --help            show this help message and exit
->>>   --rpsbml_file RPSBML_FILE
->>>                         rpSBML file from which enzymes UniProt IDs will be collected
->>>   --linker_parts_file LINKER_PARTS_FILE
->>>                         File listing available linkers for constructs.
->>>   --linker_plate_file LINKER_PLATE_FILE
->>>                         File providing half linkers coordinates.
->>>   --user_parts_file USER_PARTS_FILE
->>>                         File listing user parts (eg backbone, promoters) available for constructs.
->>>   --monocistronic MONOCISTRONIC
->>>                         Build monocistronic constructs. Default to false, ie polycistronic constructs will
->>>                         be generated.
->>>   --lms_id LMS_ID       part ID to be used as the LMS methylated linker
->>>   --lmp_id LMP_ID       part ID to be used as the LMP methylated linker
->>>   --backbone_id BACKBONE_ID
->>>                         part ID to be used as the backbone
->>>   --sample_size SAMPLE_SIZE
->>>                         Number of construct to generate.
->>>   --o_dnabot_dir O_DNABOT_DIR
->>>                         Output folder to write construct and coord part files. It will be created if it does
->>>                         not exist yet. Existing files will be overwritten.
->>>   --o_sbol_dir O_SBOL_DIR
->>>                         Output folder to write SBOL depictions of constructs. It will be created if it does
->>>                         not exist yet. Existing files will be overwritten.
+usage: python -m dnaprep.cli [-h] --rpsbml_file RPSBML_FILE
+                              [--parts_files PARTS_FILES [PARTS_FILES ...]]
+                              [--monocistronic MONOCISTRONIC] [--lms_id LMS_ID] [--lmp_id LMP_ID]
+                              [--backbone_id BACKBONE_ID] [--sample_size SAMPLE_SIZE]
+                              [--o_dnabot_dir O_DNABOT_DIR] [--o_sbol_dir O_SBOL_DIR]
+
+Convert rpSBML enzyme info in to BASIC construct. UniProt IDs corresponding enzyme variants are extracted from rpSBMl files. Promoters and RBSs are randomly chosen from a default list. CDSs, in other words gene variants, of enzymes are randomly chosen from amongst the UniProt IDs extracted. Constructs generated can be stored as (i) a CSV file ready to be used by DNA-Bot, (ii) as SBOL files.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --rpsbml_file RPSBML_FILE
+                        rpSBML file from which enzymes UniProt IDs will be collected
+  --parts_files PARTS_FILES [PARTS_FILES ...]
+                        List of files providing available linkers and user parts (backbone, promoters, ...) for constructs.
+  --monocistronic MONOCISTRONIC
+                        Build monocistronic constructs. Default to false, ie polycistronic constructs will be generated.
+  --lms_id LMS_ID       part ID to be used as the LMS methylated linker
+  --lmp_id LMP_ID       part ID to be used as the LMP methylated linker
+  --backbone_id BACKBONE_ID
+                        part ID to be used as the backbone
+  --sample_size SAMPLE_SIZE
+                        Number of construct to generate.
+  --o_dnabot_dir O_DNABOT_DIR
+                        Output folder to write construct and coord part files. It will be created if it does not exist yet. Existing files will be overwritten. Default:
+                        out/dnabot_in
+  --o_sbol_dir O_SBOL_DIR
+                        Output folder to write SBOL depictions of constructs. It will be created if it does not exist yet. Existing files will be overwritten. Default:
+                        
 ```
 
 ## Inputs
@@ -101,9 +93,9 @@ This section documents input files required / optional, their purpose, and how i
 
 SBML with retropath-like annotations. UnitProt IDs of enzyme are expected to be listed here. More information of rpSBML file at [https://github.com/brsynth/rptools](https://github.com/brsynth/rptools). Some examples or rpSBML files are provided in `tests/input`.
 
-### Linker part file [optional]
+### Parts files [optional]
 
-This is a CSV file listing the linker IDs available for the constructs. The format should be comma separated on 4 columns with header. Example below:
+These are CSV files listing the linker IDs available for the constructs (BASIC linkers), as well as the user parts (backbone, promoters, ...). The format should be comma separated on 4 columns with header. Example below:
 ```
 id,type,sequence,comment
 L1,neutral linker,,
@@ -113,15 +105,13 @@ L3,neutral linker,,
 
 By default, the `rpbasicdesign/data/biolegio_parts.csv` file is used which corresponds to the BioLegio commercial plate ([link](https://www.biolegio.com/products-services/basic/)). A second predefined file corresponding to older version of the BioLegio plate is also described in `rpbasicdesign/data/legacy_parts.csv`.
 
-The `type` annotation should be one of `neutral linker`, `methylated linker`, `peptide fusion linker` or `RBS linker`. Other type will raise a warning and will be omited. By default, the [biolegio_parts.csv](rpbasicdesign/data/biolegio_parts.csv) is used. Use the `linker_parts_file` CLI arguments to override.
+For linkers, the `type` annotation should be one of `neutral linker`, `methylated linker`, `peptide fusion linker` or `RBS linker`. For user parts, `type` should be one of `backbone` or `constitutive promoter`. Other type will raise a warning and will be omited. By default, [biolegio_parts.csv](rpbasicdesign/data/biolegio_parts.csv) and [user_parts.csv](rpbasicdesign/data/user_parts.csv) are used.
+
+Use the `_parts_files` arguments to override.
 
 **Important**:
 - IDs should match the linker naming conventions (see below).
 - IDs should match the IDs used in the plate file inputed to dnabot. As example -- but also ready to be used -- the [biolegio_plate.csv](rpbasicdesign/data/biolegio_plate.csv) is a valid input files for dnabot, with consistent IDs between `biolegio_parts.csv` and `biolegio_plate.csv`.
-
-### User part file [optional]
-
-A CSV file listing user parts (eg backbone, promoters) available for constructs, not already listed in the linker part file.
   
 ## For developers
 
