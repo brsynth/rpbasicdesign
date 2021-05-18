@@ -95,18 +95,33 @@ python -m rpbasicdesign.cli -h
 
 ## Inputs
 
-- `rpsbml_file` [MANDATORY]: SBML with retropath-like annotations. UnitProt IDs of enzyme are expected to 
-  be listed here. More information of rpSBML file at [https://github.com/brsynth/rptools](https://github.com/brsynth/rptools).
-  Some examples or rpSBML files are provided in `tests/input`.
-- `linker_parts_file` [OPTIONAL]: CSV file listing the linker IDs available for the constructs. The content
-  corresponding to the BioLegio commercial ([link](https://www.biolegio.com/products-services/basic/)) plate is
-  used by default from the `rpbasicdesign/data/biolegio_parts.csv` file. A second predefined file corresponding to
-  older version of the BioLegio plate is also described in `rpbasicdesign/data/legacy_parts.csv`.
-- `linker_plate_file` [OPTIONAL]: CSV file providing the coordinates of half linker in the plate. By default, the
-  `rpbasicdesign/data/biolegio_plate.csv` CSV file is used. An alternative file corresponding to an older version
-  of the BioLegio plate is available in `rpbasicdesign/data/legacy_plate.csv`.
-- `user_parts_file` [OPTIONAL]: CSV file listing user parts (eg backbone, promoters) available for constructs. The 
-  content by default is ``
+This section documents input files required / optional, their purpose, and how information should be structured.
+
+### rpSBML file [required]
+
+SBML with retropath-like annotations. UnitProt IDs of enzyme are expected to be listed here. More information of rpSBML file at [https://github.com/brsynth/rptools](https://github.com/brsynth/rptools). Some examples or rpSBML files are provided in `tests/input`.
+
+### Linker part file [optional]
+
+This is a CSV file listing the linker IDs available for the constructs. The format should be comma separated on 4 columns with header. Example below:
+```
+id,type,sequence,comment
+L1,neutral linker,,
+L2,neutral linker,,
+L3,neutral linker,,
+```
+
+By default, the `rpbasicdesign/data/biolegio_parts.csv` file is used which corresponds to the BioLegio commercial plate ([link](https://www.biolegio.com/products-services/basic/)). A second predefined file corresponding to older version of the BioLegio plate is also described in `rpbasicdesign/data/legacy_parts.csv`.
+
+The `type` annotation should be one of `neutral linker`, `methylated linker`, `peptide fusion linker` or `RBS linker`. Other type will raise a warning and will be omited. By default, the [biolegio_parts.csv](rpbasicdesign/data/biolegio_parts.csv) is used. Use the `linker_parts_file` CLI arguments to override.
+
+**Important**:
+- IDs should match the linker naming conventions (see below).
+- IDs should match the IDs used in the plate file inputed to dnabot. As example -- but also ready to be used -- the [biolegio_plate.csv](rpbasicdesign/data/biolegio_plate.csv) is a valid input files for dnabot, with consistent IDs between `biolegio_parts.csv` and `biolegio_plate.csv`.
+
+### User part file [optional]
+
+A CSV file listing user parts (eg backbone, promoters) available for constructs, not already listed in the linker part file.
   
 ## For developers
 
