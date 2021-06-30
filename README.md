@@ -145,10 +145,8 @@ If one wants to use its own set of linkers, the user is advised to do it careful
 ### Linker naming conventions
 
 Due to DNA-Bot implementation:
-- RBS linkers should start with the `UTRn` suffix, where `n` could be any alphanumeric character.
-- Any linkers should have its two half linkers ending with the `-P` and `-S` suffixes listed in the "plate" file, ie
-  in the file that provides the well locations containing the DNA fragment. See the BASIC approach paper, and
-  especially the supplementary files for more information.  
+- RBS linkers should start with the `Un` suffix, where `n` could be any alphanumeric character.
+- Any linkers should have its two half linkers ending with the `-P` and `-S` suffixes listed in the "plate" file, ie in the file that provides the well locations containing the DNA fragment. See the BASIC approach paper, and especially the supplementary files for more information.  
 
 ### Controlled vocabulary for parts file
 
