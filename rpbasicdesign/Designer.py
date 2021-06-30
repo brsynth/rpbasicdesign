@@ -7,8 +7,8 @@ __author__ = 'Thomas Duigou'
 __license__ = 'MIT'
 __date__ = '2020.10.21'
 
-import os
 import logging
+import os
 import random
 from csv import DictReader, DictWriter
 from pathlib import Path
@@ -16,8 +16,8 @@ from pathlib import Path
 from libsbml import SBMLReader
 
 from rpbasicdesign import DNABOT_PART_HEADER
-from rpbasicdesign.Part import Part
 from rpbasicdesign.Construct import Construct
+from rpbasicdesign.Part import Part
 
 
 def _gen_plate_coords(nb_row=8, nb_col=12, by_row=True):
