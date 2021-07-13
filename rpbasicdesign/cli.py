@@ -17,12 +17,12 @@ from rpbasicdesign.Designer import Designer
 def __cli():
     """CLI for dnaprep."""
 
-    desc = "Convert rpSBML enzyme info in to BASIC construct. UniProt IDs" \
-           " corresponding enzyme variants are extracted rpSBMl files." \
-           " Promoters and RBSs are randomly chosen from a default list." \
-           " CDSs, in other words gene variants, of enzymes are randomly" \
-           " chosen from amongst the UniProt IDs extracted. Constructs" \
-           " generated can be stored as (i) a CSV file ready to be used by"\
+    desc = "Convert rpSBML enzyme info in to BASIC construct. UniProt IDs"  \
+           " corresponding enzyme variants are extracted rpSBMl files."     \
+           " Promoters and RBSs are randomly chosen from a default list."   \
+           " CDSs, in other words gene variants, of enzymes are randomly"   \
+           " chosen from amongst the UniProt IDs extracted. Constructs"     \
+           " generated can be stored as (i) a CSV file ready to be used by" \
            " DNA-Bot, (ii) as SBOL files."
     parser = argparse.ArgumentParser(
          description=desc,
@@ -102,6 +102,7 @@ def __cli():
     o.enzyme_from_rpsbml(rpsbml_file=args.rpsbml_file)
     nb_constructs = o.combine(sample_size=args.sample_size)
     logging.info(f'{nb_constructs} constructs generated.')
+    # Write
     if args.o_dnabot_dir:
         nb_constructs = o.write_dnabot_inputs(out_dir=args.o_dnabot_dir)
         logging.info(f'{nb_constructs} constructs written as CSV in {args.o_dnabot_dir} folder.')
