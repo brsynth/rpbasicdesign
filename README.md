@@ -54,13 +54,18 @@ The complete list options is provided the embedded help, which can be printed us
 ```
 python -m rpbasicdesign.cli -h
 
-usage: python -m dnaprep.cli [-h] --rpsbml_file RPSBML_FILE
-                              [--parts_files PARTS_FILES [PARTS_FILES ...]]
-                              [--monocistronic MONOCISTRONIC] [--lms_id LMS_ID] [--lmp_id LMP_ID]
-                              [--backbone_id BACKBONE_ID] [--sample_size SAMPLE_SIZE]
-                              [--o_dnabot_dir O_DNABOT_DIR] [--o_sbol_dir O_SBOL_DIR]
+usage: python -m dnaprep.cli [-h]
+                            --rpsbml_file RPSBML_FILE 
+                            [--parts_files PARTS_FILES [PARTS_FILES ...]]
+                            [--lms_id LMS_ID]
+                            [--lmp_id LMP_ID]
+                            [--backbone_id BACKBONE_ID]
+                            [--sample_size SAMPLE_SIZE]
+                            [--o_dnabot_dir O_DNABOT_DIR]
+                            [--o_sbol_dir O_SBOL_DIR]
 
-Convert rpSBML enzyme info in to BASIC construct. UniProt IDs corresponding enzyme variants are extracted from rpSBMl files. Promoters and RBSs are randomly chosen from a default list. CDSs, in other words gene variants, of enzymes are randomly chosen from amongst the UniProt IDs extracted. Constructs generated can be stored as (i) a CSV file ready to be used by DNA-Bot, (ii) as SBOL files.
+Convert rpSBML enzyme info in to BASIC construct. UniProt IDs corresponding enzyme variants are extracted rpSBMl files. Promoters and RBSs are randomly chosen from a default list. CDSs, in other words gene variants,
+of enzymes are randomly chosen from amongst the UniProt IDs extracted. Constructs generated can be stored as (i) a CSV file ready to be used by DNA-Bot, (ii) as SBOL files.
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -68,8 +73,6 @@ optional arguments:
                         rpSBML file from which enzymes UniProt IDs will be collected
   --parts_files PARTS_FILES [PARTS_FILES ...]
                         List of files providing available linkers and user parts (backbone, promoters, ...) for constructs.
-  --monocistronic MONOCISTRONIC
-                        Build monocistronic constructs. Default to false, ie polycistronic constructs will be generated.
   --lms_id LMS_ID       part ID to be used as the LMS methylated linker
   --lmp_id LMP_ID       part ID to be used as the LMP methylated linker
   --backbone_id BACKBONE_ID
@@ -77,11 +80,9 @@ optional arguments:
   --sample_size SAMPLE_SIZE
                         Number of construct to generate.
   --o_dnabot_dir O_DNABOT_DIR
-                        Output folder to write construct and coord part files. It will be created if it does not exist yet. Existing files will be overwritten. Default:
-                        out/dnabot_in
+                        Output folder to write construct and coord part files. It will be created if it does not exist yet. Existing files will be overwritten. Default: out/dnabot_in
   --o_sbol_dir O_SBOL_DIR
-                        Output folder to write SBOL depictions of constructs. It will be created if it does not exist yet. Existing files will be overwritten. Default:
-                        
+                        Output folder to write SBOL depictions of constructs. It will be created if it does not exist yet. Existing files will be overwritten. Default: out/sbol_export
 ```
 
 ## Inputs
