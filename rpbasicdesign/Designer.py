@@ -7,10 +7,15 @@ __author__ = 'Thomas Duigou'
 __license__ = 'MIT'
 __date__ = '2020.10.21'
 
+import itertools
 import logging
 import os
+import pprint
 import random
+import sys
 from csv import DictReader, DictWriter
+from copy import deepcopy
+from math import factorial
 from pathlib import Path
 
 from libsbml import SBMLReader
@@ -104,6 +109,80 @@ class Designer:
         self._get_linkers_and_parts()
         self._check_linkers_and_parts()
 
+    def _get_backbone_part(self) -> Part:
+        return self._parts[self._backbone_id]
+
+    def _get_lms_part(self) -> Part:
+        return self._parts[self._lms_id]
+    
+    def _get_lmp_part(self) -> Part:
+        return self._parts[self._lmp_id]
+
+    def _get_neutral_linker_parts(self) -> list:
+        parts = []
+        for part in self._parts.values():
+            if part.linker_class == 'neutral linker':
+                parts.append(part)
+        return parts
+
+    def _get_rbs_ids(self) -> list:
+        """Return RBS part IDs"""
+        part_ids = []
+        for part in self._parts.values():
+            if part.biological_role == 'rbs':
+                part_ids.append(part.id)
+        return sorted(part_ids)
+
+    def _get_promoter_ids(self) -> list:
+        """Return promoter parts"""
+        part_ids = []
+        for part in self._parts.values():
+            if part.biological_role == 'promoter':
+                part_ids.append(part.id)
+        return sorted(part_ids)
+
+    def _get_cds_ids(self) -> list:
+        """Return CDS parts"""
+        part_ids = []
+        for part in self._parts.values():
+            if part.biological_role == 'cds':
+                part_ids.append(part.id)
+        return sorted(part_ids)
+
+    def _get_cds_ids_at_step(self, cds_step: str) -> list:
+        """Return the CDS IDs for the specified step"""
+        part_ids = []
+        for part in self._parts.values():
+            if part.biological_role == 'cds':
+                if part.cds_step == cds_step:
+                    part_ids.append(part.id)
+        return sorted(part_ids)
+
+    def _get_parts_from_ids(self, part_ids: list) -> list:
+        parts = []
+        for part_id in part_ids:
+            parts.append(self._get_part_from_id(part_id))
+        return parts
+
+    def _part_exists(self, part_id: str) -> bool:
+        if part_id in self._parts:
+            return True
+        return False
+
+    def _get_part_from_id(self, part_id: str) -> Part:
+        return self._parts.get(part_id, None)
+
+    def _get_rbs_ortho_id(self, part_id: str) -> str:
+        assert len(part_id.split('-')) == 2
+        return part_id.split('-')[0]
+
+    def _get_rbs_seq_id(self, part_id: str) -> dict:
+        assert len(part_id.split('-')) == 2
+        return part_id.split('-')[1]
+    
+    def _gen_rbs_id(self, rbs_ortho_id: str, rbs_seq_id: str) -> str:
+        return f'{rbs_ortho_id}-{rbs_seq_id}'
+
     def _get_linkers_and_parts(self):
         """Collect linkers and parts from the parts files."""
         for parts_file in self._parts_files:
@@ -139,7 +218,7 @@ class Designer:
             if count == 0:
                 raise BaseException(f'No linker or part of type "{role}" provided. Does any have been provided? Exit.')
 
-    def _read_MIRIAM_annotation(self, annot):
+    def _read_MIRIAM_annotation(self, annot) -> dict:
         """Return the MIRIAM annotations of species.
 
         Notice: an empty dict is return if the parsing failed.
@@ -169,7 +248,7 @@ class Designer:
         except AttributeError:
             return {}
 
-    def enzyme_from_rpsbml(self, rpsbml_file):
+    def enzyme_from_rpsbml(self, rpsbml_file: str):
         """Extract enzyme from rpSBML annotation
 
         WARNING: the rpSBML file is expected to follow the specific schema of annotations used for rpSBMLs
@@ -197,7 +276,7 @@ class Designer:
                                                biological_role='cds',
                                                cds_step=reaction.id, seq='atgc')
 
-    def combine(self, sample_size, random_seed=42):
+    def combine(self, sample_size: int, random_seed: int =42, cds_permutation: bool =True) -> int:
         """Generate random constructs
 
         NOTICE:
@@ -210,63 +289,147 @@ class Designer:
         :type sample_size: int
         :param random_seed: seed to be used for random-related operations
         :type random_seed: int
+        :param cds_permutation: weither all combinations of CDS permutation should be build
+        :type cds_permutation: bool
         :return: number of constructs generated
         :rtype: int
         """
         random.seed(random_seed)
-        cds_steps = sorted(list(set([part.cds_step for part in self._parts.values() if part.biological_role == 'cds'])))
+        # Collect CDS ===============================================
+        cds_ids = self._get_cds_ids()
+        cds_steps = sorted(list(set([cds.cds_step for cds in self._get_parts_from_ids(cds_ids)])))
         if len(cds_steps) == 0:
             logging.error(f'No CDS registered so far, generation of combination aborted')
-            return []
-        nb_promoter = len(cds_steps) if self._monocistronic_design else 1
+            return 0
+        # Collect promoters =========================================
+        promoter_ids = self._get_promoter_ids()
+        # Collect RBS ===============================================
+        # Reminder: a RBS ID is composed of (i) the ID of the orthogonal RBS linker
+        # and (ii) the ID of the RBS sequence.
+        rbs_ids = self._get_rbs_ids()
+        rbs_seq_ids = set()
+        rbs_ortho_ids = set()
+        for rbs_id in rbs_ids:
+            rbs_seq_ids.add(self._get_rbs_seq_id(rbs_id))
+            rbs_ortho_ids.add(self._get_rbs_ortho_id(rbs_id))
+        rbs_seq_ids = sorted(list(rbs_seq_ids))
+        rbs_ortho_ids = sorted(list(rbs_ortho_ids))
+        # Checks ====================================================
+        nb_required_promoters = 1 if self._polycistronic_design else len(cds_steps)
+        if len(promoter_ids) < nb_required_promoters:
+            logging.error(
+                f'Not enough promoter parts provided: '
+                f'{nb_required_promoters} required but '
+                f'{len(promoter_ids)} provided. Exit')
+            sys.exit()
+        if len(rbs_ortho_ids) < len(cds_steps):
+            logging.error(
+                f'Not enough distinct ortholog sequences '
+                'for building RBS linkers. Exit')
+            sys.exit()
+        # Build combinations ========================================
         nb_dupe_parts = 0
         nb_dupe_constructs = 0
-        while len(self.constructs) < sample_size:
-            # Get variants
-            promoters = random.choices(
-                population=sorted([part.id for part in self._parts.values() if part.biological_role == 'promoter']),
-                k=nb_promoter
+        max_combinations = len(promoter_ids) * (len(rbs_seq_ids) ** len(cds_steps))
+        logging.info(f'Requested sample size: {sample_size}')
+        logging.info(f'Min required promoter part: {nb_required_promoters}')
+        logging.info(f'RBS seq IDs: {rbs_seq_ids}')
+        logging.info(f'RBS ortho IDs: {rbs_ortho_ids}')
+        logging.info(f'CDS Steps: {cds_steps}')
+        logging.info(f'Perform CDS permutation? {cds_permutation}')
+        logging.info(f"Max combinations -- without permutation: {max_combinations}")
+        logging.info(f"Max combinations -- with    permutation: {max_combinations * factorial(len(cds_steps))}")
+        # Promoters will be considered later
+        distinct_blocks = {}
+        for cds_step in cds_steps:
+            if cds_step not in distinct_blocks:
+                distinct_blocks[cds_step] = []
+            for rbs_seq_id in rbs_seq_ids:
+                for cds_id in self._get_cds_ids_at_step(cds_step):
+                    block = {
+                        'cds_step': cds_step,
+                        'rbs_seq_id': rbs_seq_id,
+                        'cds_id': cds_id
+                        }
+                    distinct_blocks[cds_step].append(block)
+        # Build all combinations between RBS sequence and CDS
+        rbs_cds_combis = list(itertools.product(*[l for l in distinct_blocks.values()]))
+        # Add RBS ortho seq IDs (ie the BASIC adapters used in the RBS linkers)
+        #   One construct should not use several time a given ortho seq
+        tmp_combis = []
+        for combi in rbs_cds_combis:
+            tmp_combi = []
+            for block_idx, block in enumerate(combi):
+                tmp_block = deepcopy(block)
+                tmp_block['rbs_ortho_id'] = rbs_ortho_ids[block_idx]
+                tmp_combi.append(tmp_block)
+            tmp_combis.append(tmp_combi)
+        rbs_cds_combis = tmp_combis
+        # TODO: remove combination that does not have corresponding part in self._part
+        for combi in rbs_cds_combis:
+            for block in combi:
+                rbs_ortho_id = block['rbs_ortho_id']
+                rbs_seq_id = block['rbs_seq_id']
+                rbs_id = self._gen_rbs_id(rbs_ortho_id, rbs_seq_id)
+                if not self._part_exists(rbs_id):
+                    logging.error(f'RBS part {rbs_id} does not exist.')
+        # Perform permutation of CDS if requested
+        if cds_permutation:
+            tmp = []
+            for draft_construct in rbs_cds_combis:
+                tmp.extend(list(itertools.permutations(draft_construct)))
+            rbs_cds_combis = tmp
+        else:
+            # rbs_cds_combinations stay as they are
+            pass  
+        # Append promoter(s)
+        pro_rbs_cds_combis = []
+        if not self._polycistronic_design:
+            # monocistronic: not yet implemented
+            raise NotImplementedError(
+                'Monocistronic constructs are not implemented.'
             )
-            rbss = random.choices(
-                population=sorted([part.id for part in self._parts.values() if part.biological_role == 'rbs']),
-                k=len(cds_steps)
-            )
-            cdss = []
-            for cds_step in cds_steps:
-                variants = sorted([part.id for part in self._parts.values() if part.cds_step == cds_step])
-                cdss.append(random.choice(variants))
-            # Build blocks
+        else:
+            # polycistronic: associate one promoter to the first CDS only
+            for promoter_id, combi in list(itertools.product(promoter_ids, rbs_cds_combis)):
+                tmp = deepcopy(combi)
+                tmp[0]['promoter_id'] = promoter_id
+                pro_rbs_cds_combis.append(tmp)
+        # Perform the sampling
+        if sample_size > len(pro_rbs_cds_combis):
+            sample_size = len(pro_rbs_cds_combis)
+            logging.warning(
+                'Requested sample size bigger than actual number of '
+                'possible constructs. All constructs will be generated '
+                'instead.'
+                )
+        combis_sample = random.sample(pro_rbs_cds_combis, k=sample_size)  # Remember the seed
+        logging.info(f'Nb generated combinations: {len(combis_sample)}')
+        # Instanciate the construct objects =========================
+        for combi in combis_sample:
             blocks = []
-            for idx in range(len(cds_steps)):
-                block = {'rbs': self._parts[rbss[idx]], 'cds': self._parts[cdss[idx]]}
-                if idx == 0 or self._monocistronic_design:
-                    block['promoter'] = self._parts[promoters[idx]]
+            for item in combi:
+                block = {}
+                # Promoter if any defined
+                if 'promoter_id' in item.keys():
+                    promoter_id = item['promoter_id']
+                    block['promoter'] = self._get_part_from_id(promoter_id)
+                # RBS, combination of the orthologous BASIC seq and the RBS itself
+                rbs_id = self._gen_rbs_id(item['rbs_ortho_id'], item['rbs_seq_id'])
+                block['rbs'] = self._get_part_from_id(rbs_id)
+                # CDS, ie the enzyme sequence
+                cds_id = item['cds_id']
+                block['cds'] = self._get_part_from_id(cds_id)            
                 blocks.append(block)
-            # Instantiate
-            construct = Construct(
-                backbone=self._parts[self._backbone_id],
-                lms=self._parts[self._lms_id],
-                lmp=self._parts[self._lmp_id],
+            self.constructs.append(Construct(
+                backbone=self._get_backbone_part(),
+                lms=self._get_lms_part(),
+                lmp=self._get_lmp_part(),
                 blocks=blocks,
-                nlinkers=[part for part in self._parts.values() if part.linker_class == 'neutral linker'],
-                monocistronic_design=self._monocistronic_design
-            )
-            if construct.has_duplicate_part():
-                nb_dupe_parts += 1
-                continue
-            if construct.has_duplicate_suffix():
-                nb_dupe_parts += 1
-                continue
-            elif construct in self.constructs:
-                nb_dupe_constructs += 1
-                continue
-            else:
-                self.constructs.append(construct)
-        # Logs
-        if nb_dupe_parts:
-            logging.debug(f'{nb_dupe_parts} constructs skipped because of duplicated parts within a construct.')
-        if nb_dupe_constructs:
-            logging.debug(f'{nb_dupe_constructs} constructs skipped because the construct already exists.')
+                nlinkers=self._get_neutral_linker_parts(),
+                polycistronic_design=self._polycistronic_design
+            ))
+
         return len(self.constructs)
 
     def write_dnabot_inputs(self, out_dir):
