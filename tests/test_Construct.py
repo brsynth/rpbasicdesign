@@ -50,13 +50,12 @@ def test_eq():
     C1 = Construct(
         backbone=_BB, lms=_LMS, lmp=_LMP,
         blocks=__BLOCKS, nlinkers=[_LN1, _LN2],
-        monocistronic_design=True
+        polycistronic_design=True
     )
     C2 = Construct(
         backbone=_BB, lms=_LMS, lmp=_LMP,
         blocks=__BLOCKS, nlinkers=[_LN1, _LN2],
-
-        monocistronic_design=False
+        polycistronic_design=False
     )
     assert C1 == C1
     assert C1 != C2
@@ -129,7 +128,7 @@ def test_get_part_ids():
             ],
         nlinkers=[_LN1, _LN2]
     )
-    assert o.get_part_ids() == ['LMS', 'BB', 'LMP', 'P1', 'LR1', 'CDS1', 'LN1', 'P2', 'LR2', 'CDS2']
+    assert o.get_part_ids() == ['LMS', 'BB', 'LMP', 'P1', 'LR1', 'CDS1', 'LR2', 'CDS2']
 
 
 def test_get_sbol():
@@ -144,4 +143,4 @@ def test_get_sbol():
     doc = o.get_sbol(construct_id='TEST')
     # Item order are random in SBOL file
     query = '\n'.join(sorted(doc.writeString().split('\n')))
-    assert sha1(query.encode()).hexdigest() == '59ea3b9f26e29546b62475799a401f09cfa0e6f8'
+    assert sha1(query.encode()).hexdigest() == '64624e1680f27f1052614e7beb0f11bc071adf2f'

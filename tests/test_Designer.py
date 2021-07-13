@@ -17,39 +17,41 @@ def test_init_1():
     # Empty is OK
     Designer()
     # With some default values
-    Designer(monocistronic=True, lms_id='LMS', lmp_id='LMP',
+    Designer(lms_id='LMS', lmp_id='LMP',
              backbone_id='BASIC_SEVA_37_CmR-p15A.1')
 
 def test_init_2():
     # Not enough linkers / parts is not ok
     with pytest.raises(BaseException):
-        Designer(monocistronic=True, lms_id='LMS', lmp_id='LMP',
+        Designer(lms_id='LMS', lmp_id='LMP',
                 backbone_id='BASIC_SEVA_37_CmR-p15A.1',
                 parts_files=_PARTS_FILES[0]
         )
 
 def test_extract_from_rpsbml():
-    o = Designer(monocistronic=True, lms_id='LMS', lmp_id='LMP',
+    o = Designer(lms_id='LMS', lmp_id='LMP',
                  backbone_id='BASIC_SEVA_37_CmR-p15A.1')
     o.enzyme_from_rpsbml(rpsbml_file=_RPSBML_PATH)
 
 
 def test_combine():
-    o = Designer(monocistronic=True, lms_id='LMS', lmp_id='LMP',
+    o = Designer(lms_id='LMS', lmp_id='LMP',
                  backbone_id='BASIC_SEVA_37_CmR-p15A.1')
     o.enzyme_from_rpsbml(rpsbml_file=_RPSBML_PATH)
     assert o.combine(sample_size=0, random_seed=42) == 0
-    assert o.combine(sample_size=12, random_seed=42) == 12
+    assert o.combine(sample_size=12, random_seed=42, cds_permutation=False) == 12
     assert isinstance(o.constructs, list)
+    print(o.constructs[0].get_part_ids())
     assert o.constructs[0].get_part_ids() == [
-        'LMS', 'BASIC_SEVA_37_CmR-p15A.1', 'LMP', 'PJ23108_BASIC',
-        'U3-RBS1', 'Q3KIF2', 'L1', 'PJ23104_BASIC',
-        'U1-RBS2', 'Q0VH44', 'L2', 'PJ23119_BASIC',
-        'U2-RBS1', 'P31019']
+        'LMS', 'BASIC_SEVA_37_CmR-p15A.1',
+        'LMP', 'PJ23111_BASIC',
+        'U1-RBS2', 'Q3JUM4',
+        'U2-RBS2', 'Q51602',
+        'U3-RBS1', 'O33950']
 
 
 def test_write_dnabot_inputs(tmp_path):
-    o = Designer(monocistronic=True, lms_id='LMS', lmp_id='LMP',
+    o = Designer(lms_id='LMS', lmp_id='LMP',
                  backbone_id='BASIC_SEVA_37_CmR-p15A.1')
     o.enzyme_from_rpsbml(rpsbml_file=_RPSBML_PATH)
     o.combine(sample_size=10, random_seed=42)
@@ -60,7 +62,7 @@ def test_write_dnabot_inputs(tmp_path):
 
 
 def test_write_sbol(tmp_path):
-    o = Designer(monocistronic=True, lms_id='LMS', lmp_id='LMP',
+    o = Designer(lms_id='LMS', lmp_id='LMP',
                  backbone_id='BASIC_SEVA_37_CmR-p15A.1')
     o.enzyme_from_rpsbml(rpsbml_file=_RPSBML_PATH)
     o.combine(sample_size=10, random_seed=42)
