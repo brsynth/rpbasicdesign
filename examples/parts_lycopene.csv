@@ -1,0 +1,24 @@
+id,type,sequence,comment
+L1,neutral linker,,
+L2,neutral linker,,
+L3,neutral linker,,
+L4,neutral linker,,
+L5,neutral linker,,
+L6,neutral linker,,
+LMP,methylated linker,,
+LMS,methylated linker,,
+U1-A03,RBS linker,,"46%"
+U2-A03,RBS linker,,"46%"
+U3-A03,RBS linker,,"46%"
+U1-A04,RBS linker,,"03%"
+U2-A04,RBS linker,,"03%"
+U3-A04,RBS linker,,"03%"
+LF1,peptide fusion linker,,
+LF2,peptide fusion linker,,
+LF3,peptide fusion linker,,
+LF4,peptide fusion linker,,
+LF5,peptide fusion linker,,
+LF6,peptide fusion linker,,
+BASIC_SEVA_37_CmR-p15A.1,backbone,,
+PJ23105,constitutive promoter,,
+PJ23116,constitutive promoter,,

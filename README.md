@@ -15,7 +15,6 @@ genetic constructs using [OpenTrons](https://opentrons.com/) liquid handling rob
 ## Installation
 
 ```sh
-
 conda install -c brsynth -c conda-forge rpbasicdesign
 ``` 
 
@@ -112,7 +111,21 @@ Use the `parts_files` arguments to override.
 **Important**:
 - IDs should match the linker naming conventions (see below).
 - IDs should match the IDs used in the plate file inputed to dnabot. As example -- but also ready to be used -- the [biolegio_plate.csv](rpbasicdesign/data/biolegio_plate.csv) is a valid input files for dnabot, with consistent IDs between `biolegio_parts.csv` and `biolegio_plate.csv`.
-  
+
+## Example
+
+If one wishes to only use a subset of BASIC parts, the way to go is to provide a restricted list of parts with the `--parts_file` option.
+
+The `examples` folder contains such an example:
+```sh
+python -m rpbasicdesign.cli \
+    --rpsbml_file lycopene_example.xml \
+    --sample_size 96 \
+    --parts_file biolegio_parts_lycopene.csv \
+    --o_dnabot_dir out/lycopene_dnabot \
+    --o_sbol_dir out/lycopene_sbol
+```
+
 ## For developers
 
 ### Installation from source code
