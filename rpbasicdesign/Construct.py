@@ -22,25 +22,32 @@ class Construct:
     :type blocks: list of dict of <Part>, [{k: <Part>}, .. ]
     :param nlinkers: available neutral linker (if junction necessary, used for monocistronic designs)
     :type nlinkers: list of <Part>
-    :param monocistronic_design: True if construct should be monocistronic
-    :type monocistronic_design: bool
+    :param polycistronic_design: True if construct should be polycistronic (the default)
+    :type polycistronic_design: bool
     :return: a Construct object
     :rtype: <Construct>
     """
-    def __init__(self, backbone, lms, lmp, blocks, nlinkers, monocistronic_design=True):
+    def __init__(self,
+        backbone,
+        lms,
+        lmp,
+        blocks,
+        nlinkers,
+        polycistronic_design=True
+    ):
         self._nlinkers = nlinkers.copy()  # Prevent any side effect
-        self._monocistronic_design = monocistronic_design
+        self._polycistronic_design = polycistronic_design
 
         self._parts = []
         self._parts.append(lms)
         self._parts.append(backbone)
         self._parts.append(lmp)
         for block_idx, block in enumerate(blocks):
-            if monocistronic_design or block_idx == 0:
+            if block_idx == 0 or not polycistronic_design:
                 self._parts.append(block['promoter'])
             self._parts.append(block['rbs'])
             self._parts.append(block['cds'])
-            if monocistronic_design and block_idx != len(blocks) - 1:
+            if (not polycistronic_design) and (block_idx != len(blocks) - 1):
                 self._parts.append(self._nlinkers.pop(0))
 
     def __repr__(self):

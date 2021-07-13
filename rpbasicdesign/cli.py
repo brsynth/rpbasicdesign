@@ -40,13 +40,13 @@ def __cli():
           type=str,
           nargs='+'
           )
-    parser.add_argument(
-         '--monocistronic',
-          help='Build monocistronic constructs. Default to false, ie '
-               'polycistronic constructs will be generated.',
-          default=False,
-          type=lambda x: (str(x).lower() == 'true')
-          )
+#     parser.add_argument(
+#          '--polycistronic',
+#           help='Build polycistronic constructs. Default to true, ie '
+#                'polycistronic constructs will be generated.',
+#           default=True,
+#           type=lambda x: (not str(x).lower() == 'false')
+#           )
     parser.add_argument(
          '--lms_id',
          help='part ID to be used as the LMS methylated linker',
@@ -93,7 +93,7 @@ def __cli():
     # Compute
     args = parser.parse_args()
     o = Designer(
-         monocistronic=args.monocistronic,
+     #     polycistronic=args.polycistronic,
           lms_id=args.lms_id,
           lmp_id=args.lmp_id,
           backbone_id=args.backbone_id,
@@ -101,10 +101,10 @@ def __cli():
           )
     o.enzyme_from_rpsbml(rpsbml_file=args.rpsbml_file)
     nb_constructs = o.combine(sample_size=args.sample_size)
-    logging.info(f'{nb_constructs} generated.')
+    logging.info(f'{nb_constructs} constructs generated.')
     if args.o_dnabot_dir:
         nb_constructs = o.write_dnabot_inputs(out_dir=args.o_dnabot_dir)
-        logging.info(f'{nb_constructs} constructs written in {args.o_dnabot_dir} folder.')
+        logging.info(f'{nb_constructs} constructs written as CSV in {args.o_dnabot_dir} folder.')
     if args.o_sbol_dir:
         o.write_sbol(out_dir=args.o_sbol_dir)
         logging.info(f'{nb_constructs} constructs written as SBOL in {args.o_sbol_dir} folder.')

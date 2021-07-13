@@ -54,14 +54,13 @@ def _gen_plate_coords(nb_row=8, nb_col=12, by_row=True):
         for j in range(j_nb):
             yield ''.join([i_dim[i], j_dim[j]])
 
-
 class Designer:
     """Convert rpSBML enzyme info in to BASIC construct.
 
     WARNING: promoters and RBSs are randomly chosen from amongst all available
 
-    :param monocistronic: True if monocistronic design should be prepared
-    :type monocistronic: bool
+    :param polycistronic: True if polycistronic design should be prepared
+    :type polycistronic: bool
     :param verbose: True to increase log verbosity
     :type verbose: bool
     :param lms_id: part ID that corresponds to the LMS methylated linker
@@ -76,11 +75,13 @@ class Designer:
     :return: Designer object
     :rtype: <Designer>
     """
-    def __init__(self, monocistronic=True, verbose=False,
-                 lms_id='LMS', lmp_id='LMP',
-                 backbone_id='BASIC_SEVA_37_CmR-p15A.1',
-                 parts_files=None
-                 ):
+    def __init__(self,
+        # polycistronic=True,
+        verbose=False,
+        lms_id='LMS', lmp_id='LMP',
+        backbone_id='BASIC_SEVA_37_CmR-p15A.1',
+        parts_files=None
+    ):
         # Default settings
         self._MAX_ENZ = 3
         self._DATA_PATH = Path(__file__).resolve().parent / 'data'
@@ -90,7 +91,7 @@ class Designer:
         ]
 
         self._verbose = verbose
-        self._monocistronic_design = monocistronic
+        self._polycistronic_design = True
         self._lms_id = lms_id
         self._lmp_id = lmp_id
         self._backbone_id = backbone_id
