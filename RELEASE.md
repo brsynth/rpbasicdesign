@@ -1,5 +1,11 @@
 # Release history
 
+## 0.3.0
+- docs(README): update info on RBS naming pattern
+- docs: provides an example of the --parts_file option
+- fix(Designer): fix the way combinatorics is built
+- !fix: constructs are always polycistronic
+
 ## 0.2.2
 - fix(Designer): raise exception if no linkers / parts provided
 
