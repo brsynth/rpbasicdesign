@@ -81,7 +81,7 @@ class Designer:
         lms_id='LMS', lmp_id='LMP',
         backbone_id='BASIC_SEVA_37_CmR-p15A.1',
         parts_files=None
-    ):
+        ):
         # Default settings
         self._MAX_ENZ = 3
         self._DATA_PATH = Path(__file__).resolve().parent / 'data'
@@ -89,6 +89,9 @@ class Designer:
             self._DATA_PATH / 'biolegio_parts.csv',
             self._DATA_PATH / 'user_parts.csv'
         ]
+
+        # File to copy-paste, for the user convenience
+        self._BIOLEGIO_PLATE_FILE = self._DATA_PATH / 'biolegio_plate.csv'
 
         self._verbose = verbose
         self._polycistronic_design = True
@@ -290,7 +293,7 @@ class Designer:
         :type sample_size: int
         :param random_seed: seed to be used for random-related operations
         :type random_seed: int
-        :param cds_permutation: weither all combinations of CDS permutation should be build
+        :param cds_permutation: whether all combinations of CDS permutation should be built 
         :type cds_permutation: bool
         :return: number of constructs generated
         :rtype: int
@@ -328,9 +331,7 @@ class Designer:
                 f'Not enough distinct ortholog sequences '
                 'for building RBS linkers. Exit')
             sys.exit()
-        # Build combinations ========================================
-        nb_dupe_parts = 0
-        nb_dupe_constructs = 0
+        # Print info ================================================
         max_combinations = len(promoter_ids) * (len(rbs_seq_ids) ** len(cds_steps))
         logging.info(f'Requested sample size: {sample_size}')
         logging.info(f'Min required promoter part: {nb_required_promoters}')
@@ -436,15 +437,17 @@ class Designer:
     def write_dnabot_inputs(self, out_dir):
         """Write constructs in CSV format expected by DNA-Bot
 
-        :param out_dir: folder path where construct and coord files be written
+        :param out_dir: folder path where construct and plate files be written
         :type out_dir: str
         :return: number of constructs written to file
         :rtype: int
         """
         __CONSTRUCT_FILE = 'constructs.csv'
-        __COORD_USER_FILE = 'user_parts_coords.csv'
+        __USER_PLATE_FILE = 'user_parts_plate.csv'
+        __BIOLEGIO_PLATE_FILE = 'biolegio_plate.csv'
         if not os.path.exists(out_dir):
             os.makedirs(out_dir)
+        # Construct file
         with open(os.path.join(out_dir, __CONSTRUCT_FILE), 'w') as ofh:
             plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
             writer = DictWriter(
@@ -458,7 +461,8 @@ class Designer:
             for construct in self.constructs:
                 nb_constructs += 1
                 writer.writerow(construct.get_construct_file_row(coord=next(plate_coords)))
-        with open(os.path.join(out_dir, __COORD_USER_FILE), 'w') as ofh:
+        # Custom parts (ie not biolegio / linker)
+        with open(os.path.join(out_dir, __USER_PLATE_FILE), 'w') as ofh:
             plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
             writer = DictWriter(
                 f=ofh,
@@ -472,6 +476,11 @@ class Designer:
                 part_ids |= set(construct.get_part_ids(basic_roles=['part', 'backbone']))
             for _ in sorted(part_ids):
                 writer.writerow({'Part/linker': _, 'Well': next(plate_coords), 'Part concentration (ng/uL)': ''})
+        # Biolegio plate
+        from_file = self._BIOLEGIO_PLATE_FILE
+        to_file = Path(out_dir) / __BIOLEGIO_PLATE_FILE
+        import shutil
+        shutil.copy(from_file, to_file)
         return nb_constructs
 
     def write_sbol(self, out_dir):
