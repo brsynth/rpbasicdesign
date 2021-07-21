@@ -341,6 +341,12 @@ class Designer:
         logging.info(f'Perform CDS permutation? {cds_permutation}')
         logging.info(f"Max combinations -- without permutation: {max_combinations}")
         logging.info(f"Max combinations -- with    permutation: {max_combinations * factorial(len(cds_steps))}")
+        # Argument checking =========================================
+        if sample_size > 96:
+            sample_size = 96
+            logging.warning('Sample size is limited to 96. 96 constructs '
+                            'will be return at the most.')
+        # Build combinations ========================================
         # Promoters will be considered later
         distinct_blocks = {}
         for cds_step in cds_steps:
