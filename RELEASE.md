@@ -1,5 +1,10 @@
 # Release history
 
+## 0.3.1
+- style(cli): show default values in help
+- feat(cli): add cds_permutation arg
+- feat(Designer): export the biolegio plate file
+
 ## 0.3.0
 - docs(README): update info on RBS naming pattern
 - docs: provides an example of the --parts_file option
