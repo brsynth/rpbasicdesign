@@ -107,7 +107,7 @@ class Designer:
         self.constructs = []
 
         # Get resources
-        self._get_linkers_and_parts()
+        self._get_linkers_and_parts_from_file()
         self._check_linkers_and_parts()
 
     def _get_backbone_part(self) -> Part:
@@ -184,7 +184,7 @@ class Designer:
     def _gen_rbs_id(self, rbs_ortho_id: str, rbs_seq_id: str) -> str:
         return f'{rbs_ortho_id}-{rbs_seq_id}'
 
-    def _get_linkers_and_parts(self):
+    def _get_linkers_and_parts_from_file(self):
         """Collect linkers and parts from the parts files."""
         for parts_file in self._parts_files:
             with open(parts_file) as ifh:
