@@ -43,13 +43,6 @@ python -m rpbasicdesign.cli \
   --sample_size 5
 ```
 
-Polycistronic constructs are built by default. To swtich to monocistronic, one can use the `monocistronic` option:
-```sh
-python -m rpbasicdesign.cli \
-  --rpsbml_file tests/input/muconate_example.xml \
-  --monocistronic true
-```
-
 The complete list options is provided the embedded help, which can be printed using the `--help` or `-h` keywords:
 ```
 python -m rpbasicdesign.cli -h
@@ -61,6 +54,7 @@ usage: python -m dnaprep.cli [-h]
                             [--lmp_id LMP_ID]
                             [--backbone_id BACKBONE_ID]
                             [--sample_size SAMPLE_SIZE]
+                            [--cds_permutation CDS_PERMUTATION]
                             [--o_dnabot_dir O_DNABOT_DIR]
                             [--o_sbol_dir O_SBOL_DIR]
 
@@ -70,17 +64,19 @@ of enzymes are randomly chosen from amongst the UniProt IDs extracted. Construct
 optional arguments:
   -h, --help            show this help message and exit
   --rpsbml_file RPSBML_FILE
-                        rpSBML file from which enzymes UniProt IDs will be collected
+                        rpSBML file from which enzymes UniProt IDs will be collected.
   --parts_files PARTS_FILES [PARTS_FILES ...]
-                        List of files providing available linkers and user parts (backbone, promoters, ...) for constructs.
-  --lms_id LMS_ID       part ID to be used as the LMS methylated linker
-  --lmp_id LMP_ID       part ID to be used as the LMP methylated linker
+                        List of files providing available linkers and user parts (backbone, promoters, ...) for constructs. Default: [data/biolegio_parts.csv, user_parts.csv]
+  --lms_id LMS_ID       part ID to be used as the LMS methylated linker. Default: LMS
+  --lmp_id LMP_ID       part ID to be used as the LMP methylated linker. Default: LMP
   --backbone_id BACKBONE_ID
-                        part ID to be used as the backbone
+                        part ID to be used as the backbone. Default: BASIC_SEVA_37_CmR-p15A.1
   --sample_size SAMPLE_SIZE
-                        Number of construct to generate.
+                        Number of construct to generate.Default: 3
+  --cds_permutation CDS_PERMUTATION
+                        Whether all combinations of CDS permutation should be built Default: true
   --o_dnabot_dir O_DNABOT_DIR
-                        Output folder to write construct and coord part files. It will be created if it does not exist yet. Existing files will be overwritten. Default: out/dnabot_in
+                        Output folder to write construct and plate files. It will be created if it does not exist yet. Existing files will be overwritten. Default: out/dnabot_in
   --o_sbol_dir O_SBOL_DIR
                         Output folder to write SBOL depictions of constructs. It will be created if it does not exist yet. Existing files will be overwritten. Default: out/sbol_export
 ```
@@ -151,6 +147,10 @@ python -m pytest -v --cov=rpbasicdesign --cov-report html
 The BASIC linker set is a major piece of the BASIC assembly method. For a detailed explanation of the BASIS approach,
 see Storch et. al., ACS Synth. Biol., 2015 (doi: [10.1021/sb500356d](https://doi.org/10.1021/sb500356d)).
 
+### Polycistronic constructs
+
+Only polycistronic constructs are enabled at the moment.
+
 ### Predefined set of linkers
 
 By default, the set of linkers used is the one presented available in from the commercial plate from BioLegio.
@@ -179,10 +179,10 @@ As of today, CDS are obtained only by parsing rpSBML files.
 
 ### Custom linkers
 For advanced users wishing to play with custom linkers:
-- Linkers have to be listed in `[biolegio|legacy]_parts.csv`.  
-- Linker prefixes and suffixes well coordinates have to be listed in `[biolegio|legacy]_plate.csv`.
+- Linkers and parts can be provided using a custom file with the `--parts_files` argument.
 - Linkers described `user_parts.csv` are not considered.
 - RBS linker IDs have to be in the form `AAA-BBB` with `AAA` being the linker suffix ID.
+- Linker prefixes and suffixes coordinates on the plate have to be listed in `[biolegio|legacy]_plate.csv`.
 
 ### Maximum number of CDSs per construct
 
