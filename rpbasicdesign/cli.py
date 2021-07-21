@@ -74,6 +74,13 @@ def __cli():
          type=int
          )
     parser.add_argument(
+         '--cds_permutation',
+         help='Whether all combinations of CDS permutation should be built '
+              'Default: true',
+         default=True,
+         type=lambda x: (not str(x).lower() == 'false')
+         )
+    parser.add_argument(
          '--o_dnabot_dir',
           help='Output folder to write construct and plate files. '
                'It will be created if it does not exist yet. Existing '
@@ -107,7 +114,10 @@ def __cli():
           parts_files=args.parts_files
           )
     o.enzyme_from_rpsbml(rpsbml_file=args.rpsbml_file)
-    nb_constructs = o.combine(sample_size=args.sample_size)
+    nb_constructs = o.combine(
+         sample_size=args.sample_size,
+         cds_permutation=args.cds_permutation
+         )
     logging.info(f'{nb_constructs} constructs generated.')
     # Write
     if args.o_dnabot_dir:
