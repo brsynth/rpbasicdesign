@@ -30,13 +30,14 @@ def __cli():
          )
     parser.add_argument(
          '--rpsbml_file',
-          help='rpSBML file from which enzymes UniProt IDs will be collected',
+          help='rpSBML file from which enzymes UniProt IDs will be collected.',
           required=True
           )
     parser.add_argument(
          '--parts_files',
           help='List of files providing available linkers and user parts '
-               '(backbone, promoters, ...) for constructs.',
+               '(backbone, promoters, ...) for constructs. '
+               'Default: [data/biolegio_parts.csv, user_parts.csv]',
           type=str,
           nargs='+'
           )
@@ -49,37 +50,43 @@ def __cli():
 #           )
     parser.add_argument(
          '--lms_id',
-         help='part ID to be used as the LMS methylated linker',
+         help='part ID to be used as the LMS methylated linker. '
+              'Default: LMS',
          default='LMS'
          )
     parser.add_argument(
          '--lmp_id',
-         help='part ID to be used as the LMP methylated linker',
+         help='part ID to be used as the LMP methylated linker. '
+              'Default: LMP',
          default='LMP'
          )
     parser.add_argument(
          '--backbone_id',
-         help='part ID to be used as the backbone',
+         help='part ID to be used as the backbone. '
+              'Default: BASIC_SEVA_37_CmR-p15A.1',
          default='BASIC_SEVA_37_CmR-p15A.1'
          )
     parser.add_argument(
          '--sample_size',
-         help='Number of construct to generate.',
+         help='Number of construct to generate.'
+              'Default: 3',
          default=3,
          type=int
          )
     parser.add_argument(
          '--o_dnabot_dir',
-          help='Output folder to write construct and coord part files. '
+          help='Output folder to write construct and plate files. '
                'It will be created if it does not exist yet. Existing '
-               'files will be overwritten. Default: out/dnabot_in',
+               'files will be overwritten. '
+               'Default: out/dnabot_in',
           default='out/dnabot_in'
           )
     parser.add_argument(
          '--o_sbol_dir',
           help='Output folder to write SBOL depictions of constructs. '
                'It will be created if it does not exist yet. Existing '
-               'files will be overwritten. Default: out/sbol_export',
+               'files will be overwritten. '
+               'Default: out/sbol_export',
           default='out/sbol_export'
           )
 
