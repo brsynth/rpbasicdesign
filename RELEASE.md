@@ -1,5 +1,10 @@
 # Release history
 
+## 0.3.2
+- fix: generate plate coordinates by columns
+- fix: output up to 88 constructs, not 96
+- docs: provide example for the lycopene pathway
+
 ## 0.3.1
 - style(cli): show default values in help
 - feat(cli): add cds_permutation arg
