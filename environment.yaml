@@ -1,4 +1,4 @@
-name: rpbasicdesign
+name: rpbasicdesign-dev
 channels:
   - conda-forge
   - defaults

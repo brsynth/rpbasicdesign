@@ -24,7 +24,6 @@ conda install -c brsynth -c conda-forge rpbasicdesign
 Simple call:
 ```sh
 conda activate <myenv>
-cd rpbasicdesign
 python -m rpbasicdesign.cli --rpsbml_file tests/input/muconate_example.xml
 ```
 
@@ -125,7 +124,7 @@ python -m rpbasicdesign.cli \
 
 ## For developers
 
-### Installation from source code
+### Installation
 
 ```sh
 git clone https://github.com/brsynth/rpbasicdesign.git
