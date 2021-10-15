@@ -82,8 +82,11 @@ optional arguments:
 
 ## Lycopene example
 
-This will generates up to 88 constructs for the lycopene producing pathway
-defined in `examples/lycopene_CrtEBI_from_selenzy.xml.xml`, using the parts
+If one wishes to only use a subset of BASIC parts, the way to go is to
+provide a restricted list of parts with the `--parts_file` option. 
+
+The command below generates up to 88 constructs for the lycopene producing
+pathway defined in `examples/lycopene_CrtEBI_from_selenzy.xml.xml`, using the parts
 described in `examples/parts_for_lycopene.csv`. Output files will be written
 in `examples/lycopene_sbol` folder for SBOL files and `examples/lycopene_dnabot`
 for DNA-Bot. At the end 88 constructs should be outputted.
@@ -120,19 +123,6 @@ Use the `parts_files` arguments to override.
 - IDs should match the linker naming conventions (see below).
 - IDs should match the IDs used in the plate file inputed to dnabot. As example -- but also ready to be used -- the [biolegio_plate.csv](rpbasicdesign/data/biolegio_plate.csv) is a valid input files for dnabot, with consistent IDs between `biolegio_parts.csv` and `biolegio_plate.csv`.
 
-## Example
-
-If one wishes to only use a subset of BASIC parts, the way to go is to provide a restricted list of parts with the `--parts_file` option.
-
-The `examples` folder contains such an example:
-```sh
-python -m rpbasicdesign.cli \
-    --rpsbml_file lycopene_example.xml \
-    --sample_size 96 \
-    --parts_file biolegio_parts_lycopene.csv \
-    --o_dnabot_dir out/lycopene_dnabot \
-    --o_sbol_dir out/lycopene_sbol
-```
 
 ## For developers
 
