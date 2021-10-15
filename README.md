@@ -86,7 +86,7 @@ If one wishes to only use a subset of BASIC parts, the way to go is to
 provide a restricted list of parts with the `--parts_file` option. 
 
 The command below generates up to 88 constructs for the lycopene producing
-pathway defined in `examples/lycopene_CrtEBI_from_selenzy.xml.xml`, using the parts
+pathway (CrtEBI pathway) defined in `examples/lycopene_CrtEBI_from_selenzy.xml.xml`, using the parts
 described in `examples/parts_for_lycopene.csv`. Output files will be written
 in `examples/lycopene_sbol` folder for SBOL files and `examples/lycopene_dnabot`
 for DNA-Bot. At the end 88 constructs should be outputted.
