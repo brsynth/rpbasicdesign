@@ -25,34 +25,23 @@ from rpbasicdesign.Construct import Construct
 from rpbasicdesign.Part import Part
 
 
-def _gen_plate_coords(nb_row=8, nb_col=12, by_row=True):
+def _gen_plate_coords(nb_row=8, nb_col=12):
     """Generator that generates the label coordinates for plate
 
     :param nb_row: number of rows in the plate (max: 26)
     :type nb_row: int
     :param nb_col: number of columns in the plate (max: 99)
     :type nb_col: int
-    :param by_row: True to work by row
-    :type by_row: bool
     :returns: well coordinate
     :rtype: str
     """
     assert nb_row <= 26 and nb_col <= 99
     row_names = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     col_names = [str(_) for _ in range(1, 100)]
-    if by_row:
-        i_dim = row_names
-        i_nb = nb_row
-        j_dim = col_names
-        j_nb = nb_col
-    else:
-        i_dim = col_names
-        i_nb = nb_col
-        j_dim = row_names
-        j_nb = nb_row
-    for i in range(i_nb):
-        for j in range(j_nb):
-            yield ''.join([i_dim[i], j_dim[j]])
+    for icol in range(nb_col):
+        for jrow in range(nb_row):
+            yield ''.join([row_names[jrow], col_names[icol]])
+
 
 class Designer:
     """Convert rpSBML enzyme info in to BASIC construct.
@@ -455,7 +444,7 @@ class Designer:
             os.makedirs(out_dir)
         # Construct file
         with open(os.path.join(out_dir, __CONSTRUCT_FILE), 'w') as ofh:
-            plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
+            plate_coords = _gen_plate_coords(nb_row=8, nb_col=12)
             writer = DictWriter(
                 f=ofh,
                 fieldnames=Construct.get_construct_file_header(),
@@ -469,7 +458,7 @@ class Designer:
                 writer.writerow(construct.get_construct_file_row(coord=next(plate_coords)))
         # Custom parts (ie not biolegio / linker)
         with open(os.path.join(out_dir, __USER_PLATE_FILE), 'w') as ofh:
-            plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
+            plate_coords = _gen_plate_coords(nb_row=8, nb_col=12)
             writer = DictWriter(
                 f=ofh,
                 fieldnames=DNABOT_PART_HEADER,
@@ -501,7 +490,7 @@ class Designer:
         """
         if not os.path.exists(out_dir):
             os.makedirs(out_dir)
-        plate_coords = _gen_plate_coords(nb_row=8, nb_col=12, by_row=True)
+        plate_coords = _gen_plate_coords(nb_row=8, nb_col=12)
         nb_constructs = 0
         for construct in self.constructs:
             nb_constructs += 1
