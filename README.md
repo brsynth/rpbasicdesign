@@ -80,6 +80,18 @@ optional arguments:
                         Output folder to write SBOL depictions of constructs. It will be created if it does not exist yet. Existing files will be overwritten. Default: out/sbol_export
 ```
 
+## Lycopene example
+
+This will generates up to 88 constructs for the lycopene producing pathway
+defined in `examples/lycopene_CrtEBI_from_selenzy.xml.xml`, using the parts
+described in `examples/parts_for_lycopene.csv`. Output files will be written
+in `examples/lycopene_sbol` folder for SBOL files and `examples/lycopene_dnabot`
+for DNA-Bot. At the end 88 constructs should be outputted.
+
+```bash
+python -m rpbasicdesign.cli --rpsbml_file examples/lycopene_CrtEBI_from_selenzy.xml --sample_size 88 --parts_files examples/parts_for_lycopene.csv --o_sbol_dir examples/lycopene_sbol --o_dnabot_dir examples/lycopene_dnabot
+```
+
 ## Inputs
 
 This section documents input files required / optional, their purpose, and how information should be structured.
