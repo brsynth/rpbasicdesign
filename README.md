@@ -1,8 +1,8 @@
 # rpbasicdesign
 
 
-[![Anaconda-Server Badge](https://anaconda.org/brsynth/rpbasicdesign/badges/latest_release_date.svg)](https://anaconda.org/brsynth/rxn_rebuild)
-[![Anaconda-Server Badge](https://anaconda.org/brsynth/rpbasicdesign/badges/version.svg)](https://anaconda.org/brsynth/rxn_rebuild)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/rpbasicdesign/badges/latest_release_date.svg)](https://anaconda.org/conda-forge/rpbasicdesign)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/rpbasicdesign/badges/version.svg)](https://anaconda.org/conda-forge/rpbasicdesign)
 
 **A command-line tool to convert rpSBML files into SBOL and CSV files ready-to-be used with DNA-Bot.**
 
