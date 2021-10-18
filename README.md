@@ -138,6 +138,7 @@ conda develop -n <myenv> .
 ### Tests
 
 ```sh
+conda activate <myenv>
 python -m pytest -v --cov=rpbasicdesign --cov-report html
 ```
 
