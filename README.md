@@ -46,7 +46,7 @@ The complete list options is provided the embedded help, which can be printed us
 ```
 python -m rpbasicdesign.cli -h
 
-usage: python -m dnaprep.cli [-h]
+usage: python -m rpbasicdesign.cli [-h]
                             --rpsbml_file RPSBML_FILE 
                             [--parts_files PARTS_FILES [PARTS_FILES ...]]
                             [--lms_id LMS_ID]
