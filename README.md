@@ -1,8 +1,8 @@
 # rpbasicdesign
 
 
-[![Anaconda-Server Badge](https://anaconda.org/brsynth/rpbasicdesign/badges/latest_release_date.svg)](https://anaconda.org/brsynth/rxn_rebuild)
-[![Anaconda-Server Badge](https://anaconda.org/brsynth/rpbasicdesign/badges/version.svg)](https://anaconda.org/brsynth/rxn_rebuild)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/rpbasicdesign/badges/latest_release_date.svg)](https://anaconda.org/conda-forge/rpbasicdesign)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/rpbasicdesign/badges/version.svg)](https://anaconda.org/conda-forge/rpbasicdesign)
 
 **A command-line tool to convert rpSBML files into SBOL and CSV files ready-to-be used with DNA-Bot.**
 
@@ -46,7 +46,7 @@ The complete list options is provided the embedded help, which can be printed us
 ```
 python -m rpbasicdesign.cli -h
 
-usage: python -m dnaprep.cli [-h]
+usage: python -m rpbasicdesign.cli [-h]
                             --rpsbml_file RPSBML_FILE 
                             [--parts_files PARTS_FILES [PARTS_FILES ...]]
                             [--lms_id LMS_ID]
@@ -138,6 +138,7 @@ conda develop -n <myenv> .
 ### Tests
 
 ```sh
+conda activate <myenv>
 python -m pytest -v --cov=rpbasicdesign --cov-report html
 ```
 

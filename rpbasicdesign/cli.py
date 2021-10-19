@@ -26,7 +26,7 @@ def __cli():
            " DNA-Bot, (ii) as SBOL files."
     parser = argparse.ArgumentParser(
          description=desc,
-         prog='python -m dnaprep.cli'
+         prog='python -m rpbasicdesign.cli'
          )
     parser.add_argument(
          '--rpsbml_file',
