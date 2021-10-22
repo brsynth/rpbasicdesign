@@ -1,5 +1,9 @@
 # Release history
 
+## 0.3.3
+- fix: handle correctly multiple UniProt IDs per reaction
+- fix: ID based workaround to generate duplicate parts in SBOL
+
 ## 0.3.2
 - fix: generate plate coordinates by columns
 - fix: output up to 88 constructs, not 96
