@@ -54,6 +54,7 @@ usage: python -m rpbasicdesign.cli [-h]
                             [--backbone_id BACKBONE_ID]
                             [--sample_size SAMPLE_SIZE]
                             [--cds_permutation CDS_PERMUTATION]
+                            [--max_enz_per_rxn MAX_ENZ_PER_RXN]
                             [--o_dnabot_dir O_DNABOT_DIR]
                             [--o_sbol_dir O_SBOL_DIR]
 
@@ -74,6 +75,8 @@ optional arguments:
                         Number of construct to generate.Default: 3
   --cds_permutation CDS_PERMUTATION
                         Whether all combinations of CDS permutation should be built Default: true
+  --max_enz_per_rxn MAX_ENZ_PER_RXN
+                        Maximum number of enyzme to consider per reaction. If more enzymes are available for a given reaction, then only the last one listed in the MIRIAM annotation section will be kept.
   --o_dnabot_dir O_DNABOT_DIR
                         Output folder to write construct and plate files. It will be created if it does not exist yet. Existing files will be overwritten. Default: out/dnabot_in
   --o_sbol_dir O_SBOL_DIR
