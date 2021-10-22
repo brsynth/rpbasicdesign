@@ -25,6 +25,11 @@ from rpbasicdesign.Construct import Construct
 from rpbasicdesign.Part import Part
 
 
+# CONSTANTS
+MAX_ENZ_PER_RXN = 1
+MAX_RXN_PER_CONSTRUCT = 3
+
+
 def _gen_plate_coords(nb_row=8, nb_col=12):
     """Generator that generates the label coordinates for plate
 
@@ -69,10 +74,11 @@ class Designer:
         verbose=False,
         lms_id='LMS', lmp_id='LMP',
         backbone_id='BASIC_SEVA_37_CmR-p15A.1',
-        parts_files=None
+        parts_files=None,
+        max_enz_per_rxn=MAX_ENZ_PER_RXN,
+        max_rxn_per_construct=MAX_RXN_PER_CONSTRUCT
         ):
         # Default settings
-        self._MAX_ENZ = 3
         self._DATA_PATH = Path(__file__).resolve().parent / 'data'
         self._DEFAULT_DATA = [
             self._DATA_PATH / 'biolegio_parts.csv',
@@ -87,6 +93,8 @@ class Designer:
         self._lms_id = lms_id
         self._lmp_id = lmp_id
         self._backbone_id = backbone_id
+        self._max_enz_per_rxn = max_enz_per_rxn
+        self._max_rxn_per_construct = max_rxn_per_construct
 
         # Data files
         if parts_files is None:
@@ -147,7 +155,7 @@ class Designer:
         part_ids = []
         for part in self._parts.values():
             if part.biological_role == 'cds':
-                if part.cds_step == cds_step:
+                if cds_step in part.cds_steps:
                     part_ids.append(part.id)
         return sorted(part_ids)
 
@@ -253,21 +261,31 @@ class Designer:
         reader = SBMLReader()
         document = reader.readSBML(rpsbml_file)
         model = document.getModel()
-        for nb_rxn, reaction in enumerate(model.getListOfReactions()):
+        for idx_rxn, reaction in enumerate(model.getListOfReactions(), start=1):
             if reaction.id in TO_SKIP_RXN_IDS:
                 logging.info(f'Reaction `{reaction.id}` skipped when extracting UniProt IDs. See TO_SKIP_RXN_IDS.')
-            elif nb_rxn > self._MAX_ENZ:
-                logging.warning(f'Number of reactions exceed the defined allowed number of enzymes {self._MAX_ENZ}')
+            elif idx_rxn > self._max_rxn_per_construct:
+                logging.warning(f'Number of reactions exceed the defined allowed number of enzymes : {self._MAX_RXN}. Reaction skipped.')
             else:
                 annot = reaction.getAnnotation()
                 if 'uniprot' not in self._read_MIRIAM_annotation(annot):
                     raise KeyError(f'Missing UniProt ID for reaction {reaction.id}. Execution cancelled.')
-                for uni_id in self._read_MIRIAM_annotation(annot)['uniprot']:
-                    if uni_id in self._parts and self._verbose:
-                        logging.warning(f'Warning, part {uni_id} already defined, only the last definition kept.')
-                    self._parts[uni_id] = Part(id=uni_id, basic_role='part',
-                                               biological_role='cds',
-                                               cds_step=reaction.id, seq='atgc')
+                # The list of IDs is traversed in the reverse order
+                #   - (i) best IDs are expected to be the last ones
+                #   - (ii) allow to only keep topx enzymes
+
+                for idx_uid, uniprot_id in enumerate(reversed(self._read_MIRIAM_annotation(annot)['uniprot']), start=1):
+                    if idx_uid > self._max_enz_per_rxn:
+                        logging.warning(
+                            f'Max number of enzyme per reaction reached ({self._max_enz_per_rxn}) for reaction {reaction.id}. '
+                            'Other enzyme are ignored for this reaction. Passing to the next reaction.')
+                        break
+                    if uniprot_id in self._parts:
+                        self._parts[uniprot_id].cds_steps.append(reaction.id)
+                    else:
+                        self._parts[uniprot_id] = Part(id=uniprot_id, basic_role='part', 
+                                biological_role='cds', cds_steps=[reaction.id],
+                                seq='atgc')
 
     def combine(self, sample_size: int, random_seed: int =42, cds_permutation: bool =True) -> int:
         """Generate random constructs
@@ -290,7 +308,11 @@ class Designer:
         random.seed(random_seed)
         # Collect CDS ===============================================
         cds_ids = self._get_cds_ids()
-        cds_steps = sorted(list(set([cds.cds_step for cds in self._get_parts_from_ids(cds_ids)])))
+        cds_steps = list()
+        for cds in self._get_parts_from_ids(cds_ids):
+            cds_steps += cds.cds_steps
+        cds_steps = sorted(list(set(cds_steps)))
+        # cds_steps = sorted(list(set([cds.cds_steps for cds in self._get_parts_from_ids(cds_ids)])))
         if len(cds_steps) == 0:
             logging.error(f'No CDS registered so far, generation of combination aborted')
             return 0

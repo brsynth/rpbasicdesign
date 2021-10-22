@@ -41,13 +41,6 @@ def __cli():
           type=str,
           nargs='+'
           )
-#     parser.add_argument(
-#          '--polycistronic',
-#           help='Build polycistronic constructs. Default to true, ie '
-#                'polycistronic constructs will be generated.',
-#           default=True,
-#           type=lambda x: (not str(x).lower() == 'false')
-#           )
     parser.add_argument(
          '--lms_id',
          help='part ID to be used as the LMS methylated linker. '
@@ -81,6 +74,15 @@ def __cli():
          type=lambda x: (not str(x).lower() == 'false')
          )
     parser.add_argument(
+          '--max_enz_per_rxn',
+          help='Maximum number of enyzme to consider per reaction. '
+               'If more enzymes are available for a given reaction, '
+               'then only the last one listed in the MIRIAM annotation '
+               'section will be kept.',
+          default=1,
+          type=int
+          )
+    parser.add_argument(
          '--o_dnabot_dir',
           help='Output folder to write construct and plate files. '
                'It will be created if it does not exist yet. Existing '
@@ -111,7 +113,8 @@ def __cli():
           lms_id=args.lms_id,
           lmp_id=args.lmp_id,
           backbone_id=args.backbone_id,
-          parts_files=args.parts_files
+          parts_files=args.parts_files,
+          max_enz_per_rxn=args.max_enz_per_rxn
           )
     o.enzyme_from_rpsbml(rpsbml_file=args.rpsbml_file)
     nb_constructs = o.combine(

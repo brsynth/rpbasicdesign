@@ -13,8 +13,8 @@ class Part:
     :type biological_role: str
     :param linker_class: linker class (only for linkers, eg neutral linker, rbs linker, ...) or None
     :type linker_class: str or None
-    :param cds_step: "step" of the CDS (eg first, second, third enzyme of a pathway...)
-    :type cds_step: int or None
+    :param cds_steps: "step" of the CDS (eg first, second, third enzyme of a pathway...)
+    :type cds_steps: list or None
     :param seq: part DNA sequence
     :type seq: str
     :return: Part object
@@ -22,12 +22,12 @@ class Part:
     """
 
     def __init__(self, id, basic_role, biological_role,
-                 linker_class=None, cds_step=None, seq=''):
+                 linker_class=None, cds_steps=None, seq=''):
         self.id = id
         self.basic_role = basic_role
         self.biological_role = biological_role
         self.linker_class = linker_class
-        self.cds_step = cds_step
+        self.cds_steps = cds_steps
         self.seq = seq.lower()
 
     def __repr__(self):
@@ -36,7 +36,7 @@ class Part:
             'basic_role': self.basic_role,
             'biological_role': self.biological_role,
             'linker_class': self.linker_class,
-            'cds_step': self.cds_step,
+            'cds_steps': self.cds_steps,
             'seq': (self.seq[:10] + '...') if len(self.seq) > 11 else self.seq
         })
 
