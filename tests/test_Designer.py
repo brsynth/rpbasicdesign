@@ -44,10 +44,10 @@ def test_combine():
     print(o.constructs[0].get_part_ids())
     assert o.constructs[0].get_part_ids() == [
         'LMS', 'BASIC_SEVA_37_CmR-p15A.1',
-        'LMP', 'PJ23111_BASIC',
-        'U1-RBS2', 'Q3JUM4',
-        'U2-RBS2', 'Q51602',
-        'U3-RBS1', 'O33950']
+        'LMP', 'PJ23104_BASIC',
+        'U1-RBS1', 'Q8XEC3',
+        'U2-RBS1', 'P23262',
+        'U3-RBS2', 'P95607']
 
 
 def test_write_dnabot_inputs(tmp_path):
