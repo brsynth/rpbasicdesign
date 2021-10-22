@@ -148,11 +148,32 @@ class Construct:
         setHomespace('https://localhost')
         doc = Document()
 
+        # Check duplicated part
+        part_seen = set()
+        dup_part_ids = set()
+        for part in self._parts:
+            if part.id not in part_seen:
+                part_seen.add(part.id)
+            else:
+                dup_part_ids.add(part.id)
+        
         components = []
         for part in self._parts:
-            component = ComponentDefinition(part.get_sbol_id())
+
+            # Deal with duplicated part
+            if part.get_sbol_id() in dup_part_ids:
+                i = 0
+                part_id = f'{part.get_sbol_id()}_{i}'
+                while part_id in doc.componentDefinitions:
+                    i += 1
+                    part_id = f'{part.get_sbol_id()}_{i}'
+            else:
+                part_id = part.get_sbol_id()
+
+            # Build part
+            component = ComponentDefinition(part_id)
             component.roles = _SBOL_ROLE_ASSOC[part.biological_role]
-            component.sequence = Sequence(part.get_sbol_id(), part.seq)
+            component.sequence = Sequence(part_id, part.seq)
             doc.addComponentDefinition(component)
             components.append(component)
 
