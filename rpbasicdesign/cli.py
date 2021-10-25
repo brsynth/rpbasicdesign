@@ -116,6 +116,7 @@ def __cli():
           parts_files=args.parts_files,
           max_enz_per_rxn=args.max_enz_per_rxn
           )
+     o.get_selenzyme_annotation(rpsbml_path=args.rpsbml_file)
      nb_constructs = o.combine(
           sample_size=args.sample_size,
           cds_permutation=args.cds_permutation
