@@ -17,9 +17,11 @@ from csv import DictReader, DictWriter
 from copy import deepcopy
 from math import factorial
 from pathlib import Path
+from typing import Dict
+from operator import getitem
 
 from libsbml import SBMLReader
-
+from rptools.rplibs import rpSBML, rpPathway
 from rpbasicdesign import DNABOT_PART_HEADER
 from rpbasicdesign.Construct import Construct
 from rpbasicdesign.Part import Part
@@ -219,6 +221,44 @@ class Designer:
             if count == 0:
                 raise BaseException(f'No linker or part of type "{role}" provided. Does any have been provided? Exit.')
 
+    def get_selenzyme_annotation(
+        self, 
+        rpsbml_path: str
+        ) -> Dict:
+        rpsbml = rpSBML(str(rpsbml_path))
+        pathway = rpPathway.from_rpSBML(rpsbml=rpsbml)
+        for idx_rxn, rxn_id in enumerate(pathway.get_reactions_ids()):
+            # Stop if too many reactions
+            if idx_rxn > self._max_rxn_per_construct:
+                raise ValueError(
+                    f'Number of reactions exceed the defined allowed number of ',
+                    f'enzymes : {self._max_rxn_per_construct}. Execution cancelled.')
+            # 
+            rxn = pathway.get_reaction(rxn_id)
+            enzymes = rxn.get_selenzy()
+            # Stop if no enzyme available
+            if len(enzymes) == 0:
+                raise ValueError(
+                    f'Missing UniProt IDs from selenzyme annotation for '
+                    f'for reaction {rxn_id}. Execution cancelled.')
+            # Collect enzyme ordered by score, the first is the best
+            for idx_enz, enz in enumerate(
+                    sorted(enzymes.items(), key=lambda x: getitem(x[1], 'score'), reverse=True),
+                    start=1):
+                # Skip worst enzyme if too many
+                if idx_enz > self._max_enz_per_rxn:
+                    logging.warning(
+                        f'Max number of enzyme per reaction reached ({self._max_enz_per_rxn}) '
+                        f'for reaction {rxn_id}. Only the best one(s) are kept.')
+                    break
+                uniprot_id, _ = enz
+                if uniprot_id in self._parts:
+                    self._parts[uniprot_id].cds_steps.append(rxn_id)
+                else:
+                    self._parts[uniprot_id] = Part(id=uniprot_id, basic_role='part', 
+                            biological_role='cds', cds_steps=[rxn_id],
+                            seq='atgc')
+
     def _read_MIRIAM_annotation(self, annot) -> dict:
         """Return the MIRIAM annotations of species.
 
@@ -249,7 +289,7 @@ class Designer:
         except AttributeError:
             return {}
 
-    def enzyme_from_rpsbml(self, rpsbml_file: str):
+    def enzyme_from_rpsbml_deprecated(self, rpsbml_file: str):
         """Extract enzyme from rpSBML annotation
 
         WARNING: the rpSBML file is expected to follow the specific schema of annotations used for rpSBMLs
