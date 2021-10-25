@@ -258,73 +258,73 @@ class Designer:
                             biological_role='cds', cds_steps=[rxn_id],
                             seq='atgc')
 
-    def _read_MIRIAM_annotation(self, annot) -> dict:
-        """Return the MIRIAM annotations of species.
+    # def _read_MIRIAM_annotation(self, annot) -> dict:
+    #     """Return the MIRIAM annotations of species.
 
-        Notice: an empty dict is return if the parsing failed.
+    #     Notice: an empty dict is return if the parsing failed.
 
-        :param annot: SBML annotation block
-        :type annot: <libsbml.XMLNode>
-        :return: annotations as a dictionary
-        :rtype dict
-        """
-        try:
-            to_keep = {}
-            bag = annot.getChild('RDF').getChild('Description').getChild('is').getChild('Bag')
-            for i in range(bag.getNumChildren()):
-                str_annot = bag.getChild(i).getAttrValue(0)
-                if str_annot == '':
-                    logging.warning('This contains no attributes: ' + str(bag.getChild(i).toXMLString()))
-                    continue
-                dbid = str_annot.split('/')[-2].split('.')[0]
-                if len(str_annot.split('/')[-1].split(':')) == 2:
-                    cid = str_annot.split('/')[-1].split(':')[1]
-                else:
-                    cid = str_annot.split('/')[-1]
-                if dbid not in to_keep:
-                    to_keep[dbid] = []
-                to_keep[dbid].append(cid)
-            return to_keep
-        except AttributeError:
-            return {}
+    #     :param annot: SBML annotation block
+    #     :type annot: <libsbml.XMLNode>
+    #     :return: annotations as a dictionary
+    #     :rtype dict
+    #     """
+    #     try:
+    #         to_keep = {}
+    #         bag = annot.getChild('RDF').getChild('Description').getChild('is').getChild('Bag')
+    #         for i in range(bag.getNumChildren()):
+    #             str_annot = bag.getChild(i).getAttrValue(0)
+    #             if str_annot == '':
+    #                 logging.warning('This contains no attributes: ' + str(bag.getChild(i).toXMLString()))
+    #                 continue
+    #             dbid = str_annot.split('/')[-2].split('.')[0]
+    #             if len(str_annot.split('/')[-1].split(':')) == 2:
+    #                 cid = str_annot.split('/')[-1].split(':')[1]
+    #             else:
+    #                 cid = str_annot.split('/')[-1]
+    #             if dbid not in to_keep:
+    #                 to_keep[dbid] = []
+    #             to_keep[dbid].append(cid)
+    #         return to_keep
+    #     except AttributeError:
+    #         return {}
 
-    def enzyme_from_rpsbml_deprecated(self, rpsbml_file: str):
-        """Extract enzyme from rpSBML annotation
+    # def enzyme_from_rpsbml_deprecated(self, rpsbml_file: str):
+    #     """Extract enzyme from rpSBML annotation
 
-        WARNING: the rpSBML file is expected to follow the specific schema of annotations used for rpSBMLs
+    #     WARNING: the rpSBML file is expected to follow the specific schema of annotations used for rpSBMLs
 
-        :param rpsbml_file: path to rpSBML from which enzyme will be extracted.
-        :type rpsbml_file: str
-        """
-        TO_SKIP_RXN_IDS = ['rxn_target']
-        reader = SBMLReader()
-        document = reader.readSBML(rpsbml_file)
-        model = document.getModel()
-        for idx_rxn, reaction in enumerate(model.getListOfReactions(), start=1):
-            if reaction.id in TO_SKIP_RXN_IDS:
-                logging.info(f'Reaction `{reaction.id}` skipped when extracting UniProt IDs. See TO_SKIP_RXN_IDS.')
-            elif idx_rxn > self._max_rxn_per_construct:
-                logging.warning(f'Number of reactions exceed the defined allowed number of enzymes : {self._MAX_RXN}. Reaction skipped.')
-            else:
-                annot = reaction.getAnnotation()
-                if 'uniprot' not in self._read_MIRIAM_annotation(annot):
-                    raise KeyError(f'Missing UniProt ID for reaction {reaction.id}. Execution cancelled.')
-                # The list of IDs is traversed in the reverse order
-                #   - (i) best IDs are expected to be the last ones
-                #   - (ii) allow to only keep topx enzymes
+    #     :param rpsbml_file: path to rpSBML from which enzyme will be extracted.
+    #     :type rpsbml_file: str
+    #     """
+    #     TO_SKIP_RXN_IDS = ['rxn_target']
+    #     reader = SBMLReader()
+    #     document = reader.readSBML(rpsbml_file)
+    #     model = document.getModel()
+    #     for idx_rxn, reaction in enumerate(model.getListOfReactions(), start=1):
+    #         if reaction.id in TO_SKIP_RXN_IDS:
+    #             logging.info(f'Reaction `{reaction.id}` skipped when extracting UniProt IDs. See TO_SKIP_RXN_IDS.')
+    #         elif idx_rxn > self._max_rxn_per_construct:
+    #             logging.warning(f'Number of reactions exceed the defined allowed number of enzymes : {self._MAX_RXN}. Reaction skipped.')
+    #         else:
+    #             annot = reaction.getAnnotation()
+    #             if 'uniprot' not in self._read_MIRIAM_annotation(annot):
+    #                 raise KeyError(f'Missing UniProt ID for reaction {reaction.id}. Execution cancelled.')
+    #             # The list of IDs is traversed in the reverse order
+    #             #   - (i) best IDs are expected to be the last ones
+    #             #   - (ii) allow to only keep topx enzymes
 
-                for idx_uid, uniprot_id in enumerate(reversed(self._read_MIRIAM_annotation(annot)['uniprot']), start=1):
-                    if idx_uid > self._max_enz_per_rxn:
-                        logging.warning(
-                            f'Max number of enzyme per reaction reached ({self._max_enz_per_rxn}) for reaction {reaction.id}. '
-                            'Other enzyme are ignored for this reaction. Passing to the next reaction.')
-                        break
-                    if uniprot_id in self._parts:
-                        self._parts[uniprot_id].cds_steps.append(reaction.id)
-                    else:
-                        self._parts[uniprot_id] = Part(id=uniprot_id, basic_role='part', 
-                                biological_role='cds', cds_steps=[reaction.id],
-                                seq='atgc')
+    #             for idx_uid, uniprot_id in enumerate(reversed(self._read_MIRIAM_annotation(annot)['uniprot']), start=1):
+    #                 if idx_uid > self._max_enz_per_rxn:
+    #                     logging.warning(
+    #                         f'Max number of enzyme per reaction reached ({self._max_enz_per_rxn}) for reaction {reaction.id}. '
+    #                         'Other enzyme are ignored for this reaction. Passing to the next reaction.')
+    #                     break
+    #                 if uniprot_id in self._parts:
+    #                     self._parts[uniprot_id].cds_steps.append(reaction.id)
+    #                 else:
+    #                     self._parts[uniprot_id] = Part(id=uniprot_id, basic_role='part', 
+    #                             biological_role='cds', cds_steps=[reaction.id],
+    #                             seq='atgc')
 
     def combine(self, sample_size: int, random_seed: int =42, cds_permutation: bool =True) -> int:
         """Generate random constructs
