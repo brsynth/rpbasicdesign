@@ -20,7 +20,6 @@ from pathlib import Path
 from typing import Dict
 from operator import getitem
 
-from libsbml import SBMLReader
 from rptools.rplibs import rpSBML, rpPathway
 from rpbasicdesign import DNABOT_PART_HEADER
 from rpbasicdesign.Construct import Construct
