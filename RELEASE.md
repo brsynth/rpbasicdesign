@@ -1,5 +1,11 @@
 # Release history
 
+## 0.3.4
+- docs: add README about the lycopene file
+- feat: get enzyme IDs from selenzy annotation
+- chore: update example with new selenzy output file
+- build: make use of rptools library
+
 ## 0.3.3
 - fix: handle correctly multiple UniProt IDs per reaction
 - fix: ID based workaround to generate duplicate parts in SBOL
