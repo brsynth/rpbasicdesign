@@ -19,6 +19,7 @@ requirements:
     - python {{ python }}
     - python-libsbml
     - pysbol2
+    - rptools
 
 test:
   source_files:

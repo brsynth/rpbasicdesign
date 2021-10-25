@@ -6,5 +6,6 @@ dependencies:
   - python < 3.9
   - python-libsbml
   - pysbol2
+  - rptools
   - pytest
   - pytest-cov
