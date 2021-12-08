@@ -95,7 +95,7 @@ in `examples/lycopene_sbol` folder for SBOL files and `examples/lycopene_dnabot`
 for DNA-Bot. At the end 88 constructs should be outputted.
 
 ```bash
-python -m rpbasicdesign.cli --rpsbml_file examples/lycopene_CrtEBI_from_selenzy.xml --sample_size 88 --parts_files examples/parts_for_lycopene.csv --o_sbol_dir examples/lycopene_sbol --o_dnabot_dir examples/lycopene_dnabot
+python -m rpbasicdesign.cli --rpsbml_file examples/lycopene_CrtEBI_from_selenzy.xml --sample_size 88 --parts_files examples/parts_for_lycopene.csv --o_sbol_dir examples/lycopene_sbol_crtEBI --o_dnabot_dir examples/lycopene_dnabot_crtEBI --max_enz_per_rxn 1
 ```
 
 ## Inputs
