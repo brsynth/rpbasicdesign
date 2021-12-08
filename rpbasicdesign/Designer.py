@@ -239,7 +239,7 @@ class Designer:
             if len(enzymes) == 0:
                 raise ValueError(
                     f'Missing UniProt IDs from selenzyme annotation for '
-                    f'for reaction {rxn_id}. Execution cancelled.')
+                    f'reaction {rxn_id}. Execution cancelled.')
             # Collect enzyme ordered by score, the first is the best
             for idx_enz, enz in enumerate(
                     sorted(enzymes.items(), key=lambda x: getitem(x[1], 'score'), reverse=True),
