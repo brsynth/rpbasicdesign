@@ -1,0 +1,339 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:sbol="http://sbols.org/v2#">
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/LMS/1">
+    <sbol:version>1</sbol:version>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000001"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:displayId>LMS</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/LMS"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/LMS/1"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/BASIC_SEVA_37_CmR_p15A_1/1">
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000988"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_SEVA_37_CmR_p15A_1"/>
+    <sbol:displayId>BASIC_SEVA_37_CmR_p15A_1</sbol:displayId>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/BASIC_SEVA_37_CmR_p15A_1/1"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/LMP/1">
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/LMP"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000001"/>
+    <sbol:displayId>LMP</sbol:displayId>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/LMP/1"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/PJ23105/1">
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000167"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/PJ23105/1"/>
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/PJ23105"/>
+    <sbol:displayId>PJ23105</sbol:displayId>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/U3_A04/1">
+    <sbol:version>1</sbol:version>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000139"/>
+    <sbol:displayId>U3_A04</sbol:displayId>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/U3_A04/1"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/U3_A04"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/P21685/1">
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/P21685"/>
+    <sbol:displayId>P21685</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/P21685/1"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/U1_A04/1">
+    <sbol:displayId>U1_A04</sbol:displayId>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/U1_A04/1"/>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/U1_A04"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000139"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/P21684/1">
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/P21684"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/P21684/1"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:version>1</sbol:version>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+    <sbol:displayId>P21684</sbol:displayId>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/U2_A03/1">
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/U2_A03"/>
+    <sbol:displayId>U2_A03</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/U2_A03/1"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000139"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/P21683/1">
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/P21683/1"/>
+    <sbol:displayId>P21683</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/P21683"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/1">
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_0/1">
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/LMS_0/1"/>
+        <sbol:displayId>constraint_0</sbol:displayId>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_0"/>
+        <sbol:version>1</sbol:version>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/BASIC_SEVA_37_CmR_p15A_1_0/1"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:component>
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/U3_A04_0/1">
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/U3_A04_0"/>
+        <sbol:displayId>U3_A04_0</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/U3_A04/1"/>
+        <sbol:version>1</sbol:version>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:version>1</sbol:version>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_1/1">
+        <sbol:version>1</sbol:version>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_1"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/LMP_0/1"/>
+        <sbol:displayId>constraint_1</sbol:displayId>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/BASIC_SEVA_37_CmR_p15A_1_0/1"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_6/1">
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/P21684_0/1"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_6"/>
+        <sbol:displayId>constraint_6</sbol:displayId>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/U1_A04_0/1"/>
+        <sbol:version>1</sbol:version>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_7/1">
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/U2_A03_0/1"/>
+        <sbol:version>1</sbol:version>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/P21684_0/1"/>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:displayId>constraint_7</sbol:displayId>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_7"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:component>
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/P21683_0/1">
+        <sbol:displayId>P21683_0</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/P21683/1"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/P21683_0"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_4/1">
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_4"/>
+        <sbol:version>1</sbol:version>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:displayId>constraint_4</sbol:displayId>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/U3_A04_0/1"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/P21685_0/1"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_8/1">
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/U2_A03_0/1"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_8"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/P21683_0/1"/>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:displayId>constraint_8</sbol:displayId>
+        <sbol:version>1</sbol:version>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:component>
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/P21685_0/1">
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/P21685/1"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/P21685_0"/>
+        <sbol:version>1</sbol:version>
+        <sbol:displayId>P21685_0</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:displayId>BASIC_construct_A7</sbol:displayId>
+    <sbol:type rdf:resource="http://identifiers.org/so/SO:0000987"/>
+    <sbol:component>
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/P21684_0/1">
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/P21684/1"/>
+        <sbol:displayId>P21684_0</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:version>1</sbol:version>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/P21684_0"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/PJ23105_0/1">
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:displayId>PJ23105_0</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/PJ23105_0"/>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/PJ23105/1"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/LMS_0/1">
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/LMS/1"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/LMS_0"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:version>1</sbol:version>
+        <sbol:displayId>LMS_0</sbol:displayId>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_2/1">
+        <sbol:displayId>constraint_2</sbol:displayId>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/LMP_0/1"/>
+        <sbol:version>1</sbol:version>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_2"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/PJ23105_0/1"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:component>
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/U1_A04_0/1">
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/U1_A04/1"/>
+        <sbol:displayId>U1_A04_0</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:version>1</sbol:version>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/U1_A04_0"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/BASIC_SEVA_37_CmR_p15A_1_0/1">
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/BASIC_SEVA_37_CmR_p15A_1/1"/>
+        <sbol:version>1</sbol:version>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/BASIC_SEVA_37_CmR_p15A_1_0"/>
+        <sbol:displayId>BASIC_SEVA_37_CmR_p15A_1_0</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/LMP_0/1">
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/LMP_0"/>
+        <sbol:displayId>LMP_0</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/LMP/1"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_5/1">
+        <sbol:version>1</sbol:version>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:displayId>constraint_5</sbol:displayId>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_5"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/U1_A04_0/1"/>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/P21685_0/1"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:component>
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/U2_A03_0/1">
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:version>1</sbol:version>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/U2_A03/1"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/U2_A03_0"/>
+        <sbol:displayId>U2_A03_0</sbol:displayId>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7"/>
+    <sbol:sequenceConstraint>
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_3/1">
+        <sbol:displayId>constraint_3</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/PJ23105_0/1"/>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/U3_A04_0/1"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BASIC_construct_A7/constraint_3"/>
+      </sbol:SequenceConstraint>
+    </sbol:sequenceConstraint>
+  </sbol:ComponentDefinition>
+  <sbol:Sequence rdf:about="https://localhost/Sequence/LMS/1">
+    <sbol:elements></sbol:elements>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/LMS"/>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>LMS</sbol:displayId>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="https://localhost/Sequence/BASIC_SEVA_37_CmR_p15A_1/1">
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/BASIC_SEVA_37_CmR_p15A_1"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>BASIC_SEVA_37_CmR_p15A_1</sbol:displayId>
+    <sbol:elements></sbol:elements>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="https://localhost/Sequence/LMP/1">
+    <sbol:displayId>LMP</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/LMP"/>
+    <sbol:elements></sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:version>1</sbol:version>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="https://localhost/Sequence/PJ23105/1">
+    <sbol:displayId>PJ23105</sbol:displayId>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/PJ23105"/>
+    <sbol:elements></sbol:elements>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="https://localhost/Sequence/U3_A04/1">
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/U3_A04"/>
+    <sbol:elements></sbol:elements>
+    <sbol:displayId>U3_A04</sbol:displayId>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="https://localhost/Sequence/P21685/1">
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:displayId>P21685</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/P21685"/>
+    <sbol:elements>atgc</sbol:elements>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="https://localhost/Sequence/U1_A04/1">
+    <sbol:version>1</sbol:version>
+    <sbol:elements></sbol:elements>
+    <sbol:displayId>U1_A04</sbol:displayId>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/U1_A04"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="https://localhost/Sequence/P21684/1">
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/P21684"/>
+    <sbol:displayId>P21684</sbol:displayId>
+    <sbol:elements>atgc</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="https://localhost/Sequence/U2_A03/1">
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/U2_A03"/>
+    <sbol:version>1</sbol:version>
+    <sbol:elements></sbol:elements>
+    <sbol:displayId>U2_A03</sbol:displayId>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="https://localhost/Sequence/P21683/1">
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/P21683"/>
+    <sbol:elements>atgc</sbol:elements>
+    <sbol:displayId>P21683</sbol:displayId>
+  </sbol:Sequence>
+</rdf:RDF>
