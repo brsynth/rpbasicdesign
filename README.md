@@ -72,7 +72,7 @@ optional arguments:
   --backbone_id BACKBONE_ID
                         part ID to be used as the backbone. Default: BASIC_SEVA_37_CmR-p15A.1
   --sample_size SAMPLE_SIZE
-                        Number of construct to generate.Default: 3
+                        Number of construct to generate.Default: 88
   --cds_permutation CDS_PERMUTATION
                         Whether all combinations of CDS permutation should be built Default: true
   --max_enz_per_rxn MAX_ENZ_PER_RXN

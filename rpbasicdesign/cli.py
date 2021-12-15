@@ -62,8 +62,8 @@ def __cli():
      parser.add_argument(
           '--sample_size',
           help='Number of construct to generate.'
-               'Default: 3',
-          default=3,
+               'Default: 88',
+          default=88,
           type=int
           )
      parser.add_argument(
