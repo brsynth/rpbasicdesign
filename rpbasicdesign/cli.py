@@ -92,11 +92,10 @@ def __cli():
           )
      parser.add_argument(
           '--o_sbol_dir',
-          help='Output folder to write SBOL depictions of constructs. '
-               'It will be created if it does not exist yet. Existing '
-               'files will be overwritten. '
-               'Default: out/sbol_export',
-          default='out/sbol_export'
+          help='Optional, output folder to write SBOL depictions of constructs. '
+               'Existing files will be overwritten. '
+               'Default: no output.',
+          default=None
           )
 
      # Logging
