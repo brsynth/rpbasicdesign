@@ -80,7 +80,7 @@ optional arguments:
   --o_dnabot_dir O_DNABOT_DIR
                         Output folder to write construct and plate files. It will be created if it does not exist yet. Existing files will be overwritten. Default: out/dnabot_in
   --o_sbol_dir O_SBOL_DIR
-                        Output folder to write SBOL depictions of constructs. It will be created if it does not exist yet. Existing files will be overwritten. Default: out/sbol_export
+                        Output folder to write SBOL depictions of constructs. Existing files will be overwritten. Default: not output.
 ```
 
 ## Lycopene example
