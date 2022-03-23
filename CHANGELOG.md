@@ -1,5 +1,11 @@
 # Release history
 
+## 1.0.0 (2022-03-23)
+- feat(cli.py): SBOL output dir is now optional
+- fix(cli.py): update default number of constructs
+- docs(README): update
+- build(meta.yaml): remove unneeded library
+
 ## 0.3.4
 - docs: add README about the lycopene file
 - feat: get enzyme IDs from selenzy annotation
