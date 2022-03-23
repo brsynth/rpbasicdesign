@@ -6,27 +6,27 @@
 - docs(README): update
 - build(meta.yaml): remove unneeded library
 
-## 0.3.4
+## 0.3.4 (2021-10-25)
 - docs: add README about the lycopene file
 - feat: get enzyme IDs from selenzy annotation
 - chore: update example with new selenzy output file
 - build: make use of rptools library
 
-## 0.3.3
+## 0.3.3 (2021-10-22)
 - fix: handle correctly multiple UniProt IDs per reaction
 - fix: ID based workaround to generate duplicate parts in SBOL
 
-## 0.3.2
+## 0.3.2 (2021-10-15)
 - fix: generate plate coordinates by columns
 - fix: output up to 88 constructs, not 96
 - docs: provide example for the lycopene pathway
 
-## 0.3.1
+## 0.3.1 (2021-07-22)
 - style(cli): show default values in help
 - feat(cli): add cds_permutation arg
 - feat(Designer): export the biolegio plate file
 
-## 0.3.0
+## 0.3.0 (2021-07-20)
 - docs(README): update info on RBS naming pattern
 - docs: provides an example of the --parts_file option
 - fix(Designer): fix the way combinatorics is built
