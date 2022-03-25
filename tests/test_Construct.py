@@ -143,4 +143,4 @@ def test_get_sbol():
     doc = o.get_sbol(construct_id='TEST')
     # Item order are random in SBOL file
     query = '\n'.join(sorted(doc.writeString().split('\n')))
-    assert sha1(query.encode()).hexdigest() == '64624e1680f27f1052614e7beb0f11bc071adf2f'
+    assert sha1(query.encode()).hexdigest() == '9d3f16b845d45186d78f860f0edd69f3db1155db'
