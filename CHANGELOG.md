@@ -1,5 +1,8 @@
 # Release history
 
+## 1.0.1 (2022-03-25)
+- fix(test_Construct.py): update hash for sbol output
+
 ## 1.0.0 (2022-03-23)
 - feat(cli.py): SBOL output dir is now optional
 - fix(cli.py): update default number of constructs
