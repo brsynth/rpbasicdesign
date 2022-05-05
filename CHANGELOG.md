@@ -1,5 +1,10 @@
 # Release history
 
+## 1.1.0 (2022-05-05)
+- feat(cli): expose max number of gene to CLI args
+- docs(README): update
+- chore: remove deprecated code
+
 ## 1.0.1 (2022-03-25)
 - fix(test_Construct.py): update hash for sbol output
 
