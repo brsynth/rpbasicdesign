@@ -82,6 +82,16 @@ def __cli():
           default=1,
           type=int
           )
+     
+     parser.add_argument(
+          "--max_gene_per_construct",
+          help="Maximum number of genes per construct. If more genes "
+               "are required, i.e. more reactions are described in the "
+               "inputet SBML file, then the execution will failed.",
+               default=3,
+               type=int
+               )
+
      parser.add_argument(
           '--o_dnabot_dir',
           help='Output folder to write construct and plate files. '
@@ -113,7 +123,8 @@ def __cli():
           lmp_id=args.lmp_id,
           backbone_id=args.backbone_id,
           parts_files=args.parts_files,
-          max_enz_per_rxn=args.max_enz_per_rxn
+          max_enz_per_rxn=args.max_enz_per_rxn,
+          max_gene_per_construct=args.max_gene_per_construct
           )
      o.get_selenzyme_annotation(rpsbml_path=args.rpsbml_file)
      nb_constructs = o.combine(

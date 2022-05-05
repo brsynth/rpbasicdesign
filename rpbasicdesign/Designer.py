@@ -28,7 +28,7 @@ from rpbasicdesign.Part import Part
 
 # CONSTANTS
 MAX_ENZ_PER_RXN = 1
-MAX_RXN_PER_CONSTRUCT = 3
+MAX_GENE_PER_CONSTRUCT = 3
 
 
 def _gen_plate_coords(nb_row=8, nb_col=12):
@@ -77,7 +77,7 @@ class Designer:
         backbone_id='BASIC_SEVA_37_CmR-p15A.1',
         parts_files=None,
         max_enz_per_rxn=MAX_ENZ_PER_RXN,
-        max_rxn_per_construct=MAX_RXN_PER_CONSTRUCT
+        max_gene_per_construct=MAX_GENE_PER_CONSTRUCT
         ):
         # Default settings
         self._DATA_PATH = Path(__file__).resolve().parent / 'data'
@@ -95,7 +95,7 @@ class Designer:
         self._lmp_id = lmp_id
         self._backbone_id = backbone_id
         self._max_enz_per_rxn = max_enz_per_rxn
-        self._max_rxn_per_construct = max_rxn_per_construct
+        self._max_gene_per_construct = max_gene_per_construct
 
         # Data files
         if parts_files is None:
@@ -228,10 +228,10 @@ class Designer:
         pathway = rpPathway.from_rpSBML(rpsbml=rpsbml)
         for idx_rxn, rxn_id in enumerate(pathway.get_reactions_ids()):
             # Stop if too many reactions
-            if idx_rxn > self._max_rxn_per_construct:
+            if idx_rxn > self._max_gene_per_construct:
                 raise ValueError(
                     f'Number of reactions exceed the defined allowed number of ',
-                    f'enzymes : {self._max_rxn_per_construct}. Execution cancelled.')
+                    f'enzymes : {self._max_gene_per_construct}. Execution cancelled.')
             # 
             rxn = pathway.get_reaction(rxn_id)
             enzymes = rxn.get_selenzy()
