@@ -77,6 +77,8 @@ optional arguments:
                         Whether all combinations of CDS permutation should be built Default: true
   --max_enz_per_rxn MAX_ENZ_PER_RXN
                         Maximum number of enyzme to consider per reaction. If more enzymes are available for a given reaction, then only the last one listed in the MIRIAM annotation section will be kept.
+  --max_gene_per_construct MAX_GENE_PER_CONSTRUCT
+                        Maximum number of genes per construct. If more genes are required, i.e. more reactions are described in the inputet SBML file, then the execution will failed.
   --o_dnabot_dir O_DNABOT_DIR
                         Output folder to write construct and plate files. It will be created if it does not exist yet. Existing files will be overwritten. Default: out/dnabot_in
   --o_sbol_dir O_SBOL_DIR
@@ -192,7 +194,8 @@ For advanced users wishing to play with custom linkers:
 ### Maximum number of CDSs per construct
 
 The maximum number of genes in a construct limited to 3 with the default `biolegio_plate.csv` RBS library, because
-there is only 3 different RBS suffix in the commercial BioLegio library.  
+there is only 3 different RBS suffix in the commercial BioLegio library. Anyway, if needed, this max number of genes
+can be relaxed and increased using the `--max_gene_per_construct` parameter.
 
 ## TODO
 
