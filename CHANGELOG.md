@@ -1,5 +1,9 @@
 # Release history
 
+## 1.1.1 (2022-08-23)
+- fix(test_Construct.py): update hash probably due to a new version of lxml library
+- test(test_get_sbol_new.txt): add an output test file for debugging (function test_get_sbol)
+
 ## 1.1.0 (2022-05-05)
 - feat(cli): expose max number of gene to CLI args
 - docs(README): update
