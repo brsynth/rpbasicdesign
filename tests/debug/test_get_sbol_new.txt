@@ -1,0 +1,271 @@
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/BB/1"/>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/CDS1/1"/>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/CDS2/1"/>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/LMP/1"/>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/LMS/1"/>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/LR1/1"/>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/LR2/1"/>
+        <sbol:definition rdf:resource="https://localhost/ComponentDefinition/P1/1"/>
+        <sbol:displayId>BB_0</sbol:displayId>
+        <sbol:displayId>CDS1_0</sbol:displayId>
+        <sbol:displayId>CDS2_0</sbol:displayId>
+        <sbol:displayId>LMP_0</sbol:displayId>
+        <sbol:displayId>LMS_0</sbol:displayId>
+        <sbol:displayId>LR1_0</sbol:displayId>
+        <sbol:displayId>LR2_0</sbol:displayId>
+        <sbol:displayId>P1_0</sbol:displayId>
+        <sbol:displayId>constraint_0</sbol:displayId>
+        <sbol:displayId>constraint_1</sbol:displayId>
+        <sbol:displayId>constraint_2</sbol:displayId>
+        <sbol:displayId>constraint_3</sbol:displayId>
+        <sbol:displayId>constraint_4</sbol:displayId>
+        <sbol:displayId>constraint_5</sbol:displayId>
+        <sbol:displayId>constraint_6</sbol:displayId>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/TEST/BB_0/1"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/TEST/CDS1_0/1"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/TEST/CDS2_0/1"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/TEST/LMP_0/1"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/TEST/LR1_0/1"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/TEST/LR2_0/1"/>
+        <sbol:object rdf:resource="https://localhost/ComponentDefinition/TEST/P1_0/1"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/BB_0"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/CDS1_0"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/CDS2_0"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/LMP_0"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/LMS_0"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/LR1_0"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/LR2_0"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/P1_0"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/constraint_0"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/constraint_1"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/constraint_2"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/constraint_3"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/constraint_4"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/constraint_5"/>
+        <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST/constraint_6"/>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:restriction rdf:resource="http://sbols.org/v2#precedes"/>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/TEST/BB_0/1"/>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/TEST/CDS1_0/1"/>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/TEST/LMP_0/1"/>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/TEST/LMS_0/1"/>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/TEST/LR1_0/1"/>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/TEST/LR2_0/1"/>
+        <sbol:subject rdf:resource="https://localhost/ComponentDefinition/TEST/P1_0/1"/>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+        <sbol:version>1</sbol:version>
+      </sbol:Component>
+      </sbol:Component>
+      </sbol:Component>
+      </sbol:Component>
+      </sbol:Component>
+      </sbol:Component>
+      </sbol:Component>
+      </sbol:Component>
+      </sbol:SequenceConstraint>
+      </sbol:SequenceConstraint>
+      </sbol:SequenceConstraint>
+      </sbol:SequenceConstraint>
+      </sbol:SequenceConstraint>
+      </sbol:SequenceConstraint>
+      </sbol:SequenceConstraint>
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/TEST/BB_0/1">
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/TEST/CDS1_0/1">
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/TEST/CDS2_0/1">
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/TEST/LMP_0/1">
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/TEST/LMS_0/1">
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/TEST/LR1_0/1">
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/TEST/LR2_0/1">
+      <sbol:Component rdf:about="https://localhost/ComponentDefinition/TEST/P1_0/1">
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/TEST/constraint_0/1">
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/TEST/constraint_1/1">
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/TEST/constraint_2/1">
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/TEST/constraint_3/1">
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/TEST/constraint_4/1">
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/TEST/constraint_5/1">
+      <sbol:SequenceConstraint rdf:about="https://localhost/ComponentDefinition/TEST/constraint_6/1">
+    </sbol:component>
+    </sbol:component>
+    </sbol:component>
+    </sbol:component>
+    </sbol:component>
+    </sbol:component>
+    </sbol:component>
+    </sbol:component>
+    </sbol:sequenceConstraint>
+    </sbol:sequenceConstraint>
+    </sbol:sequenceConstraint>
+    </sbol:sequenceConstraint>
+    </sbol:sequenceConstraint>
+    </sbol:sequenceConstraint>
+    </sbol:sequenceConstraint>
+    <sbol:component>
+    <sbol:component>
+    <sbol:component>
+    <sbol:component>
+    <sbol:component>
+    <sbol:component>
+    <sbol:component>
+    <sbol:component>
+    <sbol:displayId>BB</sbol:displayId>
+    <sbol:displayId>BB</sbol:displayId>
+    <sbol:displayId>CDS1</sbol:displayId>
+    <sbol:displayId>CDS1</sbol:displayId>
+    <sbol:displayId>CDS2</sbol:displayId>
+    <sbol:displayId>CDS2</sbol:displayId>
+    <sbol:displayId>LMP</sbol:displayId>
+    <sbol:displayId>LMP</sbol:displayId>
+    <sbol:displayId>LMS</sbol:displayId>
+    <sbol:displayId>LMS</sbol:displayId>
+    <sbol:displayId>LR1</sbol:displayId>
+    <sbol:displayId>LR1</sbol:displayId>
+    <sbol:displayId>LR2</sbol:displayId>
+    <sbol:displayId>LR2</sbol:displayId>
+    <sbol:displayId>P1</sbol:displayId>
+    <sbol:displayId>P1</sbol:displayId>
+    <sbol:displayId>TEST</sbol:displayId>
+    <sbol:elements></sbol:elements>
+    <sbol:elements></sbol:elements>
+    <sbol:elements></sbol:elements>
+    <sbol:elements></sbol:elements>
+    <sbol:elements></sbol:elements>
+    <sbol:elements></sbol:elements>
+    <sbol:elements></sbol:elements>
+    <sbol:elements></sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/BB"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/CDS1"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/CDS2"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/LMP"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/LMS"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/LR1"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/LR2"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/P1"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/ComponentDefinition/TEST"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/BB"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/CDS1"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/CDS2"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/LMP"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/LMS"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/LR1"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/LR2"/>
+    <sbol:persistentIdentity rdf:resource="https://localhost/Sequence/P1"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000001"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000001"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000001"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000139"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000139"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000167"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/BB/1"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/CDS1/1"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/CDS2/1"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/LMP/1"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/LMS/1"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/LR1/1"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/LR2/1"/>
+    <sbol:sequence rdf:resource="https://localhost/Sequence/P1/1"/>
+    <sbol:sequenceConstraint>
+    <sbol:sequenceConstraint>
+    <sbol:sequenceConstraint>
+    <sbol:sequenceConstraint>
+    <sbol:sequenceConstraint>
+    <sbol:sequenceConstraint>
+    <sbol:sequenceConstraint>
+    <sbol:type rdf:resource="http://identifiers.org/so/SO:0000987"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+    <sbol:version>1</sbol:version>
+  </sbol:ComponentDefinition>
+  </sbol:ComponentDefinition>
+  </sbol:ComponentDefinition>
+  </sbol:ComponentDefinition>
+  </sbol:ComponentDefinition>
+  </sbol:ComponentDefinition>
+  </sbol:ComponentDefinition>
+  </sbol:ComponentDefinition>
+  </sbol:ComponentDefinition>
+  </sbol:Sequence>
+  </sbol:Sequence>
+  </sbol:Sequence>
+  </sbol:Sequence>
+  </sbol:Sequence>
+  </sbol:Sequence>
+  </sbol:Sequence>
+  </sbol:Sequence>
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/BB/1">
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/CDS1/1">
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/CDS2/1">
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/LMP/1">
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/LMS/1">
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/LR1/1">
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/LR2/1">
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/P1/1">
+  <sbol:ComponentDefinition rdf:about="https://localhost/ComponentDefinition/TEST/1">
+  <sbol:Sequence rdf:about="https://localhost/Sequence/BB/1">
+  <sbol:Sequence rdf:about="https://localhost/Sequence/CDS1/1">
+  <sbol:Sequence rdf:about="https://localhost/Sequence/CDS2/1">
+  <sbol:Sequence rdf:about="https://localhost/Sequence/LMP/1">
+  <sbol:Sequence rdf:about="https://localhost/Sequence/LMS/1">
+  <sbol:Sequence rdf:about="https://localhost/Sequence/LR1/1">
+  <sbol:Sequence rdf:about="https://localhost/Sequence/LR2/1">
+  <sbol:Sequence rdf:about="https://localhost/Sequence/P1/1">
+</rdf:RDF>
+<rdf:RDF xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:sbol="http://sbols.org/v2#">
