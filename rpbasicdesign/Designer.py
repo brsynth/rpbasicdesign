@@ -437,7 +437,7 @@ class Designer:
         if not os.path.exists(out_dir):
             os.makedirs(out_dir)
         # Construct file
-        with open(os.path.join(out_dir, __CONSTRUCT_FILE), 'w') as ofh:
+        with open(os.path.join(out_dir, __CONSTRUCT_FILE), 'w', newline='') as ofh:
             plate_coords = _gen_plate_coords(nb_row=8, nb_col=12)
             writer = DictWriter(
                 f=ofh,
