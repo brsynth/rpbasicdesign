@@ -31,7 +31,7 @@ MAX_ENZ_PER_RXN = 1
 MAX_GENE_PER_CONSTRUCT = 3
 
 
-def _gen_plate_coords(nb_row=8, nb_col=12):
+def _gen_plate_coords(nb_row: int = 8, nb_col: int = 12) -> str:
     """Generator that generates the label coordinates for plate
 
     :param nb_row: number of rows in the plate (max: 26)
