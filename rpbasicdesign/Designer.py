@@ -449,7 +449,11 @@ class Designer:
             nb_constructs = 0
             for construct in self.constructs:
                 nb_constructs += 1
-                writer.writerow(construct.get_construct_file_row(coord=next(plate_coords)))
+                try:
+                    coords = next(plate_coords)
+                except StopIteration:
+                    coords = "--"
+                writer.writerow(construct.get_construct_file_row(coord=coords))
         # Custom parts (ie not biolegio / linker)
         with open(os.path.join(out_dir, __USER_PLATE_FILE), 'w') as ofh:
             plate_coords = _gen_plate_coords(nb_row=8, nb_col=12)
