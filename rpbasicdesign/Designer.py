@@ -423,7 +423,7 @@ class Designer:
 
         return len(self.constructs)
 
-    def write_dnabot_inputs(self, out_dir):
+    def write_dnabot_inputs(self, out_dir: str) -> int:
         """Write constructs in CSV format expected by DNA-Bot
 
         :param out_dir: folder path where construct and plate files be written
@@ -476,7 +476,7 @@ class Designer:
         shutil.copy(from_file, to_file)
         return nb_constructs
 
-    def write_sbol(self, out_dir):
+    def write_sbol(self, out_dir: str) -> int:
         """Write constructs as SBOL files
 
         NOTICE: out_dir will be created if not existing yet.
