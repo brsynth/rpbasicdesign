@@ -2,6 +2,7 @@
 Test Construct
 """
 import pytest
+from pathlib import Path
 from hashlib import sha1
 from rpbasicdesign.Part import Part
 from rpbasicdesign.Construct import Construct
@@ -22,6 +23,23 @@ __BLOCKS = [
     {'promoter': _P1, 'rbs': _LR1, 'cds': _CDS1},
     {'promoter': _P2, 'rbs': _LR2, 'cds': _CDS2}
 ]
+
+def get_file_hash(fpath: str) -> str:
+    """Compute sha1 of a sorted file content
+
+    Parameters
+    ----------
+    fpath : str
+        _description_
+
+    Returns
+    -------
+    str
+        sha1 hash
+    """
+    with open(fpath) as ifh:
+        content = '\n'.join(sorted(ifh.readlines()))
+    return sha1(content.encode()).hexdigest()
 
 
 def test_init_1():
@@ -131,7 +149,7 @@ def test_get_part_ids():
     assert o.get_part_ids() == ['LMS', 'BB', 'LMP', 'P1', 'LR1', 'CDS1', 'LR2', 'CDS2']
 
 
-def test_get_sbol():
+def test_get_sbol(tmp_path):
     o = Construct(
         backbone=_BB, lms=_LMS, lmp=_LMP,
         blocks=[
@@ -141,6 +159,15 @@ def test_get_sbol():
         nlinkers=[_LN1, _LN2]
     )
     doc = o.get_sbol(construct_id='TEST')
+
+    # Temporary write
+    __TEST_PATH = tmp_path / "test.xml"
+    __REF_PATH = Path(__file__).resolve().parent / "output" / "expected.xml"
+    with open(__TEST_PATH, "w", newline="") as ofh:
+        ofh.write(doc.writeString())
+    # Compare
+    assert get_file_hash(__TEST_PATH) == get_file_hash(__REF_PATH)
     # Item order are random in SBOL file
-    query = '\n'.join(sorted(doc.writeString().split('\n')))
-    assert sha1(query.encode()).hexdigest() == '37966b2b25c769e4a69d77362d885f71e487661f'
+    # diff = xdiff.diff_files(TEST_PATH, REF_PATH, formatter=xmldiff.formatting.XMLFormatter())
+    # query = '\n'.join(sorted(doc.writeString().split('\n')))
+    # assert sha1(query.encode()).hexdigest() == '37966b2b25c769e4a69d77362d885f71e487661f'
