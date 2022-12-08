@@ -3,6 +3,7 @@ Test Construct
 """
 import pytest
 import sbol2
+
 from pathlib import Path
 from hashlib import sha1
 from rpbasicdesign.Part import Part
