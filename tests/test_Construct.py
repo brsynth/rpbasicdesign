@@ -163,11 +163,9 @@ def test_get_sbol(tmp_path):
     # Temporary write
     __TEST_PATH = tmp_path / "test.xml"
     __REF_PATH = Path(__file__).resolve().parent / "output" / "expected.xml"
-    with open(__TEST_PATH, "w", newline="") as ofh:
-        ofh.write(doc.writeString())
+    doc.write(__TEST_PATH)
     # Compare
     assert get_file_hash(__TEST_PATH) == get_file_hash(__REF_PATH)
     # Item order are random in SBOL file
-    # diff = xdiff.diff_files(TEST_PATH, REF_PATH, formatter=xmldiff.formatting.XMLFormatter())
     # query = '\n'.join(sorted(doc.writeString().split('\n')))
     # assert sha1(query.encode()).hexdigest() == '37966b2b25c769e4a69d77362d885f71e487661f'
