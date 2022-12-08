@@ -38,7 +38,9 @@ def get_file_hash(fpath: str) -> str:
         sha1 hash
     """
     with open(fpath) as ifh:
-        content = '\n'.join(sorted(ifh.readlines()))
+        content = ''.join(sorted(ifh.readlines()))
+    with open(fpath) as ifh:
+        print(ifh.read())
     return sha1(content.encode()).hexdigest()
 
 
@@ -165,6 +167,17 @@ def test_get_sbol(tmp_path):
     __REF_PATH = Path(__file__).resolve().parent / "output" / "expected.xml"
     doc.write(__TEST_PATH)
     # Compare
+    print("\n")
+    print("====== TEST")
+    print(get_file_hash(__TEST_PATH))
+    print("\n")
+    print("====== END TEST")
+
+    print("====== REF")
+    print(get_file_hash(__REF_PATH))
+    print("\n")
+    print("====== END REF")
+
     assert get_file_hash(__TEST_PATH) == get_file_hash(__REF_PATH)
     # Item order are random in SBOL file
     # query = '\n'.join(sorted(doc.writeString().split('\n')))
