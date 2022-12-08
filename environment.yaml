@@ -2,8 +2,8 @@ name: rpbasicdesign-dev
 channels:
   - conda-forge
   - defaults
-dependencies:
-  - python < 3.9
+dependencies: 
+  - python
   - pysbol2
   - rptools
   - pytest

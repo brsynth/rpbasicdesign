@@ -26,13 +26,12 @@ jobs:
     steps:
       - name: Checkout package repository
         uses: actions/checkout@v2
-
-      - name: Deploying miniconda
-        uses: conda-incubator/setup-miniconda@v2
+      - name: Install conda environment with micromamba
+        uses: mamba-org/provision-with-micromamba@main
         with:
-          miniconda-version: "latest"
           environment-file: environment.yaml
-          activate-environment: test
+          environment-name: test
+          micromamba-version: latest
       - name: Building & Testing conda package
         run: |
           conda install -y python pytest pytest-mock
