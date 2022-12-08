@@ -6,8 +6,8 @@ on:
 
   push:
     branches: [ main, master, dev ]
-    # paths:
-    #   - '**.py'
+    paths:
+      - '**.py'
   pull_request:
     branches: [ main, master ]
 
@@ -18,8 +18,7 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     strategy:
       matrix:
-        # os: ["ubuntu", "macos", "windows"]
-        os: ["macos"]
+        os: ["ubuntu", "macos", "windows"]
     defaults:
       run:
         shell: bash -l {0}
