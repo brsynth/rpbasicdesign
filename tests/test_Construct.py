@@ -2,6 +2,7 @@
 Test Construct
 """
 import pytest
+import sbol2
 from pathlib import Path
 from hashlib import sha1
 from rpbasicdesign.Part import Part
@@ -24,25 +25,7 @@ __BLOCKS = [
     {'promoter': _P2, 'rbs': _LR2, 'cds': _CDS2}
 ]
 
-def get_file_hash(fpath: str) -> str:
-    """Compute sha1 of a sorted file content
-
-    Parameters
-    ----------
-    fpath : str
-        _description_
-
-    Returns
-    -------
-    str
-        sha1 hash
-    """
-    with open(fpath) as ifh:
-        content = ''.join(sorted(ifh.readlines()))
-    with open(fpath) as ifh:
-        print(ifh.read())
-    return sha1(content.encode()).hexdigest()
-
+__REF_PATH = Path(__file__).resolve().parent / "output" / "expected.xml"
 
 def test_init_1():
     # Empty is not OK
@@ -151,7 +134,7 @@ def test_get_part_ids():
     assert o.get_part_ids() == ['LMS', 'BB', 'LMP', 'P1', 'LR1', 'CDS1', 'LR2', 'CDS2']
 
 
-def test_get_sbol(tmp_path):
+def test_get_sbol():
     o = Construct(
         backbone=_BB, lms=_LMS, lmp=_LMP,
         blocks=[
@@ -160,25 +143,12 @@ def test_get_sbol(tmp_path):
             ],
         nlinkers=[_LN1, _LN2]
     )
+    # Tested
     doc = o.get_sbol(construct_id='TEST')
+    tested_objects = sorted([str(obj) for obj in doc])
+    # Ref
+    ref = sbol2.Document()
+    ref.read(__REF_PATH)
+    ref_objects = sorted([str(obj) for obj in ref])
 
-    # Temporary write
-    __TEST_PATH = tmp_path / "test.xml"
-    __REF_PATH = Path(__file__).resolve().parent / "output" / "expected.xml"
-    doc.write(__TEST_PATH)
-    # Compare
-    print("\n")
-    print("====== TEST")
-    print(get_file_hash(__TEST_PATH))
-    print("\n")
-    print("====== END TEST")
-
-    print("====== REF")
-    print(get_file_hash(__REF_PATH))
-    print("\n")
-    print("====== END REF")
-
-    assert get_file_hash(__TEST_PATH) == get_file_hash(__REF_PATH)
-    # Item order are random in SBOL file
-    # query = '\n'.join(sorted(doc.writeString().split('\n')))
-    # assert sha1(query.encode()).hexdigest() == '37966b2b25c769e4a69d77362d885f71e487661f'
+    assert tested_objects == ref_objects
