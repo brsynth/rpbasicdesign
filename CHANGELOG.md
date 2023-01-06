@@ -1,5 +1,11 @@
 # Release history
 
+## 1.2.1 (2023-01-06)
+
+- chore(test_Construct.py): compare based on Component URIs
+- chore(test.yml): transition to mamba for GA
+- chore: fix github action workflows
+
 ## 1.2.0 (2022-12-05)
 
 - chore(Designer): add type hint
