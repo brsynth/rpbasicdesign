@@ -20,6 +20,7 @@ requirements:
     - pysbol2
     - rptools
     - numpy <=1.22.4
+
 test:
   source_files:
     - tests
