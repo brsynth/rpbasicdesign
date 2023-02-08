@@ -5,9 +5,9 @@ name: Test
 on:
 
   push:
-    branches: [ main, master, dev ]
     paths:
       - '**.py'
+      - '**.yaml'
   pull_request:
     branches: [ main, master ]
 

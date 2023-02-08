@@ -8,3 +8,4 @@ dependencies:
   - rptools
   - pytest
   - pytest-cov
+  - numpy <=1.22.4
