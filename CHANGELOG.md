@@ -1,5 +1,9 @@
 # Release history
 
+## 1.2.3 (2023-02-13)
+
+- fix: rptools version restriction
+
 ## 1.2.2 (2023-02-08)
 
 - fix: numpy version restriction
